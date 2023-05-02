@@ -1,6 +1,6 @@
 import React from 'react'
 import { Footer} from 'flowbite-react'
-import { BsFacebook, BsInstagram, BsTwitter, BsGithub, BsDribbble } from "react-icons/bs";
+import { BsFacebook, BsInstagram, BsTwitter, BsGithub, BsLinkedin, BsDiscord, BsBookFill } from "react-icons/bs";
 
 export default function footer() {
   return (
@@ -17,13 +17,16 @@ export default function footer() {
             </div>
             <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
                 <div>
-                <Footer.Title title="about" />
+                <Footer.Title title="Profile" />
                 <Footer.LinkGroup col={true}>
                     <Footer.Link href="#">
-                    Flowbite
+                    Browse Recipes
                     </Footer.Link>
                     <Footer.Link href="#">
-                    Tailwind CSS
+                    Make Recipes
+                    </Footer.Link>
+                    <Footer.Link href="#">
+                    Save Recipes
                     </Footer.Link>
                 </Footer.LinkGroup>
                 </div>
@@ -35,6 +38,12 @@ export default function footer() {
                     </Footer.Link>
                     <Footer.Link href="#">
                     Discord
+                    </Footer.Link>
+                    <Footer.Link href="#">
+                    Email
+                    </Footer.Link>
+                    <Footer.Link href="#">
+                    LinkedIn
                     </Footer.Link>
                 </Footer.LinkGroup>
                 </div>
@@ -54,14 +63,14 @@ export default function footer() {
             <Footer.Divider />
             <div className="w-full sm:flex sm:items-center sm:justify-between">
             <Footer.Copyright
-                href="#"
-                by="Flowbite™"
-                year={2022}
+                href="/"
+                by="TheCookBook™"
+                year={2023}
             />
             <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
                 <Footer.Icon
                 href="#"
-                icon={BsFacebook}
+                icon={BsDiscord}
                 />
                 <Footer.Icon
                 href="#"
@@ -73,11 +82,11 @@ export default function footer() {
                 />
                 <Footer.Icon
                 href="#"
-                icon={BsGithub}
+                icon={BsLinkedin}
                 />
                 <Footer.Icon
                 href="#"
-                icon={BsDribbble}
+                icon={BsGithub}
                 />
             </div>
             </div>
