@@ -4,7 +4,7 @@ import HeroImage0 from '../../public/11.svg'
 export default function FeatureBlock() {
   return (
     <div className="flex  items-center">
-        <div className="flex flex-col text-center md:text-left justify-center items-center md:items-start">
+        <div className="flex flex-col text-center md:text-left justify-center items-center md:items-start md:w-1/2">
             <h1 className="text-5xl font-bold py-3">
                 Recreate and Relive Culinary Experiences
             </h1>
@@ -14,7 +14,7 @@ export default function FeatureBlock() {
             </h2>
             <CreateRecipe/>
         </div>
-        <div className="md:w-1/2 hidden md:block max-h-1/2">
+        <div className="hidden md:w-1/2 md:flex md:justify-end">
             <Image src={HeroImage0} alt="" width={800}/>
         </div>
     </div>
