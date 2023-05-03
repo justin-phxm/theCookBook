@@ -8,7 +8,7 @@ import Circle from '../components/circularDecoration'
 
 export default function Home() {
   return (
-    <main className='min-h-screen bg-[#F4FFF1]'>
+    <main className='min-h-screen bg-[#F4FFF1] overflow-hidden relative'>
       <Circle />
       <NavBar />
       <FeatureBlock />
