@@ -14,7 +14,7 @@ export default function Home() {
       <div className=" w-5/6 m-auto">
         <Circle />
         <NavBar />
-        <div className="">
+        <div className="pb-24">
         <FeatureBlock />
         <FeatureBlock1 />
         <FeatureBlock2 />

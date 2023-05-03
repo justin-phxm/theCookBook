@@ -1,5 +1,6 @@
 import { Footer} from 'flowbite-react'
 import { BsFacebook, BsInstagram, BsTwitter, BsGithub, BsLinkedin, BsDiscord, BsBookFill } from "react-icons/bs";
+import Image from 'next/image';
 
 export default function footer() {
     return (<>
@@ -7,12 +8,11 @@ export default function footer() {
         <div className="w-full">
             <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
             <div>
-                <Footer.Brand
-                href="https://flowbite.com"
-                src="https://flowbite.com/docs/images/logo.svg"
-                alt="TheCookBook Logo"
-                name="TheCookBook"
-                />
+                <a href="/" className="mb-4 flex items-center sm:mb-0">
+                    <BsBookFill className="mr-3 h-8"/>
+                    <span data-testid="flowbite-footer-brand-span" 
+                    className="self-center whitespace-nowrap text-2xl font-semibold text-gray-800 dark:text-white">TheCookBook</span>
+                </a>
             </div>
             <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
                 <div>
@@ -91,6 +91,5 @@ export default function footer() {
             </div>
         </div>
         </footer>
-  
     </>)
 }
