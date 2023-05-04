@@ -32,7 +32,7 @@ export default function footer() {
                 <div>
                 <Footer.Title title="Follow us" />
                 <Footer.LinkGroup col={true}>
-                    <Footer.Link href="#">
+                    <Footer.Link href="https://github.com/justin-phxm/theCookBook" target="_blank">
                     Github
                     </Footer.Link>
                     <Footer.Link href="#">
@@ -41,7 +41,7 @@ export default function footer() {
                     <Footer.Link href="#">
                     Email
                     </Footer.Link>
-                    <Footer.Link href="#">
+                    <Footer.Link href="https://www.linkedin.com/in/justin-pham-32a309153/">
                     LinkedIn
                     </Footer.Link>
                 </Footer.LinkGroup>
@@ -72,7 +72,8 @@ export default function footer() {
                 icon={BsDiscord}
                 />
                 <Footer.Icon
-                href="#"
+                href="https://www.instagram.com/justinphxm/"
+                target="_blank"
                 icon={BsInstagram}
                 />
                 <Footer.Icon
@@ -80,11 +81,13 @@ export default function footer() {
                 icon={BsTwitter}
                 />
                 <Footer.Icon
-                href="#"
+                href="https://www.linkedin.com/in/justin-pham-32a309153/"
+                target="_blank"
                 icon={BsLinkedin}
                 />
                 <Footer.Icon
-                href="#"
+                href="https://github.com/justin-phxm/theCookBook"
+                target="_blank"
                 icon={BsGithub}
                 />
             </div>
