@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function footer() {
     return (<>
-        <footer className='w-full rounded-lg dark:bg-gray-800 md:flex md:items-center md:justify-between p-6  bg-inherit border-0  border-inherit'  >
+        <footer className='w-full rounded-lg bg-inherit dark:bg-gray-800 md:flex md:items-center md:justify-between p-6 '>
         <div className="w-full">
             <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
             <div>
