@@ -1,7 +1,6 @@
 import { Footer} from 'flowbite-react'
 import Link from 'next/link';
-import { BsFacebook, BsInstagram, BsTwitter, BsGithub, BsLinkedin, BsDiscord, BsBookFill } from "react-icons/bs";
-import Image from 'next/image';
+import {BsInstagram, BsTwitter, BsGithub, BsLinkedin, BsDiscord, BsBookFill } from "react-icons/bs";
 
 export default function footer() {
     return (<>

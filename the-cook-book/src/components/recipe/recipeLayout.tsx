@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Circle from '../circularDecoration';
 import NavBar from '../navBar';
-import Footer from '../footer';
 
 export const siteTitle = 'theCookBook';
 export default function Layout({children} : {children: React.ReactNode}) {
@@ -29,7 +28,6 @@ export default function Layout({children} : {children: React.ReactNode}) {
             <NavBar />
             {children}
             hi
-            <Footer />
         </div>
         </main>
     </div>
