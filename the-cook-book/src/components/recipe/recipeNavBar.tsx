@@ -7,7 +7,7 @@ export default function NavBar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   
   return (
-    <div className=" flex flex-wrap items-center justify-between mx-auto p-4">
+    <div className=" flex flex-wrap items-center justify-between select-none mx-auto p-4">
     <Link href="#" className="flex items-center">
         {/* <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 mr-3" alt="Flowbite Logo" /> */}
         <span className="self-center text-2xl font-semibold whitespace-nowrap text-green-500 dark:text-white">TheCookBook</span>
