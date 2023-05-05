@@ -2,6 +2,7 @@
 import RecipeLayout from '../components/recipe/recipeLayout'
 import RecipeHolder from '@/components/recipe/recipeHolder'
 import CookingArea from '@/components/recipe/cookingArea'
+import RecipeDetails from '@/components/recipe/recipeDetails'
 
 export default function Recipes() {
   return (
@@ -14,7 +15,7 @@ export default function Recipes() {
           <CookingArea />
         </div>
         <div className="col-span-3">
-          Recipe Details
+          <RecipeDetails />
         </div>
       </div>
     </RecipeLayout>
