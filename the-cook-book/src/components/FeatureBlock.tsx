@@ -15,7 +15,7 @@ export default function FeatureBlock() {
             <CreateRecipe/>
         </div>
         <div className="hidden md:w-1/2 md:flex md:justify-end">
-            <Image src={HeroImage0} alt="" width={800}/>
+            <Image src={HeroImage0} alt="" width={600}/>
         </div>
     </div>
   )
