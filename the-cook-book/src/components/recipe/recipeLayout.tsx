@@ -27,7 +27,6 @@ export default function Layout({children} : {children: React.ReactNode}) {
             <Circle />
             <NavBar />
             {children}
-            hi
         </div>
         </main>
     </div>
