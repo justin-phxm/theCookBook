@@ -1,8 +1,10 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import Circle from './circularDecoration';
+import NavBar from './navBar';
+import Footer from './footer';
 
-const name = 'Justin';
 export const siteTitle = 'Justin First website';
 const home = false;
 export default function Layout({children, home} : {children: React.ReactNode , home?: boolean}) {
@@ -24,9 +26,13 @@ export default function Layout({children, home} : {children: React.ReactNode , h
             <meta name="og:title" content={siteTitle} />
             <meta name="twitter:card" content="summary_large_image" />
         </Head>
-        {/* <header>TheCookBook</header> */}
-        <main>
+        <main className='min-h-screen bg-[#F4FFF1] overflow-hidden relative'>
+        <div className=" w-5/6 m-auto">
+            <Circle />
+            <NavBar />
             {children}
+            <Footer />
+        </div>
         </main>
     </div>
   );
