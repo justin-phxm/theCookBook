@@ -2,7 +2,6 @@ import React from 'react'
 
 export default function cookingArea() {
   return (
-<div>
     <div className=" bg-[#BCE3B2] w-full h-full p-3 rounded-lg">
         <div className="bg-slate-200 h-full p-4 rounded-lg">
             <div className="flex flex-row justify-between">
@@ -23,6 +22,5 @@ export default function cookingArea() {
             </div>
         </div>
     </div>
-</div>
   )
 }

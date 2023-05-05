@@ -3,9 +3,8 @@ import {Label, Textarea} from 'flowbite-react'
 
 export default function recipeDetails() {
   return (
-    <div>
         <div className=" bg-[#BCE3B2] w-full h-full p-3 rounded-lg">
-            <div className="bg-slate-200 h-96 p-4 rounded-lg">
+            <div className="bg-slate-200 h-full p-4 rounded-lg">
                 <h1 className=' font-bold select-none text-xl'>
                     Details
                 </h1>
@@ -48,6 +47,5 @@ export default function recipeDetails() {
                 />
             </div>
         </div>
-    </div>
   )
 }
