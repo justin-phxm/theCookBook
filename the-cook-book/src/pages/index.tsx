@@ -11,7 +11,7 @@ import Layout from '../components/layout'
 
 export default function Home() {
   return (<>    
-    <Layout home>
+    <Layout>
       <Head>
         <title>TheCookBook</title>
       </Head>
