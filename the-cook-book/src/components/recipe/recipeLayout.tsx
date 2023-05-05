@@ -23,11 +23,13 @@ export default function Layout({children} : {children: React.ReactNode}) {
             <meta name="twitter:card" content="summary_large_image" />
         </Head>
         <main className='min-h-screen bg-[#F4FFF1] overflow-hidden relative'>
-        <div className=" w-11/12 m-auto">
-            <Circle />
-            <NavBar />
-            {children}
-        </div>
+          <div className="h-screen w-11/12 m-auto flex flex-col">
+              <Circle />
+              <div>
+                <NavBar />
+              </div>
+              {children}
+          </div>
         </main>
     </div>
   );
