@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Circle from '../circularDecoration';
-import NavBar from '../navBar';
+import NavBar from '../recipe/recipeNavBar';
 
 export const siteTitle = 'theCookBook';
 export default function Layout({children} : {children: React.ReactNode}) {
@@ -23,11 +23,10 @@ export default function Layout({children} : {children: React.ReactNode}) {
             <meta name="twitter:card" content="summary_large_image" />
         </Head>
         <main className='min-h-screen bg-[#F4FFF1] overflow-hidden relative'>
-        <div className=" w-5/6 m-auto">
+        <div className=" w-11/12 m-auto">
             <Circle />
             <NavBar />
             {children}
-            hi
         </div>
         </main>
     </div>
