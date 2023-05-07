@@ -26,7 +26,7 @@ export default function cookingArea({foodItem}: {foodItem: IFoodItem}) {
                     </button>
                 </div>
             </div>
-            <div className="flex flex-row w-full">
+            <div className="flex flex-row w-full gap-2">
                 <div className="flex flex-col w-1/2">
                     <Ingredients foodItem={foodItem} />
                     {foodItem.image ? 

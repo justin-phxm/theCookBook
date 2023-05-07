@@ -9,7 +9,7 @@ export default function Ingredients({foodItem}: {foodItem: IFoodItem}) {
         <div className=" font-bold text-lg text-">
             Ingredients:
         </div>
-        <ul className="resize">
+        <ul className="">
             {foodItem.ingredients?.map((ingredient, index) => (
                 <li className="flex flex-row font-normal" key={index}>
                     • {ingredient}
