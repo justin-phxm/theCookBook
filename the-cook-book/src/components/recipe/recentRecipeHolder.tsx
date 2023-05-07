@@ -1,22 +1,20 @@
 import React from 'react'
+import MyFoodItem from './FoodItem'
+import Link from 'next/link'
+import IFoodItem from '../FoodInterface'
 
-export default function recentRecipeHolder() {
+export default function recentRecipeHolder({foodItemArray}: {foodItemArray: IFoodItem[]}) {
   return (
     <div className=" bg-[#BCE3B2] w-full h-full p-3 rounded-lg">
-        <div className="bg-slate-200 h-full p-4 rounded-lg">
-            <h1 className=' font-bold select-none text-xl'>
-            Recipes
-            </h1>
-            <div className="overflow-auto flex flex-row">
-                <div>Item1</div>
-                <div>Item1</div>
-                <div>Item1</div>
-                <div>Item1</div>
-                <div>Item1</div>
-                <div>Item1</div>
-                <div>Item1</div>
-                <div>Item1</div>
-                <div>Item1</div>
+        <div className="h-full w-full rounded-lg flex flex-col">
+            <Link className='font-bold hover:underline text-xl'
+            href="#">
+            Recent Recipes
+            </Link>
+            <div className=" overflow-x-auto flex flex-row h-full">
+                {foodItemArray.map((FoodItem:{name?:string, image?:string, id?:string}) => (
+                    <MyFoodItem FoodItem={FoodItem} key={FoodItem.id} />
+                ))}
             </div>
         </div>
     </div>
