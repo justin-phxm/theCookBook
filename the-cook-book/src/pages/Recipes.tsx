@@ -9,9 +9,11 @@ import IFoodItem from '@/components/FoodInterface'
 
 export default function Recipes() {
   const foodItemArray:IFoodItem[] = 
-  [{name:"Chicken Soup", image:"images/media/meals/1529446352.jpg", id:uuidv4()},
+  [{name:"Chicken Soup", image:"images/media/meals/1529446352.jpg", id:uuidv4(), 
+  summary:"Chicken soup is a warm and comforting soup made by simmering chicken, vegetables, and herbs in a flavorful broth.", color:"bg-red-500"},
   {name:"Steak", id:uuidv4()},
-  {name:"Chicken Soup", image:"images/media/meals/1529446352.jpg", id:uuidv4()},
+  {name:"Chicken Soup", image:"images/media/meals/1529446352.jpg", id:uuidv4(),
+  summary:"Chicken good."},
   {name:"Chicken Soup", image:"images/media/meals/1529446352.jpg", id:uuidv4()},]
 
   return (
@@ -19,7 +21,7 @@ export default function Recipes() {
       <div className="h-full pb-2">
         <div className="grid grid-cols-12 gap-2 h-3/4 pb-2">
           <div className="col-span-2 h-full">
-            <RecipeHolder />
+            <RecipeHolder foodItemArray={foodItemArray} />
           </div>
           <div className="col-span-7">
             <CookingArea />
