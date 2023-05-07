@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function recentRecipeHolder() {
+export default function recentRecipeHolder({FoodItem}) {
   return (
     <div className=" bg-[#BCE3B2] w-full h-full p-3 rounded-lg">
         <div className="bg-slate-200 h-full p-4 rounded-lg">
