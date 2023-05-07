@@ -5,10 +5,15 @@ import CookingArea from '@/components/recipe/cookingArea'
 import RecipeDetails from '@/components/recipe/recipeDetails'
 import RecentRecipeHolder from '@/components/recipe/recentRecipeHolder'
 import {v4 as uuidv4} from 'uuid'
+import IFoodItem from '@/components/FoodInterface'
 
 export default function Recipes() {
-  const FoodItem = {"name":"Chicken Soup","image":"https://www.themealdb.com/images/media/meals/1529446352.jpg","id":"52959"}
-  console.log(uuidv4())
+  const foodItemArray:IFoodItem[] = 
+  [{name:"Chicken Soup", image:"images/media/meals/1529446352.jpg", id:uuidv4()},
+  {name:"Steak", id:uuidv4()},
+  {name:"Chicken Soup", image:"images/media/meals/1529446352.jpg", id:uuidv4()},
+  {name:"Chicken Soup", image:"images/media/meals/1529446352.jpg", id:uuidv4()},]
+
   return (
     <RecipeLayout>
       <div className="h-full pb-2">
@@ -24,7 +29,7 @@ export default function Recipes() {
           </div>
         </div>
         <div className=" h-1/4">
-          <RecentRecipeHolder FoodItem={FoodItem} />
+          <RecentRecipeHolder foodItemArray={foodItemArray} />
         </div>
       </div>
     </RecipeLayout>
