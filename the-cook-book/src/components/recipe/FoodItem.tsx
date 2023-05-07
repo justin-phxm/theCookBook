@@ -10,12 +10,10 @@ export default function FoodItem({FoodItem}:{FoodItem:{name?:string, image?:stri
 
   return (
     <>
-      <div className="h-full bg-gray-200 rounded-lg border border-white shadow-md dark:border-gray-700 mx-2 dark:bg-gray-800 flex-col">
-        <div className=" h-full justify-center p-2">
-          <div className="flex flex-col items-center">
+      <button className="h-full aspect-square hover:underline w-fit flex flex-col items-center xl:w-56 2xl:w-64 mx-2 bg-gray-200 rounded-lg border justify-center
+       border-white shadow-md dark:border-gray-700  dark:bg-gray-800">
             {FoodItem.image ? 
-            // h-24 is a problem
-            <Image className="h-24 w-24 rounded-md shadow-lg"
+            <Image className="h-5/6 rounded-md p-3"
                 loader={imageLoader}
                 src={FoodItem.image}
                 alt="No image"
@@ -23,18 +21,15 @@ export default function FoodItem({FoodItem}:{FoodItem:{name?:string, image?:stri
                 height={500}
             />
           :
-            <Image className="h-24 w-24 rounded-md shadow-lg"
+            <Image className="w-1/2 rounded-md shadow-lg"
             src={placeholder}
             alt="No image"
             width={500}
-            quality={1}
             />  
         }
-            <h5 className="mb-1 mt-3 text-xl font-medium text-gray-900 dark:text-white">
+            <h5 className=" text-xl font-medium text-gray-900 dark:text-white">
                 {FoodItem.name}
             </h5>
-        </div>
-      </div>
-    </div>
+    </button>
     </>)
 }
