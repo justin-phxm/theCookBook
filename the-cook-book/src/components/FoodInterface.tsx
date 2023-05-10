@@ -4,4 +4,8 @@ export default interface FoodItem {
     id?:string
     summary?:string,
     color?:string,
+    ingredients?:string[],
+    instructions?:string[],
+    tags?:string[],
+    servings?:number,
 }

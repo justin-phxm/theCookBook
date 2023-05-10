@@ -13,11 +13,11 @@ export default function recipeHolder({foodItemArray}: {foodItemArray: IFoodItem[
           </h1>
           <AiOutlinePlus className="text-2xl z-10 font-semibold hover:bg-slate-300 hover:rounded-md cursor-pointer"/>
         </div>
-        <div className=" overflow-y flex flex-col h-full">
+        <ul className=" overflow-y flex flex-col h-full">
           {foodItemArray.map((FoodItem:IFoodItem) => (
               <RecipeItem FoodItem={FoodItem} key={FoodItem.id} />
           ))}
-        </div>
+        </ul>
       </div>
     </div>
   )
