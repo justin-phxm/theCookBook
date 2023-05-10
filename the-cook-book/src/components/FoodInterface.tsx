@@ -7,4 +7,5 @@ export default interface FoodItem {
     ingredients?:string[],
     instructions?:string[],
     tags?:string[],
+    servings?:number,
 }

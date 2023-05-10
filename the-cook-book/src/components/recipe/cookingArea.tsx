@@ -15,7 +15,8 @@ export default function cookingArea({foodItem}: {foodItem: IFoodItem}) {
         <div className="bg-slate-200 h-full p-4 rounded-lg">
             <div className="flex flex-row justify-between">
                 <h1 className=' font-bold select-none text-xl'>
-                    {foodItem.name? foodItem.name : "New Recipe"}
+                    {foodItem.name? foodItem.name: "New Recipe"}
+                    {foodItem.servings? " - " + foodItem.servings + " servings": ""}
                 </h1>
                 <div className="flex flex-row">
                     <button className="px-2 z-10 font-medium hover:bg-slate-300 hover:rounded-md cursor-pointer">
