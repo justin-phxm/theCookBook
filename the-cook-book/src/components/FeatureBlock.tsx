@@ -2,12 +2,15 @@ import CreateRecipe from './atoms/createRecipe'
 import Image from 'next/image'
 
 export default function FeatureBlock(
-    {heroImage, heroTitle, heroDescription} : 
-    {heroImage: string, heroTitle?: string, heroDescription?: string},
+    {heroImage, heroTitle, heroDescription, heroSubheader} : 
+    {heroImage: string, heroTitle?: string, heroDescription?: string, heroSubheader?: string},
     ) {
   return (
     <div className="flex  items-center">
         <div className="flex flex-col text-center md:text-left justify-center items-center md:items-start md:w-1/2">
+            <h6 className="text-2xl" >
+                {heroSubheader}
+            </h6>
             <h1 className="text-5xl font-bold py-3">
                 {heroTitle}
             </h1>

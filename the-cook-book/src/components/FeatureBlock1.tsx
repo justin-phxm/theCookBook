@@ -1,19 +1,24 @@
 import CreateRecipe from './atoms/createRecipe'
 import Image from 'next/image'
 
-export default function FeatureBlock({heroImage} : {heroImage: string}) {
+export default function FeatureBlock(
+  {heroImage, heroTitle, heroDescription, heroSubheader} : 
+    {heroImage: string, heroTitle?: string, heroDescription?: string, heroSubheader?: string},
+  ) {
   return (
     <div className="flex  items-center">
         <div className="hidden md:w-1/2 md:flex md:justify-start pr-6">
             <Image src={heroImage} alt="" width={600}/>
         </div>
         <div className="flex flex-col text-center md:text-left justify-center items-center md:items-start md:w-1/2">
+            <h6 className="text-2xl" >
+              {heroSubheader}
+            </h6>
             <h1 className="text-5xl font-bold py-3">
-            Explore new recipes and cuisine
+            {heroTitle}
             </h1>
             <h2 className="text-2xl py-3" >
-            AI generated recipes and recommendations 
-            catered towards your recent meals.
+            {heroDescription}
             </h2>
             <CreateRecipe/>
         </div>
