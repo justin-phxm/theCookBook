@@ -1,6 +1,5 @@
 import CreateRecipe from './atoms/createRecipe'
 import Image from 'next/image'
-import HeroImage0 from '../../public/11.svg'
 
 export default function FeatureBlock(
     {heroImage, heroTitle, heroDescription} : 

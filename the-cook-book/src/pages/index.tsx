@@ -37,7 +37,8 @@ export default function Home() {
           <Testimony />
         </div>
       </div>
-      <CallToAction />
+      <CallToAction callToActionHeaderSm='ARE YOU READY?'
+       callToActionHeader="Be A Part Of The Next Big Thing"/>
     </Layout>
     </>)
 }

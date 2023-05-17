@@ -14,7 +14,9 @@ export default function about() {
       <Head>
         <title>About</title>
       </Head>
-      <CallToAction />
+      <CallToAction callToActionHeaderSm='ABOUT US' 
+      callToActionHeader="TheCookBook Changes The Food Industry"
+      callToActionMessage="The ultimate online cooking application for all your recipe needs."/>
       <FeatureBlock heroImage={aboutImage2}/>
       <FeatureBlock1 heroImage={aboutImage}/>
       <Testimony />
