@@ -15,12 +15,9 @@ export default function about() {
         <title>About</title>
       </Head>
       <CallToAction />
-      <FeatureBlock />
-      <FeatureBlock1 />
+      <FeatureBlock heroImage={aboutImage2}/>
+      <FeatureBlock1 heroImage={aboutImage}/>
       <Testimony />
-      <Image src={aboutImage} alt="" width={500}/>
-      <Image src={aboutImage2} alt="" width={500}/>
-
     </Layout>
     </>)
 }

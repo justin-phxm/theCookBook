@@ -8,6 +8,9 @@ import FeatureBlock1 from '../components/FeatureBlock1'
 import FeatureBlock2 from '../components/FeatureBlock2'
 import Circle from '../components/circularDecoration'
 import Layout from '../components/layout'
+import HeroImage0 from '../../public/11.svg'
+import HeroImage1 from '../../public/9.svg'
+import HeroImage2 from '../../public/12.svg'
 
 export default function Home() {
   return (<>    
@@ -16,9 +19,14 @@ export default function Home() {
         <title>TheCookBook</title>
       </Head>
       <div className="pb-24">
-      <FeatureBlock />
-      <FeatureBlock1 />
-      <FeatureBlock2 />
+        <FeatureBlock 
+          heroImage={HeroImage0} 
+          heroTitle="Recreate and Relive Culinary Experiences"
+          heroDescription="The ultimate recipe book to create and save all your favorite dishes."/>
+        <FeatureBlock1 heroImage={HeroImage1}/>
+        <FeatureBlock heroImage={HeroImage2} 
+          heroTitle="Recreate and Relive Culinary Experiences"
+          heroDescription="The ultimate recipe book to create and save all your favorite dishes."/>
       </div>
       <div className="pb-4">
         <h1 className=" text-center text-2xl font-bold text-[#2BB644]" >TESTIMONIALS</h1>

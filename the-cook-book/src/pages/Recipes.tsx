@@ -7,11 +7,18 @@ import RecentRecipeHolder from '@/components/recipe/recentRecipeHolder'
 import {v4 as uuidv4} from 'uuid'
 import IFoodItem from '@/components/FoodInterface'
 import { useState } from 'react'
+import myRice from "../../public/friedRice.jpg"
 
 export default function Recipes() {
   const foodItemArray:IFoodItem[] = 
-  [
-    {name:"Lasagna", id:uuidv4(), 
+  [ {name:"Fried Rice", id:uuidv4(),
+    summary:"Fried rice is a popular Asian dish made with cooked rice, vegetables, eggs, and seasonings that are stir-fried together in a wok or skillet.",
+    color:"bg-yellow-500",
+    ingredients:[  "Cooked rice (3 cups)",  "Vegetable oil (3 tablespoons)",  "Garlic cloves (3), minced",  "Onion (1), chopped",  "Carrots (2), peeled and chopped",  "Frozen peas (1 cup)",  "Eggs (2), lightly beaten",  "Soy sauce (3 tablespoons)",  "Salt and pepper, to taste",  "Green onions, sliced (optional, for garnish)"],
+    instructions: [  "Heat the vegetable oil in a large skillet or wok over medium-high heat.",  "Add the minced garlic and chopped onion to the skillet and stir-fry for 1-2 minutes until fragrant.",  "Add the chopped carrots and continue to stir-fry for another 2-3 minutes until they are slightly softened.",  "Add the frozen peas to the skillet and stir-fry for another 1-2 minutes until they are heated through.",  "Push the vegetables to the sides of the skillet to create a well in the center.",  "Pour the lightly beaten eggs into the well and scramble them until they are cooked through.",  "Add the cooked rice to the skillet and stir-fry everything together for 3-4 minutes until the rice is heated through and starts to get crispy.",  "Add the soy sauce, salt, and pepper to the skillet and stir-fry for another 1-2 minutes until everything is well combined.",  "Remove from heat and serve hot, garnished with sliced green onions if desired."],
+    servings:4,
+    },
+  {name:"Lasagna", id:uuidv4(), 
   summary:"Lasagna is a type of pasta, possibly one of the oldest types, made of very wide, flat sheets. Either term can also refer to an Italian dish made of stacked layers of lasagna alternating with fillings such as ragù, béchamel sauce, vegetables, cheeses, and seasonings and spices.", 
   color:"bg-red-500",
   ingredients:[  "Lasagna noodles (12-16 noodles)",  "Ground beef (1 pound)", "Tomato sauce (24-28 ounces)",  "Ricotta cheese (2 cups)",  "Shredded mozzarella cheese (2 cups)",  "Grated Parmesan cheese (1/2 cup)",  "Egg (1)",  "Garlic cloves (2), minced",  "Olive oil (2 tablespoons)",  "Dried basil (1 teaspoon)",  "Dried oregano (1 teaspoon)",  "Salt and pepper, to taste"],
