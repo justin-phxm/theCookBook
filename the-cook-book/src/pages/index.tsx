@@ -1,12 +1,8 @@
 import Head from 'next/head'
-import NavBar from '../components/navBar'
 import Testimony from '../components/testimony'
-import Footer from '../components/footer'
 import CallToAction from '../components/callToAction'
 import FeatureBlock from '../components/FeatureBlock'
 import FeatureBlock1 from '../components/FeatureBlock1'
-import FeatureBlock2 from '../components/FeatureBlock2'
-import Circle from '../components/circularDecoration'
 import Layout from '../components/layout'
 import HeroImage0 from '../../public/11.svg'
 import HeroImage1 from '../../public/9.svg'
@@ -23,7 +19,9 @@ export default function Home() {
           heroImage={HeroImage0} 
           heroTitle="Recreate and Relive Culinary Experiences"
           heroDescription="The ultimate recipe book to create and save all your favorite dishes."/>
-        <FeatureBlock1 heroImage={HeroImage1}/>
+        <FeatureBlock1 heroImage={HeroImage1}
+        heroTitle="Explore new recipes and cuisine"
+        heroDescription="AI generated recipes and recommendations catered towards your recent meals."/>
         <FeatureBlock heroImage={HeroImage2} 
           heroTitle="Recreate and Relive Culinary Experiences"
           heroDescription="The ultimate recipe book to create and save all your favorite dishes."/>

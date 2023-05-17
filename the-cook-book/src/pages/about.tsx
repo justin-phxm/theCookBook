@@ -17,8 +17,15 @@ export default function about() {
       <CallToAction callToActionHeaderSm='ABOUT US' 
       callToActionHeader="TheCookBook Changes The Food Industry"
       callToActionMessage="The ultimate online cooking application for all your recipe needs."/>
-      <FeatureBlock heroImage={aboutImage2}/>
-      <FeatureBlock1 heroImage={aboutImage}/>
+      <FeatureBlock heroImage={aboutImage2}
+      heroSubheader="Our Story"
+        heroTitle="Our first recipe started on paper..."
+      heroDescription="Cooking has evolved in the 21st century. Food is abundant and there are so many options to choose from. We saw that the old fashioned paper recipes needed to evolve as well. Whether you are a novice or a professional, cooking has never been made easier."/>
+      <FeatureBlock1 heroImage={aboutImage}
+      heroSubheader="Our Mission"
+        heroTitle="Simple, User-Friendly, and Appetizing"
+      heroDescription="Our mission is simple: to provide you with a user-friendly platform that allows you to store your favorite recipes, discover new dishes, and unleash your creativity in the kitchen."
+      />
       <Testimony />
     </Layout>
     </>)
