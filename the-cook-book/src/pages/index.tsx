@@ -7,6 +7,7 @@ import Layout from '../components/layout'
 import HeroImage0 from '../../public/11.svg'
 import HeroImage1 from '../../public/9.svg'
 import HeroImage2 from '../../public/12.svg'
+import testimony0 from '../../public/testimonyImage.png'
 
 export default function Home() {
   return (<>    
@@ -30,7 +31,9 @@ export default function Home() {
         <h1 className=" text-center text-2xl font-bold text-[#2BB644]" >TESTIMONIALS</h1>
         <h1 className="pb-32 text-center text-[2.5rem] font-bold text-black">Read What Others Have To Say</h1>
         <div className="flex flex-row place-content-center">
-          <Testimony />
+          <Testimony testimonyImage={testimony0}
+          testimonyName='Olivia Cole'
+          testimonyText='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper scelerisque mi, in malesuada felis malesuada vel. '/>
           <Testimony />
           <Testimony />
         </div>
