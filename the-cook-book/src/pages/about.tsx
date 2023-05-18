@@ -29,7 +29,8 @@ export default function about() {
       heroDescription="Our mission is simple: to provide you with a user-friendly platform that allows you to store your favorite recipes, discover new dishes, and unleash your creativity in the kitchen."
       hideButton={true}
       />
-      <div className="flex flex-row place-content-center w-full pt-32">
+      <div className="flex text-lg justify-center pt-20">Our Team</div>
+      <div className="flex flex-row place-content-center w-full pt-20">
         <Testimony 
         testimonyImage={TestimonyImage}
         testimonyName="Justin Pham"
