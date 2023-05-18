@@ -45,6 +45,16 @@ export default function about() {
         Overall, I can say without a doubt that cooking this summer has changed my life for the better. It has taught me a new skill, given me a creative outlet, and improved my health and well-being. I'm excited to continue my culinary journey and see where it takes me next!"
       />
       </div>
+      <div className="mt-16 text-center mx-auto max-w-md">
+        <span className='text-lg'>
+        Try theCookBook for free, and explore all the tools and services you need to discover your next meal.
+        </span>
+        <a href="#"
+          className="mt-2 block w-full rounded-md bg-[#53AD3C] py-2 text-center text-sm font-semibold text-white hover:bg-[#A7E4AF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#53AD3C]">
+          START NOW FOR FREE
+        </a>
+      </div>
+
     </Layout>
     </>)
 }
