@@ -2,8 +2,8 @@ import CreateRecipe from './atoms/createRecipe'
 import Image from 'next/image'
 
 export default function FeatureBlock(
-    {heroImage, heroTitle, heroDescription, heroSubheader} : 
-    {heroImage: string, heroTitle?: string, heroDescription?: string, heroSubheader?: string},
+    {heroImage, heroTitle, heroDescription, heroSubheader, hideButton} : 
+    {heroImage: string, heroTitle?: string, heroDescription?: string, heroSubheader?: string, hideButton?: boolean},
     ) {
   return (
     <div className="flex  items-center">
@@ -17,7 +17,7 @@ export default function FeatureBlock(
             <h2 className="text-2xl py-3" >
                 {heroDescription}
             </h2>
-            <CreateRecipe/>
+            {!hideButton ? <CreateRecipe/> : ""}
         </div>
         <div className="hidden md:w-1/2 md:flex md:justify-end">
             <Image src={heroImage} alt="" width={600}/>
