@@ -35,24 +35,26 @@ export default function Login() {
             <input type="text" value={email}
              onChange={(e) => setEmail(e.target.value)} 
              placeholder='Email Address' 
-             className='outline-none duration-300 border-b-2 border-solid border-white focus:border-cyan-300 text-slate-900 p-2 w-full max-w-[40ch]' />
+             className='outline-none duration-300 border-b-2 border-solid border-gray-400 focus:border-[#A7E4AF] text-slate-900 p-2 w-full max-w-[40ch]' />
             
             <input value={password} 
             onChange={(e) => setPassword(e.target.value)} 
             type="password" placeholder='Password' 
-            className='outline-none text-slate-900 p-2 w-full max-w-[40ch] duration-300 border-b-2 border-solid border-white focus:border-cyan-300' />
+            className='outline-none text-slate-900 p-2 w-full max-w-[40ch] duration-300 border-gray-400 border-b-2 border-solid focus:border-[#A7E4AF]' />
             
             <button onClick={submitHandler} 
-            className='w-full max-w-[40ch] border border-white border-solid uppercase py-2 duration-300 relative after:absolute after:top-0 after:right-full after:bg-white after:z-10 after:w-full after:h-full overflow-hidden hover:after:translate-x-full after:duration-300 hover:text-slate-900'>
+            className='w-full max-w-[40ch] border border-[#A7E4AF] border-solid uppercase py-2 duration-300 relative after:absolute after:top-0 after:right-full after:bg-[#A7E4AF] after:z-10 after:w-full after:h-full overflow-hidden hover:after:translate-x-full after:duration-300 hover:text-slate-900'>
                 <h2 className='relative z-20'>
                     SUBMIT
                 </h2>
             </button>
-            <h2 className='duration-300 hover:scale-110 cursor-pointer' 
+            <h2 className='duration-300 hover:scale-110 cursor-pointer select-none' 
                 onClick={() => setIsLoggingIn(!isLoggingIn)}>
                 {!isLoggingIn ? 'Login' : 'Register'}
             </h2>
-
+            <a href="#" className="font-semibold text-lime-500 hover:text-lime-400">
+            Forgot password?
+            </a>
         </div>
     )
 }
