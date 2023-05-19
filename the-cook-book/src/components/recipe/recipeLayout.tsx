@@ -1,9 +1,18 @@
 import Head from 'next/head';
 import Circle from '../circularDecoration';
 import NavBar from '../recipe/recipeNavBar';
+import RecipeHolder from './recipeHolder';
+import CookingArea from './cookingArea';
+import RecipeDetails from './recipeDetails';
+import RecentRecipeHolder from './recentRecipeHolder';
+import foodData from '../../../public/foodData.json' assert {type: "json"}
+import { useState } from 'react';
+import FoodInterface from '../FoodInterface';
 
 export const siteTitle = 'theCookBook';
+
 export default function Layout({children} : {children: React.ReactNode}) {
+  const [foodItem, setFoodItem] = useState<FoodInterface>(foodData[0])
   return (
     <div>
         <Head>
@@ -28,6 +37,22 @@ export default function Layout({children} : {children: React.ReactNode}) {
               <div>
                 <NavBar />
               </div>
+                <div className="h-full">
+                  <div className="grid grid-cols-12 gap-2 h-3/4 pb-2">
+                    <div className="col-span-2 h-full">
+                      <RecipeHolder foodItemArray={foodData} setFoodItem={setFoodItem} />
+                    </div>
+                    <div className="col-span-7">
+                      <CookingArea foodItem={foodItem}/>
+                    </div>
+                    <div className="col-span-3">
+                      <RecipeDetails />
+                    </div>
+                  </div>
+                  <div className=" h-1/4">
+                    <RecentRecipeHolder foodItemArray={foodData} setFoodItem={setFoodItem} />
+                  </div>
+                </div>
               {children}
           </div>
         </main>

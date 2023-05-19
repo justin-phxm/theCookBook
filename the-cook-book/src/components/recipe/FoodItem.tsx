@@ -2,16 +2,21 @@ import React from 'react'
 import Image from 'next/image'
 import placeholder from "../../../public/placeholder-image.png"
 import IFoodItem from '../FoodInterface'
-
+import Link from 'next/link'
 const imageLoader = ({ src, width, quality }:{src?:string, width?:number, quality?:number}) => {
   return `https://themealdb.com/${src}?w=${width}&q=${quality || 1}`;
 };
 
-export default function FoodItem({FoodItem}:{FoodItem:IFoodItem}) {
-
+export default function FoodItem(
+  {FoodItem, setFoodItem}:
+  {FoodItem:IFoodItem, setFoodItem: React.Dispatch<React.SetStateAction<IFoodItem>>}
+  ) {
   return (
     <>
-      <button className="h-full group aspect-square hover:underline w-fit flex flex-col items-center xl:w-56 2xl:w-64 mx-2 bg-gray-200 rounded-lg border justify-center
+      <Link 
+      href={`/Recipes/${FoodItem.id}`}
+      onClick={()=>setFoodItem(FoodItem)}
+      className="h-full group aspect-square hover:underline w-fit flex flex-col items-center xl:w-56 2xl:w-64 mx-2 bg-gray-200 rounded-lg border justify-center
        border-white shadow-md dark:border-gray-700  dark:bg-gray-800">
             {FoodItem.image ? 
             <Image className="h-5/6 rounded-md p-3 group-hover:opacity-75"
@@ -31,6 +36,6 @@ export default function FoodItem({FoodItem}:{FoodItem:IFoodItem}) {
             <h5 className=" text-xl font-medium text-gray-900 dark:text-white">
                 {FoodItem.name}
             </h5>
-    </button>
+    </Link>
     </>)
 }

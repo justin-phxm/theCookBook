@@ -3,7 +3,10 @@ import {AiOutlinePlus} from 'react-icons/ai'
 import IFoodItem from '../FoodInterface'
 import RecipeItem from './RecipeItem'
 
-export default function recipeHolder({foodItemArray}: {foodItemArray: IFoodItem[]}) {
+export default function recipeHolder(
+  {foodItemArray, setFoodItem}: 
+  {foodItemArray: IFoodItem[], setFoodItem: React.Dispatch<React.SetStateAction<IFoodItem>>}
+  ) {
   return (
     <div className=" bg-[#BCE3B2] w-full h-full p-3 rounded-lg">
       <div className="bg-slate-200 h-full w-full p-4 rounded-lg">
@@ -15,7 +18,7 @@ export default function recipeHolder({foodItemArray}: {foodItemArray: IFoodItem[
         </div>
         <ul className=" overflow-y flex flex-col h-full">
           {foodItemArray.map((FoodItem:IFoodItem) => (
-              <RecipeItem FoodItem={FoodItem} key={FoodItem.id} />
+              <RecipeItem FoodItem={FoodItem} key={FoodItem.id} setFoodItem={setFoodItem}/>
           ))}
         </ul>
       </div>
