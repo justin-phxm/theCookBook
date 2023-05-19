@@ -5,12 +5,13 @@ import IFoodItem from '../FoodInterface'
 import Ingredients from './Ingredients'
 import Instructions from './Instructions'
 
+// Center area of the recipe page
 const imageLoader = ({ src, width, quality }:{src?:string, width?:number, quality?:number}) => {
     return `https://themealdb.com/${src}?w=${width}&q=${quality || 1}`;
   };
 
 export default function cookingArea({foodItem}: {foodItem: IFoodItem}) {
-  return (
+    return (
     <div className=" bg-[#BCE3B2] w-full h-full p-3 rounded-lg">
         <div className="bg-slate-200 h-full p-4 rounded-lg">
             <div className="flex flex-row justify-between">

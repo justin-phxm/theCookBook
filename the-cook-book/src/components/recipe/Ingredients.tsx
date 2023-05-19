@@ -2,8 +2,6 @@ import React from 'react'
 import IFoodItem from '../FoodInterface'
 
 export default function Ingredients({foodItem}: {foodItem: IFoodItem}) {
-    {console.log(foodItem.ingredients)}
-
     return (
     <div className="bg-white rounded-md h-3/4 p-2 overflow-auto resize">
         <div className=" font-bold text-lg text-">
