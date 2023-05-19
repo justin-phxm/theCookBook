@@ -7,48 +7,20 @@ import RecentRecipeHolder from '@/components/recipe/recentRecipeHolder'
 import {v4 as uuidv4} from 'uuid'
 import IFoodItem from '@/components/FoodInterface'
 import { useState } from 'react'
-import myRice from "../../public/friedRice.jpg"
 
-export default function Recipes() {
-  const foodItemArray:IFoodItem[] = 
-  [ {name:"Fried Rice", id:uuidv4(),
-    summary:"Fried rice is a popular Asian dish made with cooked rice, vegetables, eggs, and seasonings that are stir-fried together in a wok or skillet.",
-    color:"bg-yellow-500",
-    ingredients:[  "Cooked rice (3 cups)",  "Vegetable oil (3 tablespoons)",  "Garlic cloves (3), minced",  "Onion (1), chopped",  "Carrots (2), peeled and chopped",  "Frozen peas (1 cup)",  "Eggs (2), lightly beaten",  "Soy sauce (3 tablespoons)",  "Salt and pepper, to taste",  "Green onions, sliced (optional, for garnish)"],
-    instructions: [  "Heat the vegetable oil in a large skillet or wok over medium-high heat.",  "Add the minced garlic and chopped onion to the skillet and stir-fry for 1-2 minutes until fragrant.",  "Add the chopped carrots and continue to stir-fry for another 2-3 minutes until they are slightly softened.",  "Add the frozen peas to the skillet and stir-fry for another 1-2 minutes until they are heated through.",  "Push the vegetables to the sides of the skillet to create a well in the center.",  "Pour the lightly beaten eggs into the well and scramble them until they are cooked through.",  "Add the cooked rice to the skillet and stir-fry everything together for 3-4 minutes until the rice is heated through and starts to get crispy.",  "Add the soy sauce, salt, and pepper to the skillet and stir-fry for another 1-2 minutes until everything is well combined.",  "Remove from heat and serve hot, garnished with sliced green onions if desired."],
-    servings:4,
+import { getSortedRecipeData } from '@/lib/food'
+export async function getStaticProps() {
+  const foodData = getSortedRecipeData();
+  return {
+    props: {
+      foodData,
     },
-  {name:"Lasagna", id:uuidv4(), 
-  summary:"Lasagna is a type of pasta, possibly one of the oldest types, made of very wide, flat sheets. Either term can also refer to an Italian dish made of stacked layers of lasagna alternating with fillings such as ragù, béchamel sauce, vegetables, cheeses, and seasonings and spices.", 
-  color:"bg-red-500",
-  ingredients:[  "Lasagna noodles (12-16 noodles)",  "Ground beef (1 pound)", "Tomato sauce (24-28 ounces)",  "Ricotta cheese (2 cups)",  "Shredded mozzarella cheese (2 cups)",  "Grated Parmesan cheese (1/2 cup)",  "Egg (1)",  "Garlic cloves (2), minced",  "Olive oil (2 tablespoons)",  "Dried basil (1 teaspoon)",  "Dried oregano (1 teaspoon)",  "Salt and pepper, to taste"],
-  instructions:[  "Preheat the oven to 375°F (190°C).",  "Cook the lasagna noodles in a large pot of salted boiling water until al dente, according to the package instructions. Drain and rinse with cold water to stop the cooking process.",  "In a large skillet, heat the olive oil over medium heat. Add the minced garlic and sauté for 1-2 minutes, until fragrant.",  "Add the ground beef to the skillet and cook until browned, breaking it up into small pieces with a wooden spoon.",  "Add the tomato sauce, dried basil, dried oregano, salt, and pepper to the skillet, and stir to combine. Let the mixture simmer for 10-15 minutes, until the sauce has thickened.",  "In a medium bowl, mix together the ricotta cheese, grated Parmesan cheese, and egg until well combined.",  "To assemble the lasagna, spread a thin layer of the meat sauce on the bottom of a 9x13 inch baking dish. Arrange a layer of cooked lasagna noodles on top of the sauce, followed by a layer of the ricotta cheese mixture, and a layer of shredded mozzarella cheese. Repeat the layers until all the ingredients are used up, making sure to end with a layer of shredded mozzarella cheese on top.",  "Cover the baking dish with foil and bake in the preheated oven for 25 minutes.",  "Remove the foil and bake for an additional 25-30 minutes, until the cheese is melted and bubbly and the lasagna is heated through.",  "Let the lasagna cool for 10-15 minutes before slicing and serving."],
-  servings:8,
-  },
-  {name:"Steak", image:undefined, summary:"A steak is a thick cut of meat generally sliced across the muscle fibers, sometimes including a bone. It is normally grilled or fried. Steak can be diced, cooked in sauce, such as in steak and kidney pie, or minced and formed into patties, such as hamburgers.", id:uuidv4()},
-  {name:"Chicken Soup", image:"images/media/meals/1529446352.jpg", id:uuidv4(),
-  summary:"Chicken soup is a warm and comforting soup made by simmering chicken, vegetables, and herbs in a flavorful broth."},
-  {name:"Chicken Katsu", summary:"Chicken katsu is Japanese-style fried chicken.", image:undefined, id:uuidv4()},]
-  const [foodItem, setFoodItem] = useState(foodItemArray[0])
+  };
+}
 
+export default function Recipes({foodData}: {foodData: IFoodItem[]}) {
   return (
     <RecipeLayout>
-      <div className="h-full pb-2">
-        <div className="grid grid-cols-12 gap-2 h-3/4 pb-2">
-          <div className="col-span-2 h-full">
-            <RecipeHolder foodItemArray={foodItemArray} />
-          </div>
-          <div className="col-span-7">
-            <CookingArea foodItem={foodItem}/>
-          </div>
-          <div className="col-span-3">
-            <RecipeDetails />
-          </div>
-        </div>
-        <div className=" h-1/4">
-          <RecentRecipeHolder foodItemArray={foodItemArray} />
-        </div>
-      </div>
     </RecipeLayout>
   )
 }

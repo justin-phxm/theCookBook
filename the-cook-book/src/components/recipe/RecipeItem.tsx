@@ -2,16 +2,21 @@ import React from 'react'
 import Image from 'next/image'
 import placeholder from "../../../public/placeholder-image.png"
 import IFoodItem from '../FoodInterface'
-import {Avatar} from 'flowbite-react'
-
+import Link from 'next/link'
 const imageLoader = ({ src, width, quality }:{src?:string, width?:number, quality?:number}) => {
     return `https://themealdb.com/${src}?w=${width}&q=${quality || 1}`;
 };
 
-export default function RecipeItem({FoodItem}:{FoodItem:IFoodItem}) {
+export default function RecipeItem(
+    {FoodItem, setFoodItem}:
+    {FoodItem:IFoodItem, setFoodItem: React.Dispatch<React.SetStateAction<IFoodItem>>}
+    ) {
   return (
-    <button className="group flex xl:flex-col h-max p-2 bg-white
-     rounded-md border border-white shadow-md dark:border-gray-700 my-1 dark:bg-gray-800">
+    <Link
+    href={`/Recipes/${FoodItem.id}`} 
+    className="group flex xl:flex-col h-max p-2 bg-white rounded-md border border-white shadow-md dark:border-gray-700 my-1 dark:bg-gray-800 text-center"
+    onClick={()=>setFoodItem(FoodItem)}
+    >
         <div className="flex flex-col lg:flex-row w-full justify-between items-center">
             <h5 className=" group-hover:underline text-xl font-medium text-gray-900 dark:text-white">
                 {FoodItem.name}
@@ -44,6 +49,6 @@ export default function RecipeItem({FoodItem}:{FoodItem:IFoodItem}) {
                     : FoodItem.summary)
             : ""}
         </div>
- </button>
+ </Link>
   )
 }
