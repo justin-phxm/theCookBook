@@ -51,7 +51,7 @@ export default function Layout({children} : {children: React.ReactNode}) {
             {/* <div className=" h-1/4 bg-[#BCE3B2] rounded-lg p-2"> */}
               {/* <RecentRecipeHolder foodItemArray={foodData} setFoodItem={setFoodItem} /> */}
             {/* </div> */}
-            {/* {children} */}
+            {children}
         </div>
       </main>
     </>
