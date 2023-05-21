@@ -48,6 +48,7 @@
             "Dried oregano (1 teaspoon)",
             "Salt and pepper, to taste"
         ],
+        "image" : "/images/media/meals/rvxxuy1468312893.jpg",
         "instructions": [
             "Preheat the oven to 375°F (190°C).",
             "Cook the lasagna noodles in a large pot of salted boiling water until al dente, according to the package instructions. Drain and rinse with cold water to stop the cooking process.",
@@ -65,7 +66,11 @@
     {
         "name": "Steak",
         "summary": "A steak is a thick cut of meat generally sliced across the muscle fibers, sometimes including a bone. It is normally grilled or fried. Steak can be diced, cooked in sauce, such as in steak and kidney pie, or minced and formed into patties, such as hamburgers.",
-        "id": "859e1521-cd10-403b-975a-7c0b91eecde2"
+        "id": "859e1521-cd10-403b-975a-7c0b91eecde2",
+        "ingredients": [  "Steak (e.g., ribeye, sirloin, filet mignon)",  "Salt",  "Black pepper",  "Vegetable oil or olive oil",  "Optional: Garlic powder, onion powder, or other seasonings of your choice"],
+        "instructions": [  "Remove the steak from the refrigerator and let it sit at room temperature for about 30 minutes to allow it to come to room temperature.",  "Preheat a grill, skillet, or oven to high heat. Make sure it is well heated before cooking the steak.",  "Season the steak generously with salt, black pepper, and any additional seasonings of your choice.",  "If using a grill or skillet, drizzle some vegetable oil or olive oil over the steak to prevent sticking.",  "Place the steak on the grill, skillet, or in the preheated oven.",  "Cook the steak on high heat for about 3-4 minutes on each side for medium-rare, adjusting the time based on desired doneness.",  "For thicker cuts, you can finish cooking the steak in the oven at a lower temperature after searing it on high heat.",  "Once cooked to your desired level of doneness, remove the steak from the heat and let it rest for a few minutes to allow the juices to redistribute.",  "Slice the steak against the grain and serve it hot.",  "Optional: You can garnish the steak with herbs or compound butter for added flavor."],
+        "servings": 1,
+        "image" : "/images/media/meals/vussxq1511882648.jpg"
     },
     {
         "name": "Chicken Soup",

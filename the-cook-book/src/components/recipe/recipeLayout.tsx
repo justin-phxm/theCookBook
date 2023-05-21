@@ -37,21 +37,21 @@ export default function Layout({children} : {children: React.ReactNode}) {
             <div>
               <NavBar />
             </div>
-            <div className="grid grid-cols-12 gap-2 h-3/4 bg-yellow-200 pb-2 z-10">
-              <div className="hidden lg:block lg:col-span-2 bg-[#BCE3B2] rounded-lg p-2 overflow-y-auto">
+            <div className="grid grid-cols-12 gap-2 h-full pb-2 z-10">
+              <section className="hidden lg:block lg:col-span-2 bg-[#BCE3B2] rounded-lg p-2 overflow-y-auto">
                 <RecipeHolder foodItemArray={foodData} setFoodItem={setFoodItem} />
-              </div>
-              <div className="col-span-8 lg:col-span-7 bg-[#BCE3B2] rounded-lg p-2 overflow-auto">
+              </section>
+              <section className="col-span-8 lg:col-span-7 bg-[#BCE3B2] h-full max-h-full rounded-lg p-2">
                 <CookingArea foodItem={foodItem}/>
-              </div>
-              <div className="col-span-4 lg:col-span-3 bg-[#BCE3B2] rounded-lg p-2 overflow-auto">
+              </section>
+              <section className="col-span-4 lg:col-span-3 bg-[#BCE3B2] rounded-lg p-2 overflow-auto">
                 <RecipeDetails />
-              </div>
+              </section>
             </div>
-            <div className=" h-1/4 bg-[#BCE3B2] rounded-lg p-2">
+            {/* <div className=" h-1/4 bg-[#BCE3B2] rounded-lg p-2"> */}
               {/* <RecentRecipeHolder foodItemArray={foodData} setFoodItem={setFoodItem} /> */}
-            </div>
-            {children}
+            {/* </div> */}
+            {/* {children} */}
         </div>
       </main>
     </>

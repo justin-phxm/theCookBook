@@ -3,7 +3,7 @@ import IFoodItem from '../FoodInterface'
 
 export default function Ingredients({foodItem}: {foodItem: IFoodItem}) {
     return (
-    <div className="bg-white rounded-md p-2 overflow-auto">
+    <div className="bg-white rounded-md p-2 overflow-auto h-full max-h-full">
         <div className=" font-bold text-lg text-">
             Ingredients:
         </div>

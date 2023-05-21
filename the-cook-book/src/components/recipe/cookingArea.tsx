@@ -12,7 +12,7 @@ const imageLoader = ({ src, width, quality }:{src?:string, width?:number, qualit
 
 export default function cookingArea({foodItem}: {foodItem: IFoodItem}) {
     return (
-    <div className="bg-slate-200 h-max p-4 rounded-lg">
+    <div className="bg-slate-200 h-full max-h-full p-4 rounded-lg flex flex-col">
         <section className="flex flex-row justify-between">
             <h1 className=' font-bold select-none text-xl'>
                 {foodItem.name? foodItem.name: "New Recipe"}
@@ -27,11 +27,11 @@ export default function cookingArea({foodItem}: {foodItem: IFoodItem}) {
                 </button>
             </div>
         </section>
-        <div className="flex flex-row gap-2">
-            <div className="flex flex-col">
+        <div className="flex flex-row gap-2 h-full max-h-max">
+            <div className="flex flex-col gap-2">
                 <Ingredients foodItem={foodItem} />
                 {foodItem.image ? 
-                    <Image className="rounded-md p-3 group-hover:opacity-75"
+                    <Image className=" rounded-lg group-hover:opacity-75"
                         loader={imageLoader}
                         src={foodItem.image}
                         alt="No image"
@@ -46,9 +46,9 @@ export default function cookingArea({foodItem}: {foodItem: IFoodItem}) {
                     />  
                 }
             </div>
-            <div className="">
+            <section className="h-full max-h-full">
                 <Instructions foodItem={foodItem} />
-            </div>
+            </section>
         </div>    
     </div>
   )
