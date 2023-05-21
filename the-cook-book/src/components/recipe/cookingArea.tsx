@@ -28,25 +28,29 @@ export default function cookingArea({foodItem}: {foodItem: IFoodItem}) {
             </div>
         </section>
         <div className="flex flex-row gap-2 h-full max-h-max">
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 w-1/2">
                 <Ingredients foodItem={foodItem} />
-                {foodItem.image ? 
-                    <Image className=" rounded-lg group-hover:opacity-75"
-                        loader={imageLoader}
-                        src={foodItem.image}
-                        alt="No image"
-                        width={400}
-                        height={400}
-                    />
-                :
-                    <Image className="rounded-md shadow-lg opacity-75"
-                        src={placeholder}
-                        alt="No image"
-                        width={500}
-                    />  
-                }
+                <div className="w-full h-full relative">
+                    {foodItem.image ? 
+                        <Image className=" rounded-lg group-hover:opacity-75 object-cover"
+                            loader={imageLoader}
+                            src={foodItem.image}
+                            alt="No image"
+                            // width={400}
+                            // height={400}
+                            fill={true}
+                        />
+                    :
+                        <Image className="rounded-md shadow-lg opacity-75"
+                            src={placeholder}
+                            alt="No image"
+                            fill={true}
+                        />  
+                    }
+
+                </div>
             </div>
-            <section className="h-full max-h-full">
+            <section className="h-full max-h-full w-1/2">
                 <Instructions foodItem={foodItem} />
             </section>
         </div>    
