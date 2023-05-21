@@ -16,10 +16,10 @@ export default function recipeHolder({
         <h1 className=" font-bold select-none text-xl">Recipes</h1>
         <AiOutlinePlus className="text-2xl z-10 font-semibold hover:bg-slate-300 hover:rounded-md cursor-pointer" />
       </div>
-      <ul className=" flex flex-col overflow-y-auto">
+      {/* Hardcoded 47REM */}
+      <ul className=" flex flex-col overflow-y-auto h-[47rem] ">
         {foodItemArray.map((FoodItem: IFoodItem) => (
           <li key={FoodItem.id}>
-            <RecipeItem FoodItem={FoodItem} setFoodItem={setFoodItem} />
             <RecipeItem FoodItem={FoodItem} setFoodItem={setFoodItem} />
           </li>
         ))}
