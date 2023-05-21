@@ -42,7 +42,7 @@ export default function RecipeItem(
                 />  
             }
         </div>
-        <div className=" hidden xl:block text-gray-700 text-ellipsis text-sm text-left">
+        <div className=" hidden xl:flex text-gray-700 text-ellipsis text-sm text-left">
             {FoodItem.summary ? 
                 (FoodItem.summary.length > 20 ? 
                     (FoodItem.summary?.substring(0, 20) + "...") 
