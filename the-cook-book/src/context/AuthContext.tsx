@@ -1,34 +1,50 @@
 import React, { useContext, useState, useEffect } from "react";
-import { auth } from "../firebase";
 import {
-  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  signOut,
+  signInWithEmailAndPassword,
   onAuthStateChanged,
+  signOut,
+  UserCredential,
+  User,
 } from "firebase/auth";
+import { auth } from "../firebase";
 
-const AuthContext = React.createContext(useAuth);
-
-export function useAuth() {
-  return useContext(AuthContext);
+interface AuthContextType {
+  currentUser: null | User; // Change `any` to the appropriate type of your user object
+  login: (email: string, password: string) => Promise<UserCredential>; // Change `any` to the appropriate return type
+  signup: (email: string, password: string) => void;
+  logout: () => Promise<void>;
 }
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [currentUser, setCurrentUser] = useState(null);
+const MyAuthContext = React.createContext<AuthContextType>(
+  {} as AuthContextType
+);
+
+export const useAuth = () => {
+  return useContext(MyAuthContext);
+};
+
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [currentUser, setCurrentUser] = useState<null | User>(null);
   const [loading, setLoading] = useState(true);
 
-  function signup(email: string, password: string) {
+  const signup = (email: string, password: string) => {
     createUserWithEmailAndPassword(auth, email, password);
     return;
-  }
+  };
 
-  function login(email: string, password: string) {
+  const login = (email: string, password: string) => {
     return signInWithEmailAndPassword(auth, email, password);
-  }
+  };
 
-  function logout() {
-    return signOut(auth);
-  }
+  const authChangeState = () => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+      } else {
+      }
+    });
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -38,16 +54,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return unsubscribe;
   }, []);
 
-  const value = {
+  const logout = () => {
+    return signOut(auth);
+  };
+
+  const myFunctions: AuthContextType = {
     currentUser,
-    login,
     signup,
+    login,
     logout,
   };
 
   return (
-    <AuthContext.Provider value={value}>
+    <MyAuthContext.Provider value={myFunctions}>
       {!loading && children}
-    </AuthContext.Provider>
+    </MyAuthContext.Provider>
   );
-}
+};
