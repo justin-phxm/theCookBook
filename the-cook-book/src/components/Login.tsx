@@ -2,7 +2,7 @@ import { useAuth } from "@/context/AuthContext";
 import React, { useState, useEffect } from "react";
 
 export default function Login() {
-  const { signup, login, logout, currentUser } = useAuth();
+  const { signup, login, logout, googleLogin, currentUser } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -33,6 +33,14 @@ export default function Login() {
       setError("Please check your email for verification");
     }
   };
+  const googleLoginHandler = async () => {
+    try {
+      await googleLogin();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const logoutHandler = async () => {
     try {
       await logout();
@@ -81,6 +89,11 @@ export default function Login() {
         className="w-full max-w-[40ch] border border-[#A7E4AF] border-solid uppercase py-2 duration-300 relative after:absolute after:top-0 after:right-full after:bg-[#A7E4AF] after:z-10 after:w-full after:h-full overflow-hidden hover:after:translate-x-full after:duration-300 hover:text-slate-900"
       >
         <h2 className="relative z-20">SUBMIT</h2>
+      </button>
+      <button onClick={googleLoginHandler}>
+        <div className="w-full max-w-[40ch] border border-[#A7E4AF] border-solid uppercase py-2 duration-300 relative after:absolute after:top-0 after:right-full after:bg-[#A7E4AF] after:z-10 after:w-full after:h-full overflow-hidden hover:after:translate-x-full after:duration-300 hover:text-slate-900">
+          Sign In With Google 🔥
+        </div>
       </button>
       <h2
         className="duration-300 hover:scale-110 cursor-pointer select-none"

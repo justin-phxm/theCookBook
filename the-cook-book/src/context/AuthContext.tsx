@@ -6,6 +6,9 @@ import {
   signOut,
   UserCredential,
   User,
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../firebase";
 
@@ -14,6 +17,7 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<UserCredential>; // Change `any` to the appropriate return type
   signup: (email: string, password: string) => void;
   logout: () => Promise<void>;
+  googleLogin: () => void;
 }
 
 const MyAuthContext = React.createContext<AuthContextType>(
@@ -27,6 +31,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [currentUser, setCurrentUser] = useState<null | User>(null);
   const [loading, setLoading] = useState(true);
+  const provider = new GoogleAuthProvider();
 
   const signup = (email: string, password: string) => {
     createUserWithEmailAndPassword(auth, email, password);
@@ -37,14 +42,40 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const authChangeState = () => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const uid = user.uid;
-      } else {
-      }
-    });
+  const googleLogin = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log(result);
+        // This gives you a Google Access Token. You can use it to access the Google API.
+
+        // const credential = GoogleAuthProvider.credentialFromResult(result);
+        // const token = credential.accessToken;
+
+        // The signed-in user info.
+        // const user = result.user;
+
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
   };
+  // const authChangeState = () => {
+  //   onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       const uid = user.uid;
+  //     } else {
+  //     }
+  //   });
+  // };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -63,6 +94,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     signup,
     login,
     logout,
+    googleLogin,
   };
 
   return (
