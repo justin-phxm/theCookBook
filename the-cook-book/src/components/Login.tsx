@@ -1,6 +1,5 @@
 import { useAuth } from "@/context/AuthContext";
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 
 export default function Login() {
   const { signup, login, logout, googleLogin, authChangeState, currentUser } =

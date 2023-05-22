@@ -7,7 +7,6 @@ import {
   UserCredential,
   User,
   GoogleAuthProvider,
-  getAuth,
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../firebase";
