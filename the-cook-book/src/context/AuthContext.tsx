@@ -11,13 +11,14 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../firebase";
-
+import { useRouter } from "next/router";
 interface AuthContextType {
   currentUser: null | User; // Change `any` to the appropriate type of your user object
   login: (email: string, password: string) => Promise<UserCredential>; // Change `any` to the appropriate return type
   signup: (email: string, password: string) => void;
   logout: () => Promise<void>;
   googleLogin: () => void;
+  authChangeState: () => void;
 }
 
 const MyAuthContext = React.createContext<AuthContextType>(
@@ -32,6 +33,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [currentUser, setCurrentUser] = useState<null | User>(null);
   const [loading, setLoading] = useState(true);
   const provider = new GoogleAuthProvider();
+  const router = useRouter();
 
   const signup = (email: string, password: string) => {
     createUserWithEmailAndPassword(auth, email, password);
@@ -68,14 +70,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         // ...
       });
   };
-  // const authChangeState = () => {
-  //   onAuthStateChanged(auth, (user) => {
-  //     if (user) {
-  //       const uid = user.uid;
-  //     } else {
-  //     }
-  //   });
-  // };
+  const authChangeState = () => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        router.push("/Recipes");
+      } else {
+      }
+    });
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -95,6 +98,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     login,
     logout,
     googleLogin,
+    authChangeState,
   };
 
   return (

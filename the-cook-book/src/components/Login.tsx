@@ -1,8 +1,10 @@
 import { useAuth } from "@/context/AuthContext";
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function Login() {
-  const { signup, login, logout, googleLogin, currentUser } = useAuth();
+  const { signup, login, logout, googleLogin, authChangeState, currentUser } =
+    useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -20,6 +22,7 @@ export default function Login() {
     if (isLoggingIn) {
       try {
         await login(email, password);
+        authChangeState();
       } catch (err) {
         console.log(err);
         setError("Incorrect email or password");
@@ -28,6 +31,7 @@ export default function Login() {
     }
     try {
       await signup(email, password);
+      authChangeState();
     } catch (err) {
       console.log(err);
       setError("Please check your email for verification");
@@ -36,6 +40,7 @@ export default function Login() {
   const googleLoginHandler = async () => {
     try {
       await googleLogin();
+      authChangeState();
     } catch (err) {
       console.log(err);
     }
