@@ -4,11 +4,21 @@ import { FaUserAlt } from "react-icons/fa";
 import { HiCollection } from "react-icons/Hi";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/router";
 
 export default function NavBar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { currentUser, logout } = useAuth();
+  const router = useRouter();
 
+  const logoutHandler = async () => {
+    try {
+      await logout();
+      router.push("/login");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className=" flex flex-wrap items-center justify-between select-none mx-auto p-4">
       <Link href="#" className="flex items-center">
@@ -89,7 +99,7 @@ export default function NavBar() {
           {currentUser ? (
             <li>
               <button
-                onClick={logout}
+                onClick={logoutHandler}
                 className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
                 {currentUser.email} (Sign Out)
