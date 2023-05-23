@@ -2,7 +2,7 @@ import RecipeLayout from "../components/recipe/recipeLayout";
 import FoodInterface from "@/lib/FoodInterface";
 import Head from "next/head";
 import { getSortedRecipeData } from "@/lib/food";
-
+import { FoodProvider } from "@/context/FoodContext";
 export async function getStaticProps() {
   const foodData = getSortedRecipeData();
   return {
@@ -14,10 +14,12 @@ export async function getStaticProps() {
 
 export default function Recipes({ foodData }: { foodData: FoodInterface[] }) {
   return (
-    <RecipeLayout>
-      <Head>
-        <title>Recipes</title>
-      </Head>
-    </RecipeLayout>
+    <FoodProvider>
+      <RecipeLayout>
+        <Head>
+          <title>Recipes</title>
+        </Head>
+      </RecipeLayout>
+    </FoodProvider>
   );
 }
