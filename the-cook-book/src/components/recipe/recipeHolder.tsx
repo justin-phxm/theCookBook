@@ -3,16 +3,16 @@ import { AiOutlinePlus } from "react-icons/ai";
 import IFoodItem from "../../lib/FoodInterface";
 import RecipeItem from "./RecipeItem";
 import { DatabaseProvider } from "@/lib/firestore";
+import { useFood } from "@/context/FoodContext";
 
-export default function recipeHolder({
-  foodItemArray,
+export default function RecipeHolder({
   setFoodItem,
 }: {
-  foodItemArray: IFoodItem[];
   setFoodItem: React.Dispatch<React.SetStateAction<IFoodItem>>;
 }) {
+  const { foods } = useFood();
   const { addFoodItem } = DatabaseProvider();
-  const myFoodItem: IFoodItem = foodItemArray[4];
+  const myFoodItem: IFoodItem = foods[4];
 
   const addFoodHandler = () => {
     const foodItemToAdd: IFoodItem = myFoodItem;
@@ -33,7 +33,7 @@ export default function recipeHolder({
       </div>
       {/* Hardcoded 47REM */}
       <ul className=" flex flex-col overflow-y-auto h-[47rem] ">
-        {foodItemArray.map((FoodItem: IFoodItem) => (
+        {foods.map((FoodItem: IFoodItem) => (
           <li key={FoodItem.id}>
             <RecipeItem FoodItem={FoodItem} setFoodItem={setFoodItem} />
           </li>
