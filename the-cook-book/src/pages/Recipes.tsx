@@ -5,7 +5,7 @@ import CookingArea from "@/components/recipe/cookingArea";
 import RecipeDetails from "@/components/recipe/recipeDetails";
 import RecentRecipeHolder from "@/components/recipe/recentRecipeHolder";
 import { v4 as uuidv4 } from "uuid";
-import IFoodItem from "@/components/FoodInterface";
+import IFoodItem from "@/lib/FoodInterface";
 import { useState } from "react";
 import Head from "next/head";
 import { getSortedRecipeData } from "@/lib/food";
