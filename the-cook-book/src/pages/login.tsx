@@ -1,5 +1,5 @@
 import React from "react";
-import Login from "@/components/Login";
+import Login from "@/components/facePage/Login";
 import Head from "next/head";
 import Link from "next/link";
 
