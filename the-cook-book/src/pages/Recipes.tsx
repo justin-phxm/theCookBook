@@ -1,14 +1,8 @@
-// import React from 'react'
 import RecipeLayout from "../components/recipe/recipeLayout";
-import RecipeHolder from "@/components/recipe/recipeHolder";
-import CookingArea from "@/components/recipe/cookingArea";
-import RecipeDetails from "@/components/recipe/recipeDetails";
-import RecentRecipeHolder from "@/components/recipe/recentRecipeHolder";
-import { v4 as uuidv4 } from "uuid";
-import IFoodItem from "@/lib/FoodInterface";
-import { useState } from "react";
+import FoodInterface from "@/lib/FoodInterface";
 import Head from "next/head";
 import { getSortedRecipeData } from "@/lib/food";
+
 export async function getStaticProps() {
   const foodData = getSortedRecipeData();
   return {
@@ -18,7 +12,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Recipes({ foodData }: { foodData: IFoodItem[] }) {
+export default function Recipes({ foodData }: { foodData: FoodInterface[] }) {
   return (
     <RecipeLayout>
       <Head>

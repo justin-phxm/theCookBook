@@ -1,8 +1,4 @@
 import RecipeLayout from "@/components/recipe/recipeLayout";
-import RecipeHolder from "@/components/recipe/recipeHolder";
-import CookingArea from "@/components/recipe/cookingArea";
-import RecipeDetails from "@/components/recipe/recipeDetails";
-import RecentRecipeHolder from "@/components/recipe/recentRecipeHolder";
 import { getAllFoodIds, getPostData } from "@/lib/food";
 import FoodInterface from "@/lib/FoodInterface";
 import Head from "next/head";
