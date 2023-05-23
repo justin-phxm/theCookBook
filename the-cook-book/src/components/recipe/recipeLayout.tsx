@@ -7,7 +7,7 @@ import RecipeDetails from "./recipeDetails";
 import RecentRecipeHolder from "./recentRecipeHolder";
 import foodData from "../../../public/foodData.json" assert { type: "json" };
 import { useState } from "react";
-import FoodInterface from "../FoodInterface";
+import FoodInterface from "../../lib/FoodInterface";
 
 export const siteTitle = "theCookBook";
 

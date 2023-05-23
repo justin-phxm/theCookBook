@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import placeholder from "../../../public/placeholder-image.png";
-import IFoodItem from "../FoodInterface";
+import IFoodItem from "../../lib/FoodInterface";
 import Ingredients from "./Ingredients";
 import Instructions from "./Instructions";
 

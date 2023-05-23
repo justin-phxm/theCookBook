@@ -1,5 +1,5 @@
 import React from "react";
-import IFoodItem from "../FoodInterface";
+import IFoodItem from "../../lib/FoodInterface";
 
 export default function Instructions({ foodItem }: { foodItem: IFoodItem }) {
   return (
