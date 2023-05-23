@@ -17,8 +17,10 @@ const imageLoader = ({
 }) => {
   return `https://themealdb.com/${src}?w=${width}&q=${quality || 1}`;
 };
+import { useFood } from "../../context/FoodContext";
 
-export default function cookingArea({ foodItem }: { foodItem: IFoodItem }) {
+export default function CookingArea() {
+  const { foodItem } = useFood();
   return (
     <div className="bg-slate-200 h-full max-h-full p-4 rounded-lg flex flex-col">
       <section className="flex flex-row justify-between">

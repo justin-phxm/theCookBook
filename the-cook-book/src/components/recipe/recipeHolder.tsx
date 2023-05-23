@@ -5,23 +5,18 @@ import RecipeItem from "./RecipeItem";
 import { DatabaseProvider } from "@/lib/firestore";
 import { useFood } from "@/context/FoodContext";
 
-export default function RecipeHolder({
-  setFoodItem,
-}: {
-  setFoodItem: React.Dispatch<React.SetStateAction<IFoodItem>>;
-}) {
-  const { foods } = useFood();
+export default function RecipeHolder() {
+  const { foods, foodItem } = useFood();
   const { addFoodItem } = DatabaseProvider();
-  const myFoodItem: IFoodItem = foods[4];
 
   const addFoodHandler = () => {
-    const foodItemToAdd: IFoodItem = myFoodItem;
-    addFood(foodItemToAdd);
+    addFood(foodItem);
   };
 
   const addFood = async (foodItemToAdd: IFoodItem) => {
     await addFoodItem(foodItemToAdd);
   };
+  console.log(foods);
   return (
     <div className="bg-slate-200 h-full max-h-full w-full p-4 rounded-lg flex flex-col">
       <div className="flex flex-row justify-between">
@@ -33,9 +28,9 @@ export default function RecipeHolder({
       </div>
       {/* Hardcoded 47REM */}
       <ul className=" flex flex-col overflow-y-auto h-[47rem] ">
-        {foods.map((FoodItem: IFoodItem) => (
-          <li key={FoodItem.id}>
-            <RecipeItem FoodItem={FoodItem} setFoodItem={setFoodItem} />
+        {foods.map((AFoodItem: IFoodItem) => (
+          <li key={AFoodItem.id}>
+            <RecipeItem FoodItem={AFoodItem} />
           </li>
         ))}
       </ul>

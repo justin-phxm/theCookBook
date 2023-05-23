@@ -1,4 +1,5 @@
 import RecipeLayout from "@/components/recipe/recipeLayout";
+import { FoodProvider } from "@/context/FoodContext";
 import { getAllFoodIds, getPostData } from "@/lib/food";
 import FoodInterface from "@/lib/FoodInterface";
 import Head from "next/head";
@@ -22,10 +23,12 @@ export async function getStaticPaths() {
 
 export default function Food({ foodItem }: { foodItem: FoodInterface }) {
   return (
-    <RecipeLayout>
-      <Head>
-        <title>{foodItem.name}</title>
-      </Head>
-    </RecipeLayout>
+    <FoodProvider>
+      <RecipeLayout>
+        <Head>
+          <title>{foodItem.name}</title>
+        </Head>
+      </RecipeLayout>
+    </FoodProvider>
   );
 }
