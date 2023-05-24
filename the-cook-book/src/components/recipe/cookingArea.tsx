@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import placeholder from "../../../public/placeholder-image.png";
-import IFoodItem from "../../lib/FoodInterface";
 import Ingredients from "./Ingredients";
 import Instructions from "./Instructions";
-
+import { useFood } from "../../context/FoodContext";
+import { DatabaseProvider } from "@/lib/firestore";
 // Center area of the recipe page
 const imageLoader = ({
   src,
@@ -18,7 +18,9 @@ const imageLoader = ({
   return `https://themealdb.com/${src}?w=${width}&q=${quality || 1}`;
 };
 
-export default function cookingArea({ foodItem }: { foodItem: IFoodItem }) {
+export default function CookingArea() {
+  const { foodItem } = useFood();
+  const { addFoodItem } = DatabaseProvider();
   return (
     <div className="bg-slate-200 h-full max-h-full p-4 rounded-lg flex flex-col">
       <section className="flex flex-row justify-between">
@@ -27,7 +29,13 @@ export default function cookingArea({ foodItem }: { foodItem: IFoodItem }) {
           {foodItem.servings ? " - " + foodItem.servings + " servings" : ""}
         </h1>
         <div className="flex flex-row">
-          <button className="px-2 z-10 font-medium hover:bg-slate-300 hover:rounded-md cursor-pointer">
+          <button
+            onClick={() => {
+              addFoodItem(foodItem);
+              console.log(foodItem);
+            }}
+            className="px-2 z-10 font-medium hover:bg-slate-300 hover:rounded-md cursor-pointer"
+          >
             Save
           </button>
           <button className="px-2 z-10 font-medium hover:bg-slate-300 hover:rounded-md cursor-pointer">
@@ -37,7 +45,7 @@ export default function cookingArea({ foodItem }: { foodItem: IFoodItem }) {
       </section>
       <div className="flex flex-row gap-2 h-[48rem] max-h-max">
         <div className="flex flex-col gap-2 w-1/2">
-          <Ingredients foodItem={foodItem} />
+          <Ingredients />
           <div className="w-full h-full relative">
             {foodItem.image ? (
               <Image
@@ -60,7 +68,7 @@ export default function cookingArea({ foodItem }: { foodItem: IFoodItem }) {
           </div>
         </div>
         <section className="h-full max-h-full w-1/2">
-          <Instructions foodItem={foodItem} />
+          <Instructions />
         </section>
       </div>
     </div>

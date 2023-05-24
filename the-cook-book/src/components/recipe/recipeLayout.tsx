@@ -1,18 +1,16 @@
 import Head from "next/head";
-import Circle from "../circularDecoration";
+import Circle from "../facePage/circularDecoration";
 import NavBar from "../recipe/recipeNavBar";
 import RecipeHolder from "./recipeHolder";
 import CookingArea from "./cookingArea";
 import RecipeDetails from "./recipeDetails";
-import RecentRecipeHolder from "./recentRecipeHolder";
-import foodData from "../../../public/foodData.json" assert { type: "json" };
-import { useState } from "react";
-import FoodInterface from "../../lib/FoodInterface";
+// import RecentRecipeHolder from "./recentRecipeHolder";
+import { useFood } from "@/context/FoodContext";
 
 export const siteTitle = "theCookBook";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const [foodItem, setFoodItem] = useState<FoodInterface>(foodData[0]);
+  const { foodItem, setFoodItem } = useFood();
   return (
     <>
       <Head>
@@ -39,13 +37,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
           <div className="grid grid-cols-12 gap-2 h-full pb-2 z-10">
             <section className="hidden lg:block lg:col-span-2 bg-[#BCE3B2] rounded-lg p-2 ">
-              <RecipeHolder
-                foodItemArray={foodData}
-                setFoodItem={setFoodItem}
-              />
+              <RecipeHolder />
             </section>
             <section className="col-span-8 lg:col-span-7 bg-[#BCE3B2] h-full max-h-full rounded-lg p-2">
-              <CookingArea foodItem={foodItem} />
+              <CookingArea />
             </section>
             <section className="col-span-4 lg:col-span-3 bg-[#BCE3B2] rounded-lg p-2 overflow-auto">
               <RecipeDetails />

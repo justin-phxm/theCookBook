@@ -14,14 +14,10 @@ const imageLoader = ({
 }) => {
   return `https://themealdb.com/${src}?w=${width}&q=${quality || 1}`;
 };
+import { useFood } from "../../context/FoodContext";
 
-export default function RecipeItem({
-  FoodItem,
-  setFoodItem,
-}: {
-  FoodItem: IFoodItem;
-  setFoodItem: React.Dispatch<React.SetStateAction<IFoodItem>>;
-}) {
+export default function RecipeItem({ FoodItem }: { FoodItem: IFoodItem }) {
+  const { setFoodItem } = useFood();
   return (
     <Link
       href={`/Recipes/${FoodItem.id}`}
