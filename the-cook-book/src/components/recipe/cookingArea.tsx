@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import placeholder from "../../../public/placeholder-image.png";
-import IFoodItem from "../../lib/FoodInterface";
 import Ingredients from "./Ingredients";
 import Instructions from "./Instructions";
 
@@ -39,7 +38,7 @@ export default function CookingArea() {
       </section>
       <div className="flex flex-row gap-2 h-[48rem] max-h-max">
         <div className="flex flex-col gap-2 w-1/2">
-          <Ingredients foodItem={foodItem} />
+          <Ingredients />
           <div className="w-full h-full relative">
             {foodItem.image ? (
               <Image
@@ -62,7 +61,7 @@ export default function CookingArea() {
           </div>
         </div>
         <section className="h-full max-h-full w-1/2">
-          <Instructions foodItem={foodItem} />
+          <Instructions />
         </section>
       </div>
     </div>

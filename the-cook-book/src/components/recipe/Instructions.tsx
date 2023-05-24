@@ -1,7 +1,8 @@
 import React from "react";
 import IFoodItem from "../../lib/FoodInterface";
-
-export default function Instructions({ foodItem }: { foodItem: IFoodItem }) {
+import { useFood } from "@/context/FoodContext";
+export default function Instructions() {
+  const { foodItem } = useFood();
   return (
     <div className="bg-white rounded-md h-full p-2 max-w-3xl">
       <div className=" font-bold text-lg text-">Instructions:</div>
