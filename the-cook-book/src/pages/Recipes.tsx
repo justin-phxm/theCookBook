@@ -16,9 +16,7 @@ export async function getStaticProps() {
 
 export default function Recipes({ foodData }: { foodData: FoodInterface[] }) {
   const { readDB } = DatabaseProvider();
-  const myDB = async () => await readDB();
-  myDB().then((data) => console.log(data));
-
+  readDB().then((data) => console.log(data));
   return (
     <FoodProvider>
       <RecipeLayout>
