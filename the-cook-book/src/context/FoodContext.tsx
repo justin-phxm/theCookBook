@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import FoodInterface from "@/lib/FoodInterface";
 import foodData from "../../public/foodData.json" assert { type: "json" };
 import { DatabaseProvider } from "@/lib/firestore";
+import { useAuth } from "./AuthContext";
 interface FoodContextType {
   foods: FoodInterface[];
   loading: boolean;
@@ -22,11 +23,15 @@ export const FoodProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = React.useState<boolean>(true);
   const [error, setError] = React.useState<string | null>(null);
   const [foodItem, setFoodItem] = React.useState<FoodInterface>(foods[0]);
-  // console.log(foods);
   const { readDB } = DatabaseProvider();
-
+  const { currentUser } = useAuth();
   useEffect(() => {
-    readDB().then((data) => setFood(data));
+    if (currentUser) {
+      console.log(currentUser);
+      readDB().then((data) => setFood(data));
+    } else {
+      console.log("No user");
+    }
   }, []);
 
   return (
