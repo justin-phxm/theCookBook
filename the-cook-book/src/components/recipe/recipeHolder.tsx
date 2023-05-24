@@ -16,7 +16,7 @@ export default function RecipeHolder() {
   const addFood = async (foodItemToAdd: IFoodItem) => {
     await addFoodItem(foodItemToAdd);
   };
-  console.log(foods);
+  // console.log(foods);
   return (
     <div className="bg-slate-200 h-full max-h-full w-full p-4 rounded-lg flex flex-col">
       <div className="flex flex-row justify-between">
