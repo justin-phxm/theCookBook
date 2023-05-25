@@ -9,6 +9,8 @@ interface FoodContextType {
   error: string | null;
   setFood: any;
   currentFoodItem: FoodInterface;
+  editMode: boolean;
+  setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
   setFoodItem: React.Dispatch<React.SetStateAction<FoodInterface>>;
 }
 
@@ -22,11 +24,16 @@ export const FoodProvider = ({ children }: { children: React.ReactNode }) => {
   const [foods, setFood] = React.useState<FoodInterface[]>(foodData);
   const [loading, setLoading] = React.useState<boolean>(true);
   const [error, setError] = React.useState<string | null>(null);
+  const [editMode, setEditMode] = React.useState<boolean>(false);
   const [currentFoodItem, setFoodItem] = React.useState<FoodInterface>(
     foods[0]
   );
   const { readDB } = DatabaseProvider();
   const { currentUser } = useAuth();
+  useEffect(() => {
+    setEditMode(false);
+  }, [currentFoodItem]);
+
   useEffect(() => {
     if (currentUser) {
       console.log(currentUser);
@@ -38,7 +45,16 @@ export const FoodProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <FoodContext.Provider
-      value={{ foods, loading, error, setFood, currentFoodItem, setFoodItem }}
+      value={{
+        foods,
+        loading,
+        error,
+        setFood,
+        currentFoodItem,
+        setFoodItem,
+        editMode,
+        setEditMode,
+      }}
     >
       {children}
     </FoodContext.Provider>
