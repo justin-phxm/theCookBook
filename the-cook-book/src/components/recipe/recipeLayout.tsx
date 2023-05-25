@@ -10,7 +10,7 @@ import { useFood } from "@/context/FoodContext";
 export const siteTitle = "theCookBook";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const { foodItem, setFoodItem } = useFood();
+  const { currentFoodItem, setFoodItem } = useFood();
   return (
     <>
       <Head>
