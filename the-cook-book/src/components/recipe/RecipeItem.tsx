@@ -17,12 +17,21 @@ const imageLoader = ({
 import { useFood } from "../../context/FoodContext";
 
 export default function RecipeItem({ FoodItem }: { FoodItem: IFoodItem }) {
-  const { setFoodItem } = useFood();
+  const { setFoodItem, currentFoodItem } = useFood();
+  const linkClass =
+    "group flex xl:flex-col h-max p-2 hover:bg-green-500 rounded-md border border-white shadow-md dark:border-gray-700 my-1 dark:bg-gray-800 text-center " +
+    (currentFoodItem && currentFoodItem.id && currentFoodItem.id === FoodItem.id
+      ? "bg-green-500"
+      : "bg-white");
+
   return (
     <Link
       href={`/Recipes/${FoodItem.id}`}
-      className="group flex xl:flex-col h-max p-2 bg-white rounded-md border border-white shadow-md dark:border-gray-700 my-1 dark:bg-gray-800 text-center"
-      onClick={() => setFoodItem(FoodItem)}
+      className={linkClass}
+      onClick={() => {
+        setFoodItem(FoodItem);
+        console.log({ FoodItem });
+      }}
     >
       <div className="flex flex-col lg:flex-row w-full justify-between items-center">
         <h5 className=" group-hover:underline text-xl font-medium text-gray-900 dark:text-white">

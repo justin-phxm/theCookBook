@@ -19,20 +19,22 @@ const imageLoader = ({
 };
 
 export default function CookingArea() {
-  const { foodItem } = useFood();
+  const { currentFoodItem } = useFood();
   const { addFoodItem } = DatabaseProvider();
   return (
     <div className="bg-slate-200 h-full max-h-full p-4 rounded-lg flex flex-col">
       <section className="flex flex-row justify-between">
         <h1 className=" font-bold select-none text-xl">
-          {foodItem.name ? foodItem.name : "New Recipe"}
-          {foodItem.servings ? " - " + foodItem.servings + " servings" : ""}
+          {currentFoodItem.name ? currentFoodItem.name : "New Recipe"}
+          {currentFoodItem.servings
+            ? " - " + currentFoodItem.servings + " servings"
+            : ""}
         </h1>
         <div className="flex flex-row">
           <button
             onClick={() => {
-              addFoodItem(foodItem);
-              console.log(foodItem);
+              addFoodItem(currentFoodItem);
+              console.log(currentFoodItem);
             }}
             className="px-2 z-10 font-medium hover:bg-slate-300 hover:rounded-md cursor-pointer"
           >
@@ -47,11 +49,11 @@ export default function CookingArea() {
         <div className="flex flex-col gap-2 w-1/2">
           <Ingredients />
           <div className="w-full h-full relative">
-            {foodItem.image ? (
+            {currentFoodItem.image ? (
               <Image
                 className=" rounded-lg group-hover:opacity-75 object-cover"
                 loader={imageLoader}
-                src={foodItem.image}
+                src={currentFoodItem.image}
                 alt="No image"
                 // width={400}
                 // height={400}

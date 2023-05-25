@@ -1,4 +1,4 @@
-import RecipeLayout from "../components/recipe/recipeLayout";
+import RecipeLayout from "../../components/recipe/recipeLayout";
 import FoodInterface from "@/lib/FoodInterface";
 import Head from "next/head";
 import { getSortedRecipeData } from "@/lib/food";

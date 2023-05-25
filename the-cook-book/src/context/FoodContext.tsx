@@ -8,7 +8,7 @@ interface FoodContextType {
   loading: boolean;
   error: string | null;
   setFood: any;
-  foodItem: FoodInterface;
+  currentFoodItem: FoodInterface;
   setFoodItem: React.Dispatch<React.SetStateAction<FoodInterface>>;
 }
 
@@ -22,7 +22,9 @@ export const FoodProvider = ({ children }: { children: React.ReactNode }) => {
   const [foods, setFood] = React.useState<FoodInterface[]>(foodData);
   const [loading, setLoading] = React.useState<boolean>(true);
   const [error, setError] = React.useState<string | null>(null);
-  const [foodItem, setFoodItem] = React.useState<FoodInterface>(foods[0]);
+  const [currentFoodItem, setFoodItem] = React.useState<FoodInterface>(
+    foods[0]
+  );
   const { readDB } = DatabaseProvider();
   const { currentUser } = useAuth();
   useEffect(() => {
@@ -36,7 +38,7 @@ export const FoodProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <FoodContext.Provider
-      value={{ foods, loading, error, setFood, foodItem, setFoodItem }}
+      value={{ foods, loading, error, setFood, currentFoodItem, setFoodItem }}
     >
       {children}
     </FoodContext.Provider>
