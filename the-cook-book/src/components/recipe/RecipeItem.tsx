@@ -15,14 +15,16 @@ const imageLoader = ({
   return `https://themealdb.com/${src}?w=${width}&q=${quality || 1}`;
 };
 import { useFood } from "../../context/FoodContext";
+import { useRouter } from "next/router";
 
 export default function RecipeItem({ FoodItem }: { FoodItem: IFoodItem }) {
   const { setFoodItem, currentFoodItem } = useFood();
+  const router = useRouter();
+  const foodURLID = router.query.id;
+
   const linkClass =
     "group flex xl:flex-col h-max p-2 hover:bg-green-500 rounded-md border border-white shadow-md dark:border-gray-700 my-1 dark:bg-gray-800 text-center " +
-    (currentFoodItem && currentFoodItem.id && currentFoodItem.id === FoodItem.id
-      ? "bg-green-500"
-      : "bg-white");
+    (foodURLID === FoodItem.id ? "bg-green-500" : "bg-white");
 
   return (
     <Link
