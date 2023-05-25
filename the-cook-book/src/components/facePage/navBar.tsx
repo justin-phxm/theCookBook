@@ -91,35 +91,24 @@ export default function NavBar() {
               Contact
             </Link>
           </li>
-          {!currentUser ? (
-            <>
-              <li>
-                <Link
-                  href="/login"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                >
-                  Sign Up
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/login"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                >
-                  Login
-                </Link>
-              </li>
-            </>
-          ) : (
+          <>
+            <li>
+              <Link
+                href="/login"
+                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              >
+                Login/Signup
+              </Link>
+            </li>
             <li>
               <Link
                 href="/Recipes"
                 className="block p-3 md:py-0 text-gray-900  rounded-full bg-green-300 hover:bg-green-400 md:hover:bg-green-400 md:border-0 md:hover:text-green-700 dark:text-white md:dark:hover:text-green-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
-                Open App
+                {currentUser ? "Open App" : "Try Demo"}
               </Link>
             </li>
-          )}
+          </>
         </ul>
       </div>
     </div>
