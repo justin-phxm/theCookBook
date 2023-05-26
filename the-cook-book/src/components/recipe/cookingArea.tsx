@@ -23,6 +23,10 @@ export default function CookingArea() {
   const { currentFoodItem, editMode, setEditMode } = useFood();
   const { addFoodItem } = DatabaseProvider();
   const editSaveHandler = () => {
+    if (editMode) {
+      addFoodItem(currentFoodItem);
+      console.log(currentFoodItem);
+    }
     setEditMode(!editMode);
   };
   const newImageElement = editMode ? (

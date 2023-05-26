@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/router";
 
 export default function RecipeHolder() {
-  const { foods, setFoodItem, setFood, editMode, setEditMode } = useFood();
+  const { foods, editMode, setEditMode } = useFood();
   const handleNewNote = () => {
     if (!editMode) {
       setEditMode(true);
