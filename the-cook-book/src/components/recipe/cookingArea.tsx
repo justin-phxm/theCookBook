@@ -5,6 +5,7 @@ import Ingredients from "./Ingredients";
 import Instructions from "./Instructions";
 import { useFood } from "../../context/FoodContext";
 import { DatabaseProvider } from "@/lib/firestore";
+import FoodHeader from "./foodHeader";
 import { useRouter } from "next/router";
 // Center area of the recipe page
 const imageLoader = ({
@@ -72,25 +73,7 @@ export default function CookingArea() {
 
   return (
     <div className="bg-slate-200 h-full max-h-full p-4 rounded-lg flex flex-col">
-      <section className="flex flex-row justify-between">
-        <h1 className=" font-bold select-none text-xl">
-          {currentFoodItem.name ? currentFoodItem.name : "New Recipe"}
-          {currentFoodItem.servings
-            ? " - " + currentFoodItem.servings + " servings"
-            : ""}
-        </h1>
-        <div className="flex flex-row">
-          <button
-            onClick={editSaveHandler}
-            className="px-2 z-10 font-medium hover:bg-slate-300 hover:rounded-md cursor-pointer select-none"
-          >
-            {editMode ? "Save" : "Edit"}
-          </button>
-          <button className="px-2 z-10 font-medium hover:bg-slate-300 hover:rounded-md cursor-pointer select-none">
-            Delete
-          </button>
-        </div>
-      </section>
+      <FoodHeader />
       <div className="flex flex-row gap-2 h-[48rem] max-h-max">
         <div className="flex flex-col gap-2 w-1/2">
           <Ingredients />
