@@ -18,10 +18,10 @@ import { useFood } from "../../context/FoodContext";
 import { useRouter } from "next/router";
 
 export default function RecipeItem({ FoodItem }: { FoodItem: IFoodItem }) {
-  const { setFoodItem, currentFoodItem } = useFood();
+  const { setCurrentFoodItem, setEditMode } = useFood();
   const router = useRouter();
   const foodURLID = router.query.id;
-
+  const MAX_SUMMERY_LENGTH = 20;
   const linkClass =
     "group flex xl:flex-col h-max p-2 hover:bg-green-500 rounded-md border border-white shadow-md dark:border-gray-700 my-1 dark:bg-gray-800 text-center " +
     (foodURLID === FoodItem.id ? "bg-green-500" : "bg-white");
@@ -31,8 +31,8 @@ export default function RecipeItem({ FoodItem }: { FoodItem: IFoodItem }) {
       href={`/Recipes/${FoodItem.id}`}
       className={linkClass}
       onClick={() => {
-        setFoodItem(FoodItem);
-        console.log({ FoodItem });
+        setCurrentFoodItem(FoodItem);
+        setEditMode(false);
       }}
     >
       <div className="flex flex-col lg:flex-row w-full justify-between items-center">
@@ -49,10 +49,8 @@ export default function RecipeItem({ FoodItem }: { FoodItem: IFoodItem }) {
               width={500}
               height={500}
             />
-            {FoodItem.color ? (
+            {FoodItem.color && (
               <span className="absolute h-3.5 w-3.5 rounded-full border-2 border-white dark:border-gray-800 bg-red-500 -bottom-1 -right-1" />
-            ) : (
-              ""
             )}
           </div>
         ) : (
@@ -65,11 +63,9 @@ export default function RecipeItem({ FoodItem }: { FoodItem: IFoodItem }) {
         )}
       </div>
       <div className=" hidden xl:flex text-gray-700 text-ellipsis text-sm text-left">
-        {FoodItem.summary
-          ? FoodItem.summary.length > 20
-            ? FoodItem.summary?.substring(0, 20) + "..."
-            : FoodItem.summary
-          : ""}
+        {FoodItem.summary && FoodItem.summary?.length > MAX_SUMMERY_LENGTH
+          ? FoodItem.summary?.substring(0, 20) + "..."
+          : FoodItem.summary}
       </div>
     </Link>
   );
