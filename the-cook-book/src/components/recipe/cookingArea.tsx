@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import placeholder from "../../../public/placeholder-image.png";
 import Ingredients from "./Ingredients";
@@ -21,47 +21,29 @@ const imageLoader = ({
 };
 
 export default function CookingArea() {
-  const { currentFoodItem, editMode, setEditMode } = useFood();
+  const { currentFoodItem, editMode, setEditMode, setCurrentFoodItem } =
+    useFood();
   const { addFoodItem } = DatabaseProvider();
   const editSaveHandler = () => {
     if (editMode) {
       addFoodItem(currentFoodItem);
       console.log(currentFoodItem);
+      //Compress image and upload to Database
     }
     setEditMode(!editMode);
   };
-  const newImageElement = editMode ? (
-    <div className="col-span-full">
-      <label
-        htmlFor="cover-photo"
-        className="block text-sm font-medium leading-6 text-gray-900"
-      >
-        Cover photo
-      </label>
-      <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-        <div className="text-center">
-          <div className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
-          <div className="mt-4 flex text-sm leading-6 text-gray-600">
-            <label
-              htmlFor="file-upload"
-              className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-            >
-              <span>Upload a file</span>
-              <input
-                id="file-upload"
-                name="file-upload"
-                type="file"
-                className="sr-only"
-              />
-            </label>
-            <p className="pl-1">or drag and drop</p>
-          </div>
-          <p className="text-xs leading-5 text-gray-600">
-            PNG, JPG, GIF up to 10MB
-          </p>
-        </div>
-      </div>
-    </div>
+  // const [selectedImage, setSelectedImage] = useState<FileList | null>(null);
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const newImageElement = currentFoodItem.image ? (
+    <Image
+      className=" rounded-lg group-hover:opacity-75 object-cover"
+      loader={imageLoader}
+      src={currentFoodItem.image}
+      alt="No image"
+      // width={400}
+      // height={400}
+      fill={true}
+    />
   ) : (
     <Image
       className="rounded-md shadow-lg opacity-75"
@@ -70,6 +52,9 @@ export default function CookingArea() {
       fill={true}
     />
   );
+  useEffect(() => {
+    console.log(currentFoodItem);
+  }, [currentFoodItem]);
 
   return (
     <div className="bg-slate-200 h-full max-h-full p-4 rounded-lg flex flex-col">
@@ -78,16 +63,56 @@ export default function CookingArea() {
         <div className="flex flex-col gap-2 w-1/2">
           <Ingredients />
           <div className="w-full h-full relative">
-            {currentFoodItem.image ? (
-              <Image
-                className=" rounded-lg group-hover:opacity-75 object-cover"
-                loader={imageLoader}
-                src={currentFoodItem.image}
-                alt="No image"
-                // width={400}
-                // height={400}
-                fill={true}
-              />
+            {editMode ? (
+              <div className="col-span-full">
+                {selectedImage ? (
+                  <div>
+                    <Image
+                      alt="not found"
+                      width={250}
+                      height={250}
+                      src={URL.createObjectURL(selectedImage)}
+                    />
+                    <br />
+                    <button onClick={() => setSelectedImage(null)}>
+                      Remove Image
+                    </button>
+                  </div>
+                ) : (
+                  <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                    <div className="text-center">
+                      <div
+                        className="mx-auto h-12 w-12 text-gray-300"
+                        aria-hidden="true"
+                      />
+                      <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                        <label
+                          htmlFor="file-upload"
+                          className="relative cursor-pointer rounded-md bg-white font-semibold text-green-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-green-500 focus-within:ring-offset-2 hover:text-green-500"
+                        >
+                          <span>Upload a file</span>
+                          <input
+                            id="file-upload"
+                            name="file-upload"
+                            type="file"
+                            className="sr-only"
+                            accept="image/png, image/jpeg, image/webp"
+                            onChange={(e) => {
+                              const file = e.target.files?.[0];
+                              console.log(file);
+                              setSelectedImage(file || null);
+                            }}
+                          />
+                        </label>
+                        <p className="pl-1">or drag and drop</p>
+                      </div>
+                      <p className="text-xs leading-5 text-gray-600">
+                        PNG, JPG, GIF up to 10MB
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
             ) : (
               <>{newImageElement}</>
             )}
