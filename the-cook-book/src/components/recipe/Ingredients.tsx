@@ -1,9 +1,11 @@
 import React, { useId, useState } from "react";
 import IFoodItem from "../../lib/FoodInterface";
 import { useFood } from "@/context/FoodContext";
+import { DatabaseProvider } from "@/lib/firestore";
 
 export default function Ingredients() {
   const { currentFoodItem, editMode, setCurrentFoodItem } = useFood();
+  const { updateDocument, deleteFoodItem } = DatabaseProvider();
   const id = useId();
   const [ingredientName, setIngredientName] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
@@ -25,6 +27,14 @@ export default function Ingredients() {
     setCurrentFoodItem({ ...currentFoodItem });
     console.log(currentFoodItem);
   };
+
+  const deleteIngredientHandler = () => {
+    if (editMode) {
+      updateDocument(currentFoodItem);
+      console.log(currentFoodItem);
+    }
+  };
+
   const addIngredientElement = editMode && (
     <div className="flex flex-col gap-2 bg-slate-300 rounded p-2">
       <div className="flex flex-col lg:flex-row gap-2">
@@ -69,12 +79,19 @@ export default function Ingredients() {
       </button>
     </div>
   );
+  const ingredientClassName =
+    "flex flex-row font-normal" +
+    (editMode && " cursor-pointer hover:opacity-70");
   return (
     <div className="bg-white rounded-md p-2 overflow-auto h-full max-h-full">
       <div className=" font-bold text-lg text-">Ingredients:</div>
       <ul className="">
         {currentFoodItem.ingredients?.map((ingredient, index) => (
-          <li className="flex flex-row font-normal" key={index}>
+          <li
+            className={ingredientClassName}
+            key={index}
+            onClick={deleteIngredientHandler}
+          >
             • {ingredient}
           </li>
         ))}

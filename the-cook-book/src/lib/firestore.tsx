@@ -6,15 +6,18 @@ import {
   updateDoc,
   deleteField,
   deleteDoc,
+  setDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
 import FoodInterface from "./FoodInterface";
 
 export const DatabaseProvider = () => {
-  const addFoodItem = async (foodItem: FoodInterface) => {
+  const updateDocument = async (foodItem: FoodInterface) => {
     try {
-      const docRef = await addDoc(collection(db, "food"), foodItem);
-      console.log("Document written with ID: ", docRef.id);
+      const foodRef = doc(db, "food", `${foodItem.id}`);
+      setDoc(foodRef, { foodItem }, { merge: true });
+
+      console.log("Document written with ID: ", foodItem.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -30,20 +33,20 @@ export const DatabaseProvider = () => {
     return foodCollection;
   };
 
-  const updateFoodItem = async (foodItem: FoodInterface) => {
-    try {
-      const foodRef = doc(db, "food", `${foodItem.id}`);
-      await updateDoc(foodRef, {
-        name: foodItem.name,
-        image: foodItem.image,
-        servings: foodItem.servings,
-        ingredients: foodItem.ingredients,
-        instructions: foodItem.instructions,
-      });
-    } catch (e) {
-      console.error("Error updating document: ", e);
-    }
-  };
+  // const updateFoodItem = async (foodItem: FoodInterface) => {
+  //   try {
+  //     const foodRef = doc(db, "food", `${foodItem.id}`);
+  //     await updateDoc(foodRef, {
+  //       name: foodItem.name,
+  //       image: foodItem.image,
+  //       servings: foodItem.servings,
+  //       ingredients: foodItem.ingredients,
+  //       instructions: foodItem.instructions,
+  //     });
+  //   } catch (e) {
+  //     console.error("Error updating document: ", e);
+  //   }
+  // };
 
   const deleteFoodItem = async (foodItem: FoodInterface) => {
     try {
@@ -53,5 +56,5 @@ export const DatabaseProvider = () => {
     }
   };
 
-  return { readDB, addFoodItem, updateFoodItem, deleteFoodItem };
+  return { readDB, updateDocument, deleteFoodItem };
 };

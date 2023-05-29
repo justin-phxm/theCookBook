@@ -5,11 +5,11 @@ import { DatabaseProvider } from "@/lib/firestore";
 export default function FoodHeader() {
   const { currentFoodItem, setCurrentFoodItem, editMode, setEditMode } =
     useFood();
-  const { addFoodItem } = DatabaseProvider();
+  const { updateDocument } = DatabaseProvider();
   const id = useId();
   const editSaveHandler = () => {
     if (editMode) {
-      addFoodItem(currentFoodItem);
+      updateDocument(currentFoodItem);
       console.log(currentFoodItem);
     }
     setEditMode(!editMode);

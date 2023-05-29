@@ -23,10 +23,10 @@ const imageLoader = ({
 export default function CookingArea() {
   const { currentFoodItem, editMode, setEditMode, setCurrentFoodItem } =
     useFood();
-  const { addFoodItem } = DatabaseProvider();
+  const { updateDocument } = DatabaseProvider();
   const editSaveHandler = () => {
     if (editMode) {
-      addFoodItem(currentFoodItem);
+      updateDocument(currentFoodItem);
       console.log(currentFoodItem);
       //Compress image and upload to Database
     }
