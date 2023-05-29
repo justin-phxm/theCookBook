@@ -10,7 +10,15 @@ export default function Ingredients() {
   const [note, setNote] = useState<string>("");
 
   const addIngredientHandler = () => {
-    currentFoodItem.ingredients?.push(`${ingredientName} (${amount}), ${note}`);
+    if (!currentFoodItem.ingredients)
+      currentFoodItem.ingredients = new Array<string>(
+        `${ingredientName} (${amount}), ${note}`
+      );
+    else {
+      currentFoodItem.ingredients?.push(
+        `${ingredientName} (${amount}), ${note}`
+      );
+    }
     setIngredientName("");
     setAmount("");
     setNote("");
