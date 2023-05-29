@@ -7,7 +7,11 @@ export default function Instructions() {
   const id = useId();
   const [instruction, setInstruction] = useState<string>("");
   const addInstructionHandler = () => {
-    currentFoodItem.instructions?.push(instruction);
+    if (!currentFoodItem.instructions) {
+      currentFoodItem.instructions = new Array<string>(instruction);
+    } else {
+      currentFoodItem.instructions?.push(instruction);
+    }
     setInstruction("");
     setCurrentFoodItem({ ...currentFoodItem });
     console.log(currentFoodItem);
