@@ -24,7 +24,7 @@ export default function RecipeItem({ FoodItem }: { FoodItem: IFoodItem }) {
   const MAX_SUMMERY_LENGTH = 20;
   const linkClass =
     "group flex xl:flex-col h-max p-2 hover:bg-green-500 rounded-md border border-white shadow-md dark:border-gray-700 my-1 dark:bg-gray-800 text-center " +
-    (foodURLID === FoodItem.id ? "bg-green-500" : "bg-white");
+    (foodURLID && foodURLID[0] === FoodItem.id ? "bg-green-500" : "bg-white");
 
   return (
     <Link
