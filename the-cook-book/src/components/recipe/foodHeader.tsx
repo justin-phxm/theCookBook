@@ -57,7 +57,7 @@ export default function FoodHeader() {
   );
   return (
     <section className="flex flex-row justify-between">
-      <h1 className=" font-bold select-none text-xl">{myHeader}</h1>
+      <div className=" font-bold select-none text-xl">{myHeader}</div>
       <div className="flex flex-row">
         <button
           onClick={editSaveHandler}
