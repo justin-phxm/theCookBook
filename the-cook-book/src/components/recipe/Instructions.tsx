@@ -41,7 +41,14 @@ export default function Instructions() {
       <div className=" font-bold text-lg text-">Instructions:</div>
       <ol className=" list-decimal font-normal max-h-[45rem]  overflow-y-auto list-inside ">
         {currentFoodItem.instructions?.map((instruction, index) => (
-          <li className="py-0.5" key={index}>
+          <li
+            className="py-0.5 cursor-pointer hover:opacity-70"
+            key={index}
+            onClick={() => {
+              currentFoodItem.instructions?.splice(index, 1);
+              setCurrentFoodItem({ ...currentFoodItem });
+            }}
+          >
             {instruction}
           </li>
         ))}
