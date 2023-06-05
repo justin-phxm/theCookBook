@@ -5,7 +5,7 @@ import { DatabaseProvider } from "@/lib/firestore";
 export default function FoodHeader() {
   const { currentFoodItem, setCurrentFoodItem, editMode, setEditMode } =
     useFood();
-  const { updateDocument } = DatabaseProvider();
+  const { updateDocument, deleteFoodItem } = DatabaseProvider();
   const id = useId();
   const editSaveHandler = () => {
     if (editMode) {
@@ -14,7 +14,9 @@ export default function FoodHeader() {
     }
     setEditMode(!editMode);
   };
-
+  const deleteFoodHandler = () => {
+    deleteFoodItem(currentFoodItem);
+  };
   const myHeader = !editMode ? (
     <h2>
       {currentFoodItem.name ? currentFoodItem.name : "New Recipe"}
@@ -66,7 +68,7 @@ export default function FoodHeader() {
           {editMode ? "Save" : "Edit"}
         </button>
         <button
-          onClick={() => console.log(currentFoodItem)}
+          onClick={deleteFoodHandler}
           className="px-2 z-10 font-medium hover:bg-slate-300 hover:rounded-md cursor-pointer select-none"
         >
           Delete
