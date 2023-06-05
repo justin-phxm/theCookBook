@@ -28,10 +28,11 @@ export default function Ingredients() {
     console.log(currentFoodItem);
   };
 
-  const deleteIngredientHandler = () => {
+  const deleteIngredientHandler = (index: number) => {
     if (editMode) {
-      updateDocument(currentFoodItem);
-      console.log(currentFoodItem);
+      console.log(currentFoodItem.ingredients);
+      console.log(index);
+      // updateDocument(currentFoodItem);
     }
   };
 
@@ -90,7 +91,10 @@ export default function Ingredients() {
           <li
             className={ingredientClassName}
             key={index}
-            onClick={deleteIngredientHandler}
+            onClick={() => {
+              currentFoodItem.ingredients?.splice(index, 1);
+              setCurrentFoodItem({ ...currentFoodItem });
+            }}
           >
             • {ingredient}
           </li>
