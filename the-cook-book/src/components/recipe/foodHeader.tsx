@@ -15,13 +15,18 @@ export default function FoodHeader() {
   const id = useId();
   // const storage = getStorage();
   const storageRef = ref(storage, "foodImages/" + currentFoodItem.id);
-  const editSaveHandler = () => {
+  const editSaveHandler = async () => {
     if (editMode) {
-      updateDocument(currentFoodItem);
       if (selectedImage) {
-        uploadBytes(storageRef, selectedImage).then((snapshot) => {
-          console.log("Uploaded a blob or file!");
+        await uploadBytes(storageRef, selectedImage).then((snapshot) => {
+          setCurrentFoodItem({
+            ...currentFoodItem,
+            image: snapshot.metadata.fullPath,
+          });
         });
+        await updateDocument(currentFoodItem);
+      } else {
+        updateDocument(currentFoodItem);
       }
     }
     setEditMode(!editMode);
