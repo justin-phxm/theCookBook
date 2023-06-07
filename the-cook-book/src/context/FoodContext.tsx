@@ -12,6 +12,8 @@ interface FoodContextType {
   editMode: boolean;
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
   setCurrentFoodItem: React.Dispatch<React.SetStateAction<FoodInterface>>;
+  selectedImage: File | null;
+  setSelectedImage: React.Dispatch<React.SetStateAction<File | null>>;
 }
 
 const FoodContext = React.createContext<FoodContextType>({} as FoodContextType);
@@ -21,6 +23,7 @@ export const useFood = () => {
 };
 
 export const FoodProvider = ({ children }: { children: React.ReactNode }) => {
+  const [selectedImage, setSelectedImage] = React.useState<File | null>(null);
   const [foods, setFood] = React.useState<FoodInterface[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
   const [error, setError] = React.useState<string | null>(null);
@@ -46,6 +49,8 @@ export const FoodProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <FoodContext.Provider
       value={{
+        selectedImage,
+        setSelectedImage,
         foods,
         loading,
         error,
