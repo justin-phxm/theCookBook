@@ -6,6 +6,8 @@ import Instructions from "./Instructions";
 import { useFood } from "../../context/FoodContext";
 import { DatabaseProvider } from "@/lib/firestore";
 import FoodHeader from "./foodHeader";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
+
 import { useRouter } from "next/router";
 // Center area of the recipe page
 const imageLoader = ({
@@ -21,19 +23,24 @@ const imageLoader = ({
 };
 
 export default function CookingArea() {
-  const { currentFoodItem, editMode, setEditMode, setCurrentFoodItem } =
-    useFood();
-  const { updateDocument } = DatabaseProvider();
-  const editSaveHandler = () => {
-    if (editMode) {
-      updateDocument(currentFoodItem);
-      console.log(currentFoodItem);
-      //Compress image and upload to Database
-    }
-    setEditMode(!editMode);
-  };
-  // const [selectedImage, setSelectedImage] = useState<FileList | null>(null);
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const {
+    currentFoodItem,
+    editMode,
+    setEditMode,
+    setCurrentFoodItem,
+    selectedImage,
+    setSelectedImage,
+  } = useFood();
+  // const { updateDocument } = DatabaseProvider();
+  // const editSaveHandler = () => {
+  //   if (editMode) {
+  //     updateDocument(currentFoodItem);
+  //     console.log(currentFoodItem);
+  //     //Compress image and upload to Database
+  //   }
+  //   setEditMode(!editMode);
+  // };
+  // const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const newImageElement = currentFoodItem.image ? (
     <Image
       className=" rounded-lg group-hover:opacity-75 object-cover"
@@ -54,6 +61,7 @@ export default function CookingArea() {
   );
   useEffect(() => {
     console.log(currentFoodItem);
+    setSelectedImage(null);
   }, [currentFoodItem]);
 
   return (

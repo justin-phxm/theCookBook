@@ -1,16 +1,28 @@
 import React, { useId, useState } from "react";
 import { useFood } from "@/context/FoodContext";
 import { DatabaseProvider } from "@/lib/firestore";
-
+import { ref, uploadBytes } from "firebase/storage";
+import { storage } from "../../firebase";
 export default function FoodHeader() {
-  const { currentFoodItem, setCurrentFoodItem, editMode, setEditMode } =
-    useFood();
+  const {
+    currentFoodItem,
+    setCurrentFoodItem,
+    editMode,
+    setEditMode,
+    selectedImage,
+  } = useFood();
   const { updateDocument, deleteFoodItem } = DatabaseProvider();
   const id = useId();
+  // const storage = getStorage();
+  const storageRef = ref(storage, "foodImages/" + currentFoodItem.id);
   const editSaveHandler = () => {
     if (editMode) {
       updateDocument(currentFoodItem);
-      console.log(currentFoodItem);
+      if (selectedImage) {
+        uploadBytes(storageRef, selectedImage).then((snapshot) => {
+          console.log("Uploaded a blob or file!");
+        });
+      }
     }
     setEditMode(!editMode);
   };
