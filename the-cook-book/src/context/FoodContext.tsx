@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import FoodInterface from "@/lib/FoodInterface";
 import { DatabaseProvider } from "@/lib/firestore";
 import useSWR from "swr";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
 interface FoodContextType {
   foods: FoodInterface[];
   // loading: boolean;
@@ -39,6 +40,18 @@ export const FoodProvider = ({ children }: { children: React.ReactNode }) => {
     return <div>loading... Please login if error persists</div>;
   }
   const foods = data;
+
+  const storage = getStorage();
+  foods.map((food) => {
+    // set the imageURL to the image in storage
+    if (food.image) {
+      let storageRef = ref(storage, food.image);
+      getDownloadURL(storageRef).then((url) => {
+        food.imageURL = url;
+      });
+    }
+  });
+
   return (
     <FoodContext.Provider
       value={{

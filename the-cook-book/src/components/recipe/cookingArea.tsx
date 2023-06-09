@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import placeholder from "../../../public/placeholder-image.png";
+import { useFood } from "../../context/FoodContext";
 import Ingredients from "./Ingredients";
 import Instructions from "./Instructions";
-import { useFood } from "../../context/FoodContext";
-import { DatabaseProvider } from "@/lib/firestore";
 import FoodHeader from "./foodHeader";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-
-import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function CookingArea() {
   const {
@@ -19,47 +15,45 @@ export default function CookingArea() {
     selectedImage,
     setSelectedImage,
   } = useFood();
-  const storage = getStorage();
-  const storageRef = ref(storage, currentFoodItem.image);
-  const [viewImage, setVietImage] = useState<string>("");
-  const newImageElement = currentFoodItem.image ? (
+
+  const removeImageHandler = () => {
+    setSelectedImage(null);
+    setCurrentFoodItem((prevFoodItem) => {
+      return {
+        ...prevFoodItem,
+        image: "",
+        imageURL: "",
+      };
+    });
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    setSelectedImage(file || null);
+    setCurrentFoodItem((prevFoodItem) => {
+      return {
+        ...prevFoodItem,
+        image: "foodImages/" + currentFoodItem.id,
+      };
+    });
+  };
+  const viewImage = currentFoodItem.image && (
     <Image
       className=" rounded-lg group-hover:opacity-75 object-cover"
-      src={""}
-      alt="No image"
-      // width={400}
-      // height={400}
-      fill={true}
-    />
-  ) : (
-    <Image
-      className="rounded-md shadow-lg opacity-75"
-      src={placeholder}
+      src={currentFoodItem.imageURL || placeholder}
       alt="No image"
       fill={true}
     />
   );
+
   useEffect(() => {
-    console.log(currentFoodItem);
     setSelectedImage(null);
-    if (currentFoodItem.image) {
-      try {
-        getDownloadURL(storageRef).then((url) => {
-          setCurrentFoodItem((prevFoodItem) => {
-            return { ...prevFoodItem, image: url };
-          });
-          console.log(url);
-        });
-      } catch (e) {
-        console.log(e);
-      }
-    }
   }, [currentFoodItem.id]);
+
   return (
     <div className="bg-slate-200 h-full max-h-full p-4 rounded-lg flex flex-col">
       {currentFoodItem.id ? (
         <>
-          {" "}
           <FoodHeader />
           <div className="flex flex-row gap-2 h-[48rem] max-h-max">
             <div className="flex flex-col gap-2 w-1/2">
@@ -76,7 +70,7 @@ export default function CookingArea() {
                           src={URL.createObjectURL(selectedImage)}
                         />
                         <br />
-                        <button onClick={() => setSelectedImage(null)}>
+                        <button onClick={removeImageHandler}>
                           Remove Image
                         </button>
                       </div>
@@ -99,16 +93,7 @@ export default function CookingArea() {
                                 type="file"
                                 className="sr-only"
                                 accept="image/png, image/jpeg, image/webp"
-                                onChange={(e) => {
-                                  const file = e.target.files?.[0];
-                                  setSelectedImage(file || null);
-                                  setCurrentFoodItem((prevFoodItem) => {
-                                    return {
-                                      ...prevFoodItem,
-                                      image: "foodImages/" + currentFoodItem.id,
-                                    };
-                                  });
-                                }}
+                                onChange={handleImageChange}
                               />
                             </label>
                             <p className="pl-1">or drag and drop</p>

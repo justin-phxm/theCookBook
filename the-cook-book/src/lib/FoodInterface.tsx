@@ -8,4 +8,5 @@ export default interface FoodInterface {
   instructions?: string[];
   tags?: string[];
   servings?: number;
+  imageURL?: string;
 }

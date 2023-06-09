@@ -20,7 +20,6 @@ export default function FoodHeader() {
     if (editMode) {
       if (selectedImage) {
         await uploadBytes(storageRef, selectedImage).then((snapshot) => {
-          console.log(snapshot);
           updateDocument(currentFoodItem);
         });
       }
@@ -28,7 +27,9 @@ export default function FoodHeader() {
     setEditMode(!editMode);
   };
   const deleteFoodHandler = () => {
-    deleteFoodItem(currentFoodItem);
+    if (window.confirm("Are you sure you want to delete this recipe?")) {
+      deleteFoodItem(currentFoodItem);
+    }
   };
   const myHeader = !editMode ? (
     <h2>
