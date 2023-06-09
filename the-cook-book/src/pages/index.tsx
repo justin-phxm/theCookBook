@@ -29,8 +29,8 @@ export default function Home() {
           />
           <FeatureBlock
             heroImage={HeroImage2}
-            heroTitle="Recreate and Relive Culinary Experiences"
-            heroDescription="The ultimate recipe book to create and save all your favorite dishes."
+            heroTitle="Take your recipes with you anywhere"
+            heroDescription="Access your recipes on any device, anywhere, anytime."
           />
         </div>
         <div className="pb-4">

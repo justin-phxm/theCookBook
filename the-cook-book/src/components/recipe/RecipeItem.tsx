@@ -3,34 +3,36 @@ import Image from "next/image";
 import placeholder from "../../../public/placeholder-image.png";
 import IFoodItem from "../../lib/FoodInterface";
 import Link from "next/link";
-const imageLoader = ({
-  src,
-  width,
-  quality,
-}: {
-  src?: string;
-  width?: number;
-  quality?: number;
-}) => {
-  return `https://themealdb.com/${src}?w=${width}&q=${quality || 1}`;
-};
+// const imageLoader = ({
+//   src,
+//   width,
+//   quality,
+// }: {
+//   src?: string;
+//   width?: number;
+//   quality?: number;
+// }) => {
+//   return `https://themealdb.com/${src}?w=${width}&q=${quality || 1}`;
+// };
 import { useFood } from "../../context/FoodContext";
+import { useRouter } from "next/router";
 
 export default function RecipeItem({ FoodItem }: { FoodItem: IFoodItem }) {
-  const { setFoodItem, currentFoodItem } = useFood();
+  const { setCurrentFoodItem, setEditMode } = useFood();
+  const router = useRouter();
+  const foodURLID = router.query.id;
+  const MAX_SUMMERY_LENGTH = 20;
   const linkClass =
     "group flex xl:flex-col h-max p-2 hover:bg-green-500 rounded-md border border-white shadow-md dark:border-gray-700 my-1 dark:bg-gray-800 text-center " +
-    (currentFoodItem && currentFoodItem.id && currentFoodItem.id === FoodItem.id
-      ? "bg-green-500"
-      : "bg-white");
+    (foodURLID && foodURLID[0] === FoodItem.id ? "bg-green-500" : "bg-white");
 
   return (
     <Link
       href={`/Recipes/${FoodItem.id}`}
       className={linkClass}
       onClick={() => {
-        setFoodItem(FoodItem);
-        console.log({ FoodItem });
+        setCurrentFoodItem(FoodItem);
+        setEditMode(false);
       }}
     >
       <div className="flex flex-col lg:flex-row w-full justify-between items-center">
@@ -39,18 +41,16 @@ export default function RecipeItem({ FoodItem }: { FoodItem: IFoodItem }) {
         </h5>
         {FoodItem.image ? (
           <div className="relative">
-            <Image
+            {/* <Image
               className="h-10 w-10 rounded-full"
-              loader={imageLoader}
+              // loader={imageLoader}
               src={FoodItem.image}
               alt="No image"
               width={500}
               height={500}
-            />
-            {FoodItem.color ? (
+            /> */}
+            {FoodItem.color && (
               <span className="absolute h-3.5 w-3.5 rounded-full border-2 border-white dark:border-gray-800 bg-red-500 -bottom-1 -right-1" />
-            ) : (
-              ""
             )}
           </div>
         ) : (
@@ -63,11 +63,9 @@ export default function RecipeItem({ FoodItem }: { FoodItem: IFoodItem }) {
         )}
       </div>
       <div className=" hidden xl:flex text-gray-700 text-ellipsis text-sm text-left">
-        {FoodItem.summary
-          ? FoodItem.summary.length > 20
-            ? FoodItem.summary?.substring(0, 20) + "..."
-            : FoodItem.summary
-          : ""}
+        {FoodItem.summary && FoodItem.summary?.length > MAX_SUMMERY_LENGTH
+          ? FoodItem.summary?.substring(0, 20) + "..."
+          : FoodItem.summary}
       </div>
     </Link>
   );

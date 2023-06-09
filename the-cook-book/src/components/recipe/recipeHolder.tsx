@@ -3,16 +3,21 @@ import IFoodItem from "../../lib/FoodInterface";
 import RecipeItem from "./RecipeItem";
 import { useFood } from "@/context/FoodContext";
 import { v4 as uuidv4 } from "uuid";
+import { useRouter } from "next/router";
 
 export default function RecipeHolder() {
-  const { foods, setFoodItem, setFood } = useFood();
+  const { foods, editMode, setEditMode } = useFood();
   const handleNewNote = () => {
-    const newFoodItem: IFoodItem = {
-      id: uuidv4(),
-      name: "Untitled",
-    };
-    setFoodItem(newFoodItem);
-    setFood([...foods, newFoodItem]);
+    if (!editMode) {
+      setEditMode(true);
+      console.log(editMode);
+      // const newFoodItem: IFoodItem = {
+      //   id: uuidv4(),
+      //   name: "Untitled",
+      // };
+      // setFoodItem(newFoodItem);
+      // setFood([...foods, newFoodItem]);
+    }
   };
 
   return (

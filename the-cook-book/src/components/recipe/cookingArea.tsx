@@ -1,71 +1,125 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import placeholder from "../../../public/placeholder-image.png";
 import Ingredients from "./Ingredients";
 import Instructions from "./Instructions";
 import { useFood } from "../../context/FoodContext";
 import { DatabaseProvider } from "@/lib/firestore";
-// Center area of the recipe page
-const imageLoader = ({
-  src,
-  width,
-  quality,
-}: {
-  src?: string;
-  width?: number;
-  quality?: number;
-}) => {
-  return `https://themealdb.com/${src}?w=${width}&q=${quality || 1}`;
-};
+import FoodHeader from "./foodHeader";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
+import { useRouter } from "next/router";
 
 export default function CookingArea() {
-  const { currentFoodItem } = useFood();
-  const { addFoodItem } = DatabaseProvider();
+  const {
+    currentFoodItem,
+    editMode,
+    setEditMode,
+    setCurrentFoodItem,
+    selectedImage,
+    setSelectedImage,
+  } = useFood();
+  const storage = getStorage();
+  const storageRef = ref(storage, currentFoodItem.image);
+  const [viewImage, setVietImage] = useState<string>("");
+  const newImageElement = currentFoodItem.image ? (
+    <Image
+      className=" rounded-lg group-hover:opacity-75 object-cover"
+      src={""}
+      alt="No image"
+      // width={400}
+      // height={400}
+      fill={true}
+    />
+  ) : (
+    <Image
+      className="rounded-md shadow-lg opacity-75"
+      src={placeholder}
+      alt="No image"
+      fill={true}
+    />
+  );
+  useEffect(() => {
+    console.log(currentFoodItem);
+    setSelectedImage(null);
+    if (currentFoodItem.image) {
+      try {
+        getDownloadURL(storageRef).then((url) => {
+          setCurrentFoodItem((prevFoodItem) => {
+            return { ...prevFoodItem, image: url };
+          });
+          console.log(url);
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  }, [currentFoodItem.id]);
+
   return (
     <div className="bg-slate-200 h-full max-h-full p-4 rounded-lg flex flex-col">
-      <section className="flex flex-row justify-between">
-        <h1 className=" font-bold select-none text-xl">
-          {currentFoodItem.name ? currentFoodItem.name : "New Recipe"}
-          {currentFoodItem.servings
-            ? " - " + currentFoodItem.servings + " servings"
-            : ""}
-        </h1>
-        <div className="flex flex-row">
-          <button
-            onClick={() => {
-              addFoodItem(currentFoodItem);
-              console.log(currentFoodItem);
-            }}
-            className="px-2 z-10 font-medium hover:bg-slate-300 hover:rounded-md cursor-pointer"
-          >
-            Save
-          </button>
-          <button className="px-2 z-10 font-medium hover:bg-slate-300 hover:rounded-md cursor-pointer">
-            Edit
-          </button>
-        </div>
-      </section>
+      <FoodHeader />
       <div className="flex flex-row gap-2 h-[48rem] max-h-max">
         <div className="flex flex-col gap-2 w-1/2">
           <Ingredients />
           <div className="w-full h-full relative">
-            {currentFoodItem.image ? (
-              <Image
-                className=" rounded-lg group-hover:opacity-75 object-cover"
-                loader={imageLoader}
-                src={currentFoodItem.image}
-                alt="No image"
-                // width={400}
-                // height={400}
-                fill={true}
-              />
+            {editMode ? (
+              <div className="col-span-full">
+                {selectedImage ? (
+                  <div>
+                    <Image
+                      alt="not found"
+                      width={250}
+                      height={250}
+                      src={URL.createObjectURL(selectedImage)}
+                    />
+                    <br />
+                    <button onClick={() => setSelectedImage(null)}>
+                      Remove Image
+                    </button>
+                  </div>
+                ) : (
+                  <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                    <div className="text-center">
+                      <div
+                        className="mx-auto h-12 w-12 text-gray-300"
+                        aria-hidden="true"
+                      />
+                      <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                        <label
+                          htmlFor="file-upload"
+                          className="relative cursor-pointer rounded-md bg-white font-semibold text-green-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-green-500 focus-within:ring-offset-2 hover:text-green-500"
+                        >
+                          <span>Upload a file</span>
+                          <input
+                            id="file-upload"
+                            name="file-upload"
+                            type="file"
+                            className="sr-only"
+                            accept="image/png, image/jpeg, image/webp"
+                            onChange={(e) => {
+                              const file = e.target.files?.[0];
+                              setSelectedImage(file || null);
+                              setCurrentFoodItem((prevFoodItem) => {
+                                return {
+                                  ...prevFoodItem,
+                                  image: "foodImages/" + currentFoodItem.id,
+                                };
+                              });
+                            }}
+                          />
+                        </label>
+                        <p className="pl-1">or drag and drop</p>
+                      </div>
+                      <p className="text-xs leading-5 text-gray-600">
+                        PNG, JPG, GIF up to 10MB
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
             ) : (
-              <Image
-                className="rounded-md shadow-lg opacity-75"
-                src={placeholder}
-                alt="No image"
-                fill={true}
-              />
+              <>{viewImage}</>
             )}
           </div>
         </div>
