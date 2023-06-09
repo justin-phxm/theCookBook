@@ -36,7 +36,7 @@ export const FoodProvider = ({ children }: { children: React.ReactNode }) => {
     return <div>failed to load, an error has occured</div>;
   }
   if (!data) {
-    return <div>loading...</div>;
+    return <div>loading... Please login if error persists</div>;
   }
   const foods = data;
   return (
