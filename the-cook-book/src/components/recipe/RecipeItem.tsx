@@ -3,17 +3,6 @@ import Image from "next/image";
 import placeholder from "../../../public/placeholder-image.png";
 import IFoodItem from "../../lib/FoodInterface";
 import Link from "next/link";
-// const imageLoader = ({
-//   src,
-//   width,
-//   quality,
-// }: {
-//   src?: string;
-//   width?: number;
-//   quality?: number;
-// }) => {
-//   return `https://themealdb.com/${src}?w=${width}&q=${quality || 1}`;
-// };
 import { useFood } from "../../context/FoodContext";
 import { useRouter } from "next/router";
 
