@@ -4,6 +4,7 @@ import { useFood } from "../../context/FoodContext";
 import Ingredients from "./Ingredients";
 import Instructions from "./Instructions";
 import FoodHeader from "./foodHeader";
+import { useEffect } from "react";
 
 export default function CookingArea() {
   const {
@@ -44,6 +45,10 @@ export default function CookingArea() {
       fill={true}
     />
   );
+
+  useEffect(() => {
+    setSelectedImage(null);
+  }, [currentFoodItem.id]);
 
   return (
     <div className="bg-slate-200 h-full max-h-full p-4 rounded-lg flex flex-col">
