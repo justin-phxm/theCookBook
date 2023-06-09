@@ -6,21 +6,9 @@ import Instructions from "./Instructions";
 import { useFood } from "../../context/FoodContext";
 import { DatabaseProvider } from "@/lib/firestore";
 import FoodHeader from "./foodHeader";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 import { useRouter } from "next/router";
-// Center area of the recipe page
-const imageLoader = ({
-  src,
-  width,
-  quality,
-}: {
-  src?: string;
-  width?: number;
-  quality?: number;
-}) => {
-  return `https://themealdb.com/${src}?w=${width}&q=${quality || 1}`;
-};
 
 export default function CookingArea() {
   const {
@@ -31,21 +19,13 @@ export default function CookingArea() {
     selectedImage,
     setSelectedImage,
   } = useFood();
-  // const { updateDocument } = DatabaseProvider();
-  // const editSaveHandler = () => {
-  //   if (editMode) {
-  //     updateDocument(currentFoodItem);
-  //     console.log(currentFoodItem);
-  //     //Compress image and upload to Database
-  //   }
-  //   setEditMode(!editMode);
-  // };
-  // const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const storage = getStorage();
+  const storageRef = ref(storage, currentFoodItem.image);
+  const [viewImage, setVietImage] = useState<string>("");
   const newImageElement = currentFoodItem.image ? (
     <Image
       className=" rounded-lg group-hover:opacity-75 object-cover"
-      loader={imageLoader}
-      src={currentFoodItem.image}
+      src={""}
       alt="No image"
       // width={400}
       // height={400}
@@ -62,6 +42,18 @@ export default function CookingArea() {
   useEffect(() => {
     console.log(currentFoodItem);
     setSelectedImage(null);
+    if (currentFoodItem.image) {
+      try {
+        getDownloadURL(storageRef).then((url) => {
+          setCurrentFoodItem((prevFoodItem) => {
+            return { ...prevFoodItem, image: url };
+          });
+          console.log(url);
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    }
   }, [currentFoodItem.id]);
 
   return (
@@ -127,7 +119,7 @@ export default function CookingArea() {
                 )}
               </div>
             ) : (
-              <>{newImageElement}</>
+              <>{viewImage}</>
             )}
           </div>
         </div>
