@@ -13,18 +13,15 @@ export default function FoodHeader() {
   } = useFood();
   const { updateDocument, deleteFoodItem } = DatabaseProvider();
   const id = useId();
-  // const storage = getStorage();
-  const storageRef = ref(storage, "foodImages/" + currentFoodItem.id);
+
+  const imageAddress = "foodImages/" + currentFoodItem.id;
+  const storageRef = ref(storage, imageAddress);
   const editSaveHandler = async () => {
     if (editMode) {
       if (selectedImage) {
         await uploadBytes(storageRef, selectedImage).then((snapshot) => {
-          setCurrentFoodItem({
-            ...currentFoodItem,
-            image: snapshot.metadata.fullPath,
-          });
+          updateDocument(currentFoodItem);
         });
-        await updateDocument(currentFoodItem);
       } else {
         updateDocument(currentFoodItem);
       }

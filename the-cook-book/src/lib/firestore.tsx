@@ -13,7 +13,7 @@ export const DatabaseProvider = () => {
   const updateDocument = async (foodItem: FoodInterface) => {
     try {
       const foodRef = doc(db, "food", `${foodItem.id}`);
-      setDoc(foodRef, foodItem, { merge: false });
+      setDoc(foodRef, foodItem);
 
       console.log("Document written with ID: ", foodItem.id);
     } catch (e) {

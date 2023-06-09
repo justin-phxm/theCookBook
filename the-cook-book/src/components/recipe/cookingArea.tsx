@@ -62,7 +62,7 @@ export default function CookingArea() {
   useEffect(() => {
     console.log(currentFoodItem);
     setSelectedImage(null);
-  }, [currentFoodItem]);
+  }, [currentFoodItem.id]);
 
   return (
     <div className="bg-slate-200 h-full max-h-full p-4 rounded-lg flex flex-col">
@@ -107,8 +107,13 @@ export default function CookingArea() {
                             accept="image/png, image/jpeg, image/webp"
                             onChange={(e) => {
                               const file = e.target.files?.[0];
-                              console.log(file);
                               setSelectedImage(file || null);
+                              setCurrentFoodItem((prevFoodItem) => {
+                                return {
+                                  ...prevFoodItem,
+                                  image: "foodImages/" + currentFoodItem.id,
+                                };
+                              });
                             }}
                           />
                         </label>

@@ -39,7 +39,7 @@ export const FoodProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (currentUser) {
-      console.log(currentUser);
+      // console.log(currentUser);
       readDB().then((data) => setFood(data));
     } else {
       console.log("No user");
