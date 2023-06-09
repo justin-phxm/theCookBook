@@ -49,6 +49,7 @@ export const DatabaseProvider = () => {
   const deleteFoodItem = async (foodItem: FoodInterface) => {
     try {
       await deleteDoc(doc(db, "food", `${foodItem.id}`));
+      console.log("Document successfully deleted!");
     } catch (e) {
       console.error("Error deleting document: ", e);
     }
