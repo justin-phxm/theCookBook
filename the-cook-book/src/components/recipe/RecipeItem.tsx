@@ -3,17 +3,17 @@ import Image from "next/image";
 import placeholder from "../../../public/placeholder-image.png";
 import IFoodItem from "../../lib/FoodInterface";
 import Link from "next/link";
-const imageLoader = ({
-  src,
-  width,
-  quality,
-}: {
-  src?: string;
-  width?: number;
-  quality?: number;
-}) => {
-  return `https://themealdb.com/${src}?w=${width}&q=${quality || 1}`;
-};
+// const imageLoader = ({
+//   src,
+//   width,
+//   quality,
+// }: {
+//   src?: string;
+//   width?: number;
+//   quality?: number;
+// }) => {
+//   return `https://themealdb.com/${src}?w=${width}&q=${quality || 1}`;
+// };
 import { useFood } from "../../context/FoodContext";
 import { useRouter } from "next/router";
 
@@ -41,14 +41,14 @@ export default function RecipeItem({ FoodItem }: { FoodItem: IFoodItem }) {
         </h5>
         {FoodItem.image ? (
           <div className="relative">
-            <Image
+            {/* <Image
               className="h-10 w-10 rounded-full"
-              loader={imageLoader}
+              // loader={imageLoader}
               src={FoodItem.image}
               alt="No image"
               width={500}
               height={500}
-            />
+            /> */}
             {FoodItem.color && (
               <span className="absolute h-3.5 w-3.5 rounded-full border-2 border-white dark:border-gray-800 bg-red-500 -bottom-1 -right-1" />
             )}

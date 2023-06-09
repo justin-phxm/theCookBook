@@ -1,7 +1,7 @@
 import React from "react";
 import MyFoodItem from "./FoodItem";
 import Link from "next/link";
-import IFoodItem from "../../lib/FoodInterface";
+import IFoodItem from "../../../lib/FoodInterface";
 
 export default function recentRecipeHolder({
   foodItemArray,

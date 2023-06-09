@@ -1,19 +1,19 @@
 import React from "react";
 import Image from "next/image";
 import placeholder from "../../../public/placeholder-image.png";
-import IFoodItem from "../../lib/FoodInterface";
+import IFoodItem from "../../../lib/FoodInterface";
 import Link from "next/link";
-const imageLoader = ({
-  src,
-  width,
-  quality,
-}: {
-  src?: string;
-  width?: number;
-  quality?: number;
-}) => {
-  return `https://themealdb.com/${src}?w=${width}&q=${quality || 1}`;
-};
+// const imageLoader = ({
+//   src,
+//   width,
+//   quality,
+// }: {
+//   src?: string;
+//   width?: number;
+//   quality?: number;
+// }) => {
+//   return `https://themealdb.com/${src}?w=${width}&q=${quality || 1}`;
+// };
 
 export default function FoodItem({
   FoodItem,
@@ -33,7 +33,7 @@ export default function FoodItem({
         {FoodItem.image ? (
           <Image
             className="h-5/6 rounded-md p-3 group-hover:opacity-75"
-            loader={imageLoader}
+            // loader={imageLoader}
             src={FoodItem.image}
             alt="No image"
             width={500}

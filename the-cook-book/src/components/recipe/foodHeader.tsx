@@ -20,10 +20,9 @@ export default function FoodHeader() {
     if (editMode) {
       if (selectedImage) {
         await uploadBytes(storageRef, selectedImage).then((snapshot) => {
+          console.log(snapshot);
           updateDocument(currentFoodItem);
         });
-      } else {
-        updateDocument(currentFoodItem);
       }
     }
     setEditMode(!editMode);
