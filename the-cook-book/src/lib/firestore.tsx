@@ -8,8 +8,10 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import FoodInterface from "./FoodInterface";
+import { useAuth } from "@/context/AuthContext";
 
 export const DatabaseProvider = () => {
+  const { currentUser } = useAuth();
   const updateDocument = async (foodItem: FoodInterface) => {
     try {
       const foodRef = doc(db, "food", `${foodItem.id}`);
@@ -22,33 +24,21 @@ export const DatabaseProvider = () => {
   };
 
   const readDB = async () => {
+    if (!currentUser) {
+      return;
+    }
     const querySnapshot = await getDocs(collection(db, "food"));
     const foodCollection: FoodInterface[] = [];
     querySnapshot.forEach((doc) => {
       foodCollection.push(doc.data());
     });
-    // console.log(foodCollection);
     return foodCollection;
   };
-
-  // const updateFoodItem = async (foodItem: FoodInterface) => {
-  //   try {
-  //     const foodRef = doc(db, "food", `${foodItem.id}`);
-  //     await updateDoc(foodRef, {
-  //       name: foodItem.name,
-  //       image: foodItem.image,
-  //       servings: foodItem.servings,
-  //       ingredients: foodItem.ingredients,
-  //       instructions: foodItem.instructions,
-  //     });
-  //   } catch (e) {
-  //     console.error("Error updating document: ", e);
-  //   }
-  // };
 
   const deleteFoodItem = async (foodItem: FoodInterface) => {
     try {
       await deleteDoc(doc(db, "food", `${foodItem.id}`));
+      console.log("Document successfully deleted!");
     } catch (e) {
       console.error("Error deleting document: ", e);
     }

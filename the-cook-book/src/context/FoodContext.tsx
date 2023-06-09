@@ -1,13 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import FoodInterface from "@/lib/FoodInterface";
-// import foodData from "../../public/foodData.json" assert { type: "json" };
 import { DatabaseProvider } from "@/lib/firestore";
-import { useAuth } from "./AuthContext";
+import useSWR from "swr";
 interface FoodContextType {
   foods: FoodInterface[];
-  loading: boolean;
+  // loading: boolean;
   error: string | null;
-  setFood: any;
+  // setFood: any;
   currentFoodItem: FoodInterface;
   editMode: boolean;
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,38 +22,32 @@ export const useFood = () => {
 };
 
 export const FoodProvider = ({ children }: { children: React.ReactNode }) => {
-  const [selectedImage, setSelectedImage] = React.useState<File | null>(null);
-  const [foods, setFood] = React.useState<FoodInterface[]>([]);
-  const [loading, setLoading] = React.useState<boolean>(true);
-  const [error, setError] = React.useState<string | null>(null);
   const [editMode, setEditMode] = React.useState<boolean>(false);
   const [currentFoodItem, setCurrentFoodItem] = React.useState<FoodInterface>(
     {}
   );
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const { readDB } = DatabaseProvider();
-  const { currentUser } = useAuth();
-  // useEffect(() => {
-  //   setEditMode(false);
-  // }, [currentFoodItem]);
-
-  useEffect(() => {
-    if (currentUser) {
-      // console.log(currentUser);
-      readDB().then((data) => setFood(data));
-    } else {
-      console.log("No user");
-    }
-  }, []);
-
+  const fetcher = async () => {
+    return readDB();
+  };
+  const { data, error } = useSWR("dashboard", fetcher);
+  if (error) {
+    return <div>failed to load, an error has occured</div>;
+  }
+  if (!data) {
+    return <div>loading... Please login if error persists</div>;
+  }
+  const foods = data;
   return (
     <FoodContext.Provider
       value={{
         selectedImage,
         setSelectedImage,
         foods,
-        loading,
+        // loading,
         error,
-        setFood,
+        // setFood,
         currentFoodItem,
         setCurrentFoodItem,
         editMode,

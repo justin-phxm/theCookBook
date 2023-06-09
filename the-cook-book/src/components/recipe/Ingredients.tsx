@@ -1,4 +1,4 @@
-import React, { useId, useState } from "react";
+import React, { MouseEventHandler, useId, useState } from "react";
 import IFoodItem from "../../lib/FoodInterface";
 import { useFood } from "@/context/FoodContext";
 import { DatabaseProvider } from "@/lib/firestore";
@@ -28,12 +28,23 @@ export default function Ingredients() {
     console.log(currentFoodItem);
   };
 
-  const deleteIngredientHandler = (index: number) => {
-    if (editMode) {
-      console.log(currentFoodItem.ingredients);
-      console.log(index);
-      // updateDocument(currentFoodItem);
-    }
+  const handleIngredientRemove = (
+    index: number,
+    currentFoodItem: IFoodItem,
+    setCurrentFoodItem: React.Dispatch<React.SetStateAction<IFoodItem>>
+  ): MouseEventHandler<HTMLLIElement> => {
+    if (!editMode) return (event) => event.preventDefault();
+    return (event) => {
+      event.preventDefault();
+      if (currentFoodItem.ingredients) {
+        const updatedIngredients = [...currentFoodItem.ingredients];
+        updatedIngredients.splice(index, 1);
+        setCurrentFoodItem({
+          ...currentFoodItem,
+          ingredients: updatedIngredients,
+        });
+      }
+    };
   };
 
   const addIngredientElement = editMode && (
@@ -91,10 +102,11 @@ export default function Ingredients() {
           <li
             className={ingredientClassName}
             key={index}
-            onClick={() => {
-              currentFoodItem.ingredients?.splice(index, 1);
-              setCurrentFoodItem({ ...currentFoodItem });
-            }}
+            onClick={handleIngredientRemove(
+              index,
+              currentFoodItem,
+              setCurrentFoodItem
+            )}
           >
             • {ingredient}
           </li>

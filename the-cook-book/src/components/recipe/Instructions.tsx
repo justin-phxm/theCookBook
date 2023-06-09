@@ -1,4 +1,4 @@
-import React, { useId, useState } from "react";
+import React, { MouseEventHandler, useId, useState } from "react";
 import IFoodItem from "../../lib/FoodInterface";
 import { useFood } from "@/context/FoodContext";
 
@@ -15,6 +15,24 @@ export default function Instructions() {
     setInstruction("");
     setCurrentFoodItem({ ...currentFoodItem });
     console.log(currentFoodItem);
+  };
+  const handleInstructionRemove = (
+    index: number,
+    currentFoodItem: IFoodItem,
+    setCurrentFoodItem: React.Dispatch<React.SetStateAction<IFoodItem>>
+  ): MouseEventHandler<HTMLLIElement> => {
+    if (!editMode) return (event) => event.preventDefault();
+    return (event) => {
+      event.preventDefault();
+      if (currentFoodItem.instructions) {
+        const updatedInstructions = [...currentFoodItem.instructions];
+        updatedInstructions.splice(index, 1);
+        setCurrentFoodItem({
+          ...currentFoodItem,
+          instructions: updatedInstructions,
+        });
+      }
+    };
   };
   const addInstructionElement = editMode && (
     <div className="flex flex-col gap-2 bg-slate-300 rounded p-2">
@@ -42,12 +60,15 @@ export default function Instructions() {
       <ol className=" list-decimal font-normal max-h-[45rem]  overflow-y-auto list-inside ">
         {currentFoodItem.instructions?.map((instruction, index) => (
           <li
-            className="py-0.5 cursor-pointer hover:opacity-70"
+            className={`py-0.5  ${
+              editMode && "hover:opacity-70 cursor-pointer"
+            }`}
+            onClick={handleInstructionRemove(
+              index,
+              currentFoodItem,
+              setCurrentFoodItem
+            )}
             key={index}
-            onClick={() => {
-              currentFoodItem.instructions?.splice(index, 1);
-              setCurrentFoodItem({ ...currentFoodItem });
-            }}
           >
             {instruction}
           </li>
