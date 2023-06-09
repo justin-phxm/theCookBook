@@ -27,7 +27,9 @@ export default function FoodHeader() {
     setEditMode(!editMode);
   };
   const deleteFoodHandler = () => {
-    deleteFoodItem(currentFoodItem);
+    if (window.confirm("Are you sure you want to delete this recipe?")) {
+      deleteFoodItem(currentFoodItem);
+    }
   };
   const myHeader = !editMode ? (
     <h2>
