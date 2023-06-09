@@ -9,8 +9,11 @@ import {
 import { db } from "../firebase";
 import FoodInterface from "./FoodInterface";
 import { useAuth } from "@/context/AuthContext";
+import { getStorage, ref, deleteObject } from "firebase/storage";
 
 export const DatabaseProvider = () => {
+  const storage = getStorage();
+
   // const { currentUser } = useAuth();
   const updateDocument = async (foodItem: FoodInterface) => {
     try {
@@ -37,6 +40,10 @@ export const DatabaseProvider = () => {
 
   const deleteFoodItem = async (foodItem: FoodInterface) => {
     try {
+      let imageRef = ref(storage, foodItem.image);
+      await deleteObject(imageRef).then(() => {
+        console.log("Image deleted");
+      });
       await deleteDoc(doc(db, "food", `${foodItem.id}`));
       console.log("Document successfully deleted!");
     } catch (e) {
