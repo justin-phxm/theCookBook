@@ -11,7 +11,7 @@ import FoodInterface from "./FoodInterface";
 import { useAuth } from "@/context/AuthContext";
 
 export const DatabaseProvider = () => {
-  const { currentUser } = useAuth();
+  // const { currentUser } = useAuth();
   const updateDocument = async (foodItem: FoodInterface) => {
     try {
       const foodRef = doc(db, "food", `${foodItem.id}`);
@@ -24,9 +24,9 @@ export const DatabaseProvider = () => {
   };
 
   const readDB = async () => {
-    if (!currentUser) {
-      return;
-    }
+    // if (!currentUser) {
+    //   return;
+    // }
     const querySnapshot = await getDocs(collection(db, "food"));
     const foodCollection: FoodInterface[] = [];
     querySnapshot.forEach((doc) => {

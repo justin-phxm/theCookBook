@@ -22,6 +22,8 @@ export default function FoodHeader() {
         await uploadBytes(storageRef, selectedImage).then((snapshot) => {
           updateDocument(currentFoodItem);
         });
+      } else {
+        updateDocument(currentFoodItem);
       }
     }
     setEditMode(!editMode);

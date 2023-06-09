@@ -16,8 +16,8 @@ export default function RecipeItem({ FoodItem }: { FoodItem: IFoodItem }) {
     (foodURLID === FoodItem.id ? "bg-green-500" : "bg-white");
 
   return (
-    <Link
-      href={`/Recipes/${FoodItem.id}`}
+    <div
+      // href={`/Recipes/${FoodItem.id}`}
       className={linkClass}
       onClick={() => {
         setCurrentFoodItem(FoodItem);
@@ -55,6 +55,6 @@ export default function RecipeItem({ FoodItem }: { FoodItem: IFoodItem }) {
           ? FoodItem.summary?.substring(0, 20) + "..."
           : FoodItem.summary}
       </div>
-    </Link>
+    </div>
   );
 }
