@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { FaUserAlt } from "react-icons/fa";
-import { HiCollection } from "react-icons/Hi";
+import { HiCollection } from "react-icons/hi";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/router";
