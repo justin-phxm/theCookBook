@@ -7,7 +7,8 @@ import RecipeItem from "./RecipeItem";
 
 const { updateDocument } = DatabaseProvider();
 export default function RecipeHolder() {
-  const { foods, editMode, setFood, setEditMode } = useFood();
+  const { foods, editMode, setFood, setEditMode, setCurrentFoodItem } =
+    useFood();
   const handleNewNote = () => {
     setEditMode(false);
     const newFoodItem: IFoodItem = {
@@ -19,6 +20,8 @@ export default function RecipeHolder() {
       color: "red",
     };
     setFood([...foods, newFoodItem]);
+    setCurrentFoodItem(newFoodItem);
+    setEditMode(true);
   };
 
   return (
