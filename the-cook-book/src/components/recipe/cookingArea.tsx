@@ -14,6 +14,7 @@ export default function CookingArea() {
     setCurrentFoodItem,
     selectedImage,
     setSelectedImage,
+    foods,
   } = useFood();
 
   const removeImageHandler = () => {
@@ -48,6 +49,8 @@ export default function CookingArea() {
 
   useEffect(() => {
     setSelectedImage(null);
+    console.log(currentFoodItem);
+    console.log({ foods });
   }, [currentFoodItem.id]);
 
   return (

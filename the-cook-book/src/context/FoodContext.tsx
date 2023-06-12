@@ -1,13 +1,13 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import FoodInterface from "@/lib/FoodInterface";
 import { DatabaseProvider } from "@/lib/firestore";
-import useSWR from "swr";
+import { useAuth } from "./AuthContext";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 interface FoodContextType {
   foods: FoodInterface[];
-  // loading: boolean;
+  loading: boolean;
   error: string | null;
-  // setFood: any;
+  setFood: any;
   currentFoodItem: FoodInterface;
   editMode: boolean;
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,34 +23,50 @@ export const useFood = () => {
 };
 
 export const FoodProvider = ({ children }: { children: React.ReactNode }) => {
+  const [selectedImage, setSelectedImage] = React.useState<File | null>(null);
+  const [foods, setFood] = React.useState<FoodInterface[]>([]);
+  const [loading, setLoading] = React.useState<boolean>(true);
+  const [error, setError] = React.useState<string | null>(null);
   const [editMode, setEditMode] = React.useState<boolean>(false);
   const [currentFoodItem, setCurrentFoodItem] = React.useState<FoodInterface>(
     {}
   );
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
-  const { readDB } = DatabaseProvider();
-  const fetcher = async () => {
-    return readDB();
-  };
-  const { data, error } = useSWR("dashboard", fetcher);
-  if (error) {
-    return <div>failed to load, an error has occured</div>;
-  }
-  if (!data) {
-    return <div>loading... Please login if error persists</div>;
-  }
-  const foods = data;
-
   const storage = getStorage();
-  foods.map((food) => {
-    // set the imageURL to the image in storage
-    if (food.image) {
-      let storageRef = ref(storage, food.image);
-      getDownloadURL(storageRef).then((url) => {
-        food.imageURL = url;
+
+  const { readDB } = DatabaseProvider();
+  const { currentUser } = useAuth();
+  // useEffect(() => {
+  //   setEditMode(false);
+  // }, [currentFoodItem]);
+
+  useEffect(() => {
+    readDB().then((data) => {
+      data.map((food) => {
+        if (food.image) {
+          getDownloadURL(ref(storage, food.image)).then((url) => {
+            food.imageURL = url;
+            setFood(data);
+          });
+        }
       });
-    }
-  });
+    });
+  }, [editMode]);
+
+  // useEffect(
+  //   () => {
+  //     readDB().then((data) => setFood(data));
+  //     setFood((prevFood) => {
+  //       return prevFood.map((foodItem) => {
+  //         if (foodItem.id === currentFoodItem.id) {
+  //           return currentFoodItem;
+  //         } else {
+  //           return foodItem;
+  //         }
+  //       });
+  //     },
+  //   []
+
+  // );
 
   return (
     <FoodContext.Provider
@@ -58,9 +74,9 @@ export const FoodProvider = ({ children }: { children: React.ReactNode }) => {
         selectedImage,
         setSelectedImage,
         foods,
-        // loading,
+        loading,
         error,
-        // setFood,
+        setFood,
         currentFoodItem,
         setCurrentFoodItem,
         editMode,

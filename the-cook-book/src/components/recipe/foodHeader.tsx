@@ -3,6 +3,7 @@ import { useFood } from "@/context/FoodContext";
 import { DatabaseProvider } from "@/lib/firestore";
 import { ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../firebase";
+import { getStorage, deleteObject } from "firebase/storage";
 export default function FoodHeader() {
   const {
     currentFoodItem,
@@ -10,25 +11,37 @@ export default function FoodHeader() {
     editMode,
     setEditMode,
     selectedImage,
+    setFood,
+    foods,
   } = useFood();
   const { updateDocument, deleteFoodItem } = DatabaseProvider();
   const id = useId();
-
+  const [loading, setLoading] = useState(false);
   const imageAddress = "foodImages/" + currentFoodItem.id;
   const storageRef = ref(storage, imageAddress);
   const editSaveHandler = async () => {
-    if (editMode) {
-      if (selectedImage) {
-        await uploadBytes(storageRef, selectedImage).then((snapshot) => {
+    if (!loading) {
+      console.log("Hi");
+      if (editMode) {
+        setLoading(true);
+        if (selectedImage) {
+          await uploadBytes(storageRef, selectedImage).then((snapshot) => {
+            updateDocument(currentFoodItem);
+          });
+        } else {
           updateDocument(currentFoodItem);
-        });
+        }
       }
+
+      setLoading(false);
+      setEditMode(!editMode);
     }
-    setEditMode(!editMode);
   };
   const deleteFoodHandler = () => {
     if (window.confirm("Are you sure you want to delete this recipe?")) {
       deleteFoodItem(currentFoodItem);
+      setCurrentFoodItem({});
+      setFood(foods.filter((food) => food.id !== currentFoodItem.id));
     }
   };
   const myHeader = !editMode ? (
@@ -79,8 +92,9 @@ export default function FoodHeader() {
           onClick={editSaveHandler}
           className="px-2 z-10 font-medium hover:bg-slate-300 hover:rounded-md cursor-pointer select-none"
         >
-          {editMode ? "Save" : "Edit"}
+          {editMode ? (loading ? "saving..." : "save") : "Edit"}
         </button>
+
         <button
           onClick={deleteFoodHandler}
           className="px-2 z-10 font-medium hover:bg-slate-300 hover:rounded-md cursor-pointer select-none"

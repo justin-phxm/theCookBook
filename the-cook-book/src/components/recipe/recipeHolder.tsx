@@ -1,23 +1,27 @@
+import { useFood } from "@/context/FoodContext";
+import { DatabaseProvider } from "@/lib/firestore";
 import { AiOutlinePlus } from "react-icons/ai";
+import { v4 as uuidv4 } from "uuid";
 import IFoodItem from "../../lib/FoodInterface";
 import RecipeItem from "./RecipeItem";
-import { useFood } from "@/context/FoodContext";
-import { v4 as uuidv4 } from "uuid";
-import { useRouter } from "next/router";
 
+const { updateDocument } = DatabaseProvider();
 export default function RecipeHolder() {
-  const { foods, editMode, setEditMode } = useFood();
+  const { foods, editMode, setFood, setEditMode, setCurrentFoodItem } =
+    useFood();
   const handleNewNote = () => {
-    if (!editMode) {
-      setEditMode(true);
-      console.log(editMode);
-      // const newFoodItem: IFoodItem = {
-      //   id: uuidv4(),
-      //   name: "Untitled",
-      // };
-      // setFoodItem(newFoodItem);
-      // setFood([...foods, newFoodItem]);
-    }
+    setEditMode(false);
+    const newFoodItem: IFoodItem = {
+      id: uuidv4(),
+      name: "New Recipe",
+      summary: "Your new recipe",
+      ingredients: [],
+      instructions: [],
+      color: "red",
+    };
+    setFood([...foods, newFoodItem]);
+    setCurrentFoodItem(newFoodItem);
+    setEditMode(true);
   };
 
   return (
