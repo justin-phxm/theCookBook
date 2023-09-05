@@ -4,6 +4,7 @@ import { DatabaseProvider } from "@/lib/firestore";
 import { ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../firebase";
 import { getStorage, deleteObject } from "firebase/storage";
+import { useAuth } from "@/context/AuthContext";
 export default function FoodHeader() {
   const {
     currentFoodItem,
@@ -14,6 +15,7 @@ export default function FoodHeader() {
     setFood,
     foods,
   } = useFood();
+  const { currentUser, logout } = useAuth();
   const { updateDocument, deleteFoodItem } = DatabaseProvider();
   const id = useId();
   const [loading, setLoading] = useState(false);
@@ -21,15 +23,19 @@ export default function FoodHeader() {
   const storageRef = ref(storage, imageAddress);
   const editSaveHandler = async () => {
     if (!loading) {
-      console.log("Hi");
       if (editMode) {
         setLoading(true);
         if (selectedImage) {
           await uploadBytes(storageRef, selectedImage).then((snapshot) => {
-            updateDocument(currentFoodItem);
+            var myFoodItem = currentFoodItem;
+            myFoodItem.owner = currentUser?.email;
+            updateDocument(myFoodItem);
           });
         } else {
-          updateDocument(currentFoodItem);
+          var myFoodItem = currentFoodItem;
+          myFoodItem.owner = currentUser?.email;
+          // console.log(myFoodItem);
+          updateDocument(myFoodItem);
         }
       }
 
