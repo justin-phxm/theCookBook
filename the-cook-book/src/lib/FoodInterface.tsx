@@ -9,4 +9,5 @@ export default interface FoodInterface {
   tags?: string[];
   servings?: number;
   imageURL?: string;
+  owner?: string;
 }
