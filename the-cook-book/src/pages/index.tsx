@@ -7,9 +7,32 @@ import Layout from "@/components/facePage/layout";
 import HeroImage0 from "../../public/11.svg";
 import HeroImage1 from "../../public/9.svg";
 import HeroImage2 from "../../public/12.svg";
-import testimony0 from "../../public/testimonyImage.png";
+import testimony0 from "../../public/testimonyImages/testimonyImage.png";
+import testimony1 from "../../public/testimonyImages/Screen Shot 2022-05-09 at 10.28.png";
+import testimony2 from "../../public/testimonyImages/Screen Shot 2022-05-09 at 10.28 (1).png";
+import TestimonyInterface from "../lib/TestimonyInterface";
 
 export default function Home() {
+  const testimonies: TestimonyInterface[] = [
+    {
+      name: "Olivia Cole",
+      image: testimony0,
+      testimonyText:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper scelerisque mi, in malesuada felis malesuada vel. ",
+    },
+    {
+      name: "Evan White",
+      image: testimony1,
+      testimonyText:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper scelerisque mi, in malesuada felis malesuada vel. ",
+    },
+    {
+      name: "Jessica Page",
+      image: testimony2,
+      testimonyText:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper scelerisque mi, in malesuada felis malesuada vel. ",
+    },
+  ];
   return (
     <>
       <Layout>
@@ -41,13 +64,22 @@ export default function Home() {
             Read What Others Have To Say
           </h1>
           <div className="flex flex-row place-content-center">
-            <Testimony
+            {testimonies.map((testimony: TestimonyInterface) => (
+              <Testimony
+                key={testimony.name}
+                testimonyImage={testimony.image}
+                testimonyName={testimony.name}
+                testimonyText={testimony.testimonyText}
+              />
+            ))}
+
+            {/* <Testimony
               testimonyImage={testimony0}
               testimonyName="Olivia Cole"
               testimonyText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper scelerisque mi, in malesuada felis malesuada vel. "
             />
             <Testimony />
-            <Testimony />
+            <Testimony /> */}
           </div>
         </div>
         <CallToAction
