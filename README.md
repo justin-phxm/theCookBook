@@ -2,6 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 ![alt text](the-cook-book/image-1.webp)
+![alt text](the-cook-book/public/image-2.webp)
 
 First, run the development server:
 
