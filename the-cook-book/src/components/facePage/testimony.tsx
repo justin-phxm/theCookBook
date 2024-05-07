@@ -14,11 +14,11 @@ export default function testimony({
 }) {
   return (
     <>
-      <div className="relative bg-[#A7E4AF] flex rounded-lg border border-gray-200 shadow-md dark:border-gray-700 dark:bg-gray-800 flex-col">
+      <div className="relative bg-[#A7E4AF] flex rounded-lg border max-w-4xl border-gray-200 shadow-md dark:border-gray-700 dark:bg-gray-800 flex-col">
         <div className="flex h-full justify-center gap-4 p-6">
           <div className="flex flex-col items-center">
             <Image
-              className="mb-3 h-24 w-24 rounded-full shadow-lg ring-2 ring-white
+              className="mb-3 h-24 w-24 rounded-full shadow-lg ring-2 ring-white  object-cover
                     absolute transform -translate-y-full"
               src={testimonyImage || placeholderImage}
               alt="Bonnie image"

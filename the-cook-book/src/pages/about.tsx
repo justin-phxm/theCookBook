@@ -7,7 +7,7 @@ import CallToAction from "../components/facePage/callToAction";
 import FeatureBlock from "@/components/facePage/FeatureBlock";
 import FeatureBlock1 from "@/components/facePage/FeatureBlock1";
 import Testimony from "@/components/facePage/testimony";
-import TestimonyImage from "../../public/testimonyImage.png";
+import TestimonyImage from "@/testimonyImages/IMG-0209.jpg";
 
 export default function about() {
   return (
@@ -59,8 +59,7 @@ export default function about() {
           </span>
           <a
             href="#"
-            className="mt-2 block w-full rounded-md bg-[#53AD3C] py-2 text-center text-sm font-semibold text-white hover:bg-[#A7E4AF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#53AD3C]"
-          >
+            className="mt-2 block w-full rounded-md bg-[#53AD3C] py-2 text-center text-sm font-semibold text-white hover:bg-[#A7E4AF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#53AD3C]">
             START NOW FOR FREE
           </a>
         </div>
