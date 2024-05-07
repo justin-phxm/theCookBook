@@ -1,5 +1,5 @@
 import CreateRecipe from "./createRecipe";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 export default function FeatureBlock({
   heroImage,
@@ -8,7 +8,7 @@ export default function FeatureBlock({
   heroSubheader,
   hideButton,
 }: {
-  heroImage: string;
+  heroImage: StaticImageData;
   heroTitle?: string;
   heroDescription?: string;
   heroSubheader?: string;
@@ -23,7 +23,7 @@ export default function FeatureBlock({
         {!hideButton ? <CreateRecipe /> : ""}
       </div>
       <div className="hidden md:w-1/2 md:flex md:justify-end">
-        <Image src={heroImage} alt="" width={600} />
+        <Image src={heroImage} alt="" width={600} placeholder="blur" />
       </div>
     </div>
   );
