@@ -10,7 +10,7 @@ export default function ChatGPTInput() {
     try {
       const prompt = (e.target as HTMLFormElement)["prompt"].value;
       const formData = JSON.stringify({ prompt });
-      const response = await fetch("/api/geminiPrompt", {
+      const response = await fetch("/api/geminiPrompt/new", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
