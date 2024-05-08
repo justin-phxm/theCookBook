@@ -46,7 +46,7 @@ export default function recipeDetails() {
           rows={4}
         />
         <section className="border-t border-slate-500/50">
-          <p className="font-bold select-none text-xl pb-2">Use ChatGPT</p>
+          <p className="font-bold select-none text-xl pb-2">Use AI 💻🧠</p>
           <ChatGPTInput />
         </section>
       </section>
