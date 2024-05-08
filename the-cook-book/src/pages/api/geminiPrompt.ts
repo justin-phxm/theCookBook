@@ -5,7 +5,7 @@ import {
   HarmCategory,
   HarmBlockThreshold,
 } from "@google/generative-ai";
-
+export const runtime = "edge";
 const MODEL_NAME = "gemini-1.5-pro-latest";
 const API_KEY = process.env.GEMINI_API_KEY as string;
 
