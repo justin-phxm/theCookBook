@@ -3,7 +3,6 @@ import { useFood } from "@/context/FoodContext";
 import { DatabaseProvider } from "@/lib/firestore";
 import { ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../firebase";
-import { getStorage, deleteObject } from "firebase/storage";
 export default function FoodHeader() {
   const {
     currentFoodItem,
@@ -21,7 +20,6 @@ export default function FoodHeader() {
   const storageRef = ref(storage, imageAddress);
   const editSaveHandler = async () => {
     if (!loading) {
-      console.log("Hi");
       if (editMode) {
         setLoading(true);
         if (selectedImage) {
@@ -59,7 +57,6 @@ export default function FoodHeader() {
         value={currentFoodItem.name}
         onChange={(e) =>
           setCurrentFoodItem((prevFoodItem) => {
-            // console.log(prevFoodItem);
             return { ...prevFoodItem, name: e.target.value };
           })
         }
