@@ -23,13 +23,19 @@
         "./src/*",
         "./public/*"
       ]
-    }
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/pages/api/geminiPrompt.ts"
+    "src/pages/api/geminiPrompt.ts",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
