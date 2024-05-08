@@ -5,12 +5,12 @@ import Ingredients from "./Ingredients";
 import Instructions from "./Instructions";
 import FoodHeader from "./foodHeader";
 import { useEffect } from "react";
+import AIRecipeDisplay, { Recipe } from "./AIRecipeDisplay";
 
 export default function CookingArea() {
   const {
     currentFoodItem,
     editMode,
-    setEditMode,
     setCurrentFoodItem,
     selectedImage,
     setSelectedImage,
@@ -52,7 +52,8 @@ export default function CookingArea() {
     console.log(currentFoodItem);
     console.log({ foods });
   }, [currentFoodItem.id]);
-
+  const { AIRecipe } = useFood();
+  const recipe = AIRecipe;
   return (
     <div className="bg-slate-200 h-full max-h-full p-4 rounded-lg flex flex-col">
       {currentFoodItem.id ? (
@@ -119,9 +120,12 @@ export default function CookingArea() {
           </div>
         </>
       ) : (
-        <div className=" text-center font-bold text-2xl">
-          Select a recipe to view
-        </div>
+        <>
+          <div className=" text-center font-bold text-2xl">
+            Select a recipe or use AI to view recipe
+          </div>
+          <AIRecipeDisplay recipe={recipe} />
+        </>
       )}
     </div>
   );
