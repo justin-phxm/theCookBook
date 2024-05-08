@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import FoodInterface from "@/lib/FoodInterface";
 import { DatabaseProvider } from "@/lib/firestore";
-import { useAuth } from "./AuthContext";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import { Recipe } from "@/components/recipe/AIRecipeDisplay";
 interface FoodContextType {
   foods: FoodInterface[];
   loading: boolean;
@@ -14,6 +14,8 @@ interface FoodContextType {
   setCurrentFoodItem: React.Dispatch<React.SetStateAction<FoodInterface>>;
   selectedImage: File | null;
   setSelectedImage: React.Dispatch<React.SetStateAction<File | null>>;
+  AIRecipe: Recipe;
+  setAIRecipe: React.Dispatch<React.SetStateAction<Recipe>>;
 }
 
 const FoodContext = React.createContext<FoodContextType>({} as FoodContextType);
@@ -31,13 +33,16 @@ export const FoodProvider = ({ children }: { children: React.ReactNode }) => {
   const [currentFoodItem, setCurrentFoodItem] = React.useState<FoodInterface>(
     {}
   );
+  const [AIRecipe, setAIRecipe] = React.useState<Recipe>({
+    name: "",
+    description: "",
+    ingredients: [],
+    instructions: [],
+    tips: [],
+  });
   const storage = getStorage();
 
   const { readDB } = DatabaseProvider();
-  const { currentUser } = useAuth();
-  // useEffect(() => {
-  //   setEditMode(false);
-  // }, [currentFoodItem]);
 
   useEffect(() => {
     readDB().then((data) => {
@@ -52,22 +57,6 @@ export const FoodProvider = ({ children }: { children: React.ReactNode }) => {
     });
   }, [editMode]);
 
-  // useEffect(
-  //   () => {
-  //     readDB().then((data) => setFood(data));
-  //     setFood((prevFood) => {
-  //       return prevFood.map((foodItem) => {
-  //         if (foodItem.id === currentFoodItem.id) {
-  //           return currentFoodItem;
-  //         } else {
-  //           return foodItem;
-  //         }
-  //       });
-  //     },
-  //   []
-
-  // );
-
   return (
     <FoodContext.Provider
       value={{
@@ -81,6 +70,8 @@ export const FoodProvider = ({ children }: { children: React.ReactNode }) => {
         setCurrentFoodItem,
         editMode,
         setEditMode,
+        AIRecipe,
+        setAIRecipe,
       }}
     >
       {children}

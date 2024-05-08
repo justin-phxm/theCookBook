@@ -5,7 +5,6 @@ import { DatabaseProvider } from "@/lib/firestore";
 
 export default function Ingredients() {
   const { currentFoodItem, editMode, setCurrentFoodItem } = useFood();
-  const { updateDocument, deleteFoodItem } = DatabaseProvider();
   const id = useId();
   const [ingredientName, setIngredientName] = useState<string>("");
   const [amount, setAmount] = useState<string>("");

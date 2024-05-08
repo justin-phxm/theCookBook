@@ -4,9 +4,9 @@ import CallToAction from "../components/facePage/callToAction";
 import FeatureBlock from "@/components/facePage/FeatureBlock";
 import FeatureBlock1 from "@/components/facePage/FeatureBlock1";
 import Layout from "@/components/facePage/layout";
-import HeroImage0 from "../../public/11.svg";
-import HeroImage1 from "../../public/9.svg";
-import HeroImage2 from "../../public/12.svg";
+import HeroImage0 from "../../public/11.png";
+import HeroImage1 from "../../public/9.png";
+import HeroImage2 from "../../public/12.png";
 import testimony0 from "../../public/testimonyImages/testimonyImage.png";
 import testimony1 from "../../public/testimonyImages/Screen Shot 2022-05-09 at 10.28.png";
 import testimony2 from "../../public/testimonyImages/Screen Shot 2022-05-09 at 10.28 (1).png";
@@ -72,14 +72,6 @@ export default function Home() {
                 testimonyText={testimony.testimonyText}
               />
             ))}
-
-            {/* <Testimony
-              testimonyImage={testimony0}
-              testimonyName="Olivia Cole"
-              testimonyText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper scelerisque mi, in malesuada felis malesuada vel. "
-            />
-            <Testimony />
-            <Testimony /> */}
           </div>
         </div>
         <CallToAction

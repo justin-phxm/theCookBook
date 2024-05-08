@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Layout from "../components/facePage/layout";
 import Image from "next/image";
-import aboutImage from "../../public/12.svg";
+import aboutImage from "@/12.png";
 
 export default function contact() {
   return (
