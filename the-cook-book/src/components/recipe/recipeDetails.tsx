@@ -1,5 +1,4 @@
-import React from "react";
-import { Label, Textarea } from "flowbite-react";
+import ChatGPTInput from "./ChatGPTInput";
 
 export default function recipeDetails() {
   return (
@@ -46,6 +45,10 @@ export default function recipeDetails() {
           required={true}
           rows={4}
         />
+        <section className="border-t border-slate-500/50">
+          <p className="font-bold select-none text-xl pb-2">Use ChatGPT</p>
+          <ChatGPTInput />
+        </section>
       </section>
     </div>
   );
