@@ -1,4 +1,3 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
 export const runtime = "edge"; // or 'nodejs' which uses Serverless Functions
 export const dynamic = "force-dynamic"; // always run dynamically
@@ -7,12 +6,10 @@ import {
   HarmCategory,
   HarmBlockThreshold,
 } from "@google/generative-ai";
+import { NextRequest, NextResponse } from "next/server";
 const MODEL_NAME = "gemini-1.5-pro-latest";
 const API_KEY = process.env.GEMINI_API_KEY as string;
 
-type ResponseData = {
-  data: string;
-};
 async function runChat(FOOD: string) {
   const genAI = new GoogleGenerativeAI(API_KEY);
   const model = genAI.getGenerativeModel({ model: MODEL_NAME });
@@ -154,14 +151,13 @@ export type Recipe = {
   }
   return JSON.parse(response.text());
 }
+
 const schema = z.object({
   firstName: z.string().optional(),
   prompt: z.string(),
 });
-export default async function POST(
-  req: NextApiRequest,
-  res: NextApiResponse<ResponseData>
-) {
-  const { prompt } = schema.parse(req.body);
-  res.status(200).json({ data: (await runChat(prompt)) || "undefined" });
+export async function POST(req: NextRequest) {
+  const formData = await req.json();
+  const { prompt } = schema.parse(formData);
+  return NextResponse.json({ data: await runChat(prompt) });
 }
