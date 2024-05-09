@@ -1,18 +1,17 @@
+"use client";
 import { useState } from "react";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 export default function NavBar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { currentUser } = useAuth();
-  const router = useRouter();
-  const pathName = router.pathname;
+  const pathName = usePathname();
   console.log(pathName);
   return (
     <div className=" flex flex-wrap items-center justify-between mx-auto p-4">
       <Link href="/" className="flex items-center">
-        {/* <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 mr-3" alt="Flowbite Logo" /> */}
         <span className="self-center text-2xl font-semibold whitespace-nowrap text-green-500 dark:text-white">
           TheCookBook
         </span>

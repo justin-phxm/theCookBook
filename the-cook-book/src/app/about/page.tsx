@@ -1,14 +1,14 @@
 import Head from "next/head";
 import Layout from "@/components/facePage/layout";
-import aboutImage from "../../public/5.png";
-import aboutImage2 from "../../public/8.png";
-import CallToAction from "../components/facePage/callToAction";
+import aboutImage from "@/5.png";
+import aboutImage2 from "@/8.png";
+import CallToAction from "../../components/facePage/callToAction";
 import FeatureBlock from "@/components/facePage/FeatureBlock";
 import FeatureBlock1 from "@/components/facePage/FeatureBlock1";
 import Testimony from "@/components/facePage/testimony";
 import TestimonyImage from "@/testimonyImages/IMG-0209.jpg";
 
-export default function about() {
+export default function Page() {
   return (
     <>
       <Layout>
