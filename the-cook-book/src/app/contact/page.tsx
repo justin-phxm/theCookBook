@@ -1,4 +1,3 @@
-import Layout from "../../components/facePage/layout";
 import Image from "next/image";
 import aboutImage from "@/12.png";
 export const metadata = {
