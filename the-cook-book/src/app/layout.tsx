@@ -1,3 +1,4 @@
+import Layout from "@/components/facePage/layout";
 import "@/styles/globals.css";
 export const metadata = {
   title: "TheCookBook",
@@ -10,7 +11,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Layout>{children}</Layout>
+      </body>
     </html>
   );
 }
