@@ -141,14 +141,9 @@ export type Recipe = {
   ingredients: Ingredient[];
   instructions: Instruction[];
   tips: Tip[];
-};`
+};`,
   );
   const response = result.response;
-  try {
-    console.log(JSON.parse(response.text()));
-  } catch (e) {
-    console.log(e);
-  }
   return JSON.parse(response.text());
 }
 

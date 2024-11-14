@@ -2,13 +2,11 @@ import {
   collection,
   doc,
   getDocs,
-  deleteField,
   deleteDoc,
   setDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
 import FoodInterface from "./FoodInterface";
-import { useAuth } from "@/context/AuthContext";
 import { getStorage, ref, deleteObject } from "firebase/storage";
 
 export const DatabaseProvider = () => {
@@ -19,10 +17,8 @@ export const DatabaseProvider = () => {
     try {
       const foodRef = doc(db, "food", `${foodItem.id}`);
       setDoc(foodRef, foodItem);
-
-      console.log("Document written with ID: ", foodItem.id);
     } catch (e) {
-      console.error("Error adding document: ", e);
+      console.error(e);
     }
   };
 
@@ -41,14 +37,10 @@ export const DatabaseProvider = () => {
   const deleteFoodItem = async (foodItem: FoodInterface) => {
     try {
       await deleteDoc(doc(db, "food", `${foodItem.id}`));
-      let imageRef = ref(storage, foodItem.image);
-      await deleteObject(imageRef).then(() => {
-        console.log("Image deleted");
-      });
-
-      console.log("Document successfully deleted!");
+      const imageRef = ref(storage, foodItem.image);
+      await deleteObject(imageRef).then(() => {});
     } catch (e) {
-      console.error("Error deleting document: ", e);
+      console.error(e);
     }
   };
 
