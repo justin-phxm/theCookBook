@@ -1,15 +1,13 @@
-import Head from "next/head";
 import Testimony from "@/app/components/testimony";
 import CallToAction from "./components/callToAction";
 import FeatureBlock from "@/app/components/FeatureBlock";
 import FeatureBlock1 from "@/app/components/FeatureBlock1";
-import Layout from "@/app/components/layout";
-import HeroImage0 from "../../public/11.png";
-import HeroImage1 from "../../public/9.png";
-import HeroImage2 from "../../public/12.png";
-import testimony0 from "../../public/testimonyImages/testimonyImage.png";
-import testimony1 from "../../public/testimonyImages/Screen Shot 2022-05-09 at 10.28.png";
-import testimony2 from "../../public/testimonyImages/Screen Shot 2022-05-09 at 10.28 (1).png";
+import HeroImage0 from "@/11.png";
+import HeroImage1 from "@/9.png";
+import HeroImage2 from "@/12.png";
+import testimony0 from "@/testimonyImages/testimonyImage.png";
+import testimony1 from "@/testimonyImages/Screen Shot 2022-05-09 at 10.28.png";
+import testimony2 from "@/testimonyImages/Screen Shot 2022-05-09 at 10.28 (1).png";
 import TestimonyInterface from "../lib/TestimonyInterface";
 import { Metadata } from "next";
 
