@@ -24,20 +24,20 @@ export const metaData: Metadata = {
 };
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <main className="h-screen bg-[#F4FFF1] overflow-hidden relative">
-      <div className="h-screen w-11/12 m-auto flex flex-col pb-2">
+    <main className="relative h-screen overflow-hidden bg-[#F4FFF1]">
+      <div className="m-auto flex h-screen w-11/12 flex-col pb-2">
         <Circle />
         <div>
           <NavBar />
         </div>
-        <div className="grid grid-cols-12 gap-2 h-full pb-2 z-10">
-          <section className="hidden lg:block lg:col-span-2 bg-[#BCE3B2] rounded-lg p-2 ">
+        <div className="z-10 grid h-full grid-cols-12 gap-2 pb-2">
+          <section className="hidden rounded-lg bg-[#BCE3B2] p-2 lg:col-span-2 lg:block">
             <RecipeHolder />
           </section>
-          <section className="col-span-8 lg:col-span-7 bg-[#BCE3B2] h-full max-h-full rounded-lg p-2">
+          <section className="col-span-8 h-full max-h-full rounded-lg bg-[#BCE3B2] p-2 lg:col-span-7">
             <CookingArea />
           </section>
-          <section className="col-span-4 lg:col-span-3 bg-[#BCE3B2] rounded-lg p-2 overflow-auto">
+          <section className="col-span-4 overflow-auto rounded-lg bg-[#BCE3B2] p-2 lg:col-span-3">
             <RecipeDetails />
           </section>
         </div>

@@ -22,23 +22,23 @@ export type Recipe = {
 export default function AIRecipeDisplay({ recipe }: { recipe: Recipe }) {
   return (
     <>
-      <div className=" font-bold select-none text-xl">{recipe.name}</div>
-      <div className=" font-normal text-sm italic">{recipe.description}</div>
-      <div className=" font-bold select-none text-lg">Ingredients:</div>
+      <div className="select-none text-xl font-bold">{recipe.name}</div>
+      <div className="text-sm font-normal italic">{recipe.description}</div>
+      <div className="select-none text-lg font-bold">Ingredients:</div>
       <ul className="">
         {recipe.ingredients.map((ingredient, index) => (
           <li key={index}>
-            <div className="flex flex-row gap-4 w-full justify-between ">
+            <div className="flex w-full flex-row justify-between gap-4">
               <p className="w-1/4">{ingredient.quantity}</p>
               <p className="w-1/4 truncate">{ingredient.name}</p>
-              <p className="w-1/2  truncate">
+              <p className="w-1/2 truncate">
                 {ingredient.description && ` - ${ingredient.description}`}
               </p>
             </div>
           </li>
         ))}
       </ul>
-      <div className=" font-bold select-none text-lg">Instructions:</div>
+      <div className="select-none text-lg font-bold">Instructions:</div>
       <ol className="">
         {recipe.instructions.map((instruction, index) => (
           <li key={index}>
@@ -46,7 +46,7 @@ export default function AIRecipeDisplay({ recipe }: { recipe: Recipe }) {
           </li>
         ))}
       </ol>
-      <div className=" font-bold select-none text-lg">Tips:</div>
+      <div className="select-none text-lg font-bold">Tips:</div>
       <ul className="">
         {recipe.tips.map((tip, index) => (
           <li key={index}>

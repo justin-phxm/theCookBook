@@ -2,8 +2,8 @@ import ChatGPTInput from "./ChatGPTInput";
 
 export default function recipeDetails() {
   return (
-    <div className="bg-slate-200 h-full p-4 rounded-lg">
-      <h1 className=" font-bold select-none text-xl pb-2">Details</h1>
+    <div className="h-full rounded-lg bg-slate-200 p-4">
+      <h1 className="select-none pb-2 text-xl font-bold">Details</h1>
       <section className="flex flex-col gap-4">
         <div className="relative">
           <input
@@ -40,13 +40,13 @@ export default function recipeDetails() {
           </div>
         </div>
         <textarea
-          className="block w-full rounded-md border-0 resize-none text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-300 sm:text-sm sm:leading-6 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          className="block w-full resize-none rounded-md border-0 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm sm:leading-6"
           placeholder="Notes..."
           required={true}
           rows={4}
         />
         <section className="border-t border-slate-500/50">
-          <p className="font-bold select-none text-xl pb-2">Use AI 💻🧠</p>
+          <p className="select-none pb-2 text-xl font-bold">Use AI 💻🧠</p>
           <ChatGPTInput />
         </section>
       </section>

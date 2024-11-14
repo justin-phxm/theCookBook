@@ -22,8 +22,8 @@ export default function RecipeItem({ FoodItem }: { FoodItem: IFoodItem }) {
         setEditMode(false);
       }}
     >
-      <div className="flex flex-col lg:flex-row w-full justify-between items-center">
-        <h5 className=" group-hover:underline text-xl font-medium text-gray-900 dark:text-white">
+      <div className="flex w-full flex-col items-center justify-between lg:flex-row">
+        <h5 className="text-xl font-medium text-gray-900 group-hover:underline dark:text-white">
           {FoodItem.name}
         </h5>
         {FoodItem.imageURL ? (
@@ -36,19 +36,19 @@ export default function RecipeItem({ FoodItem }: { FoodItem: IFoodItem }) {
               height={500}
             />
             {FoodItem.color && (
-              <span className="absolute h-3.5 w-3.5 rounded-full border-2 border-white dark:border-gray-800 bg-red-500 -bottom-1 -right-1" />
+              <span className="absolute -bottom-1 -right-1 h-3.5 w-3.5 rounded-full border-2 border-white bg-red-500 dark:border-gray-800" />
             )}
           </div>
         ) : (
           <Image
-            className=" w-14 rounded-md"
+            className="w-14 rounded-md"
             src={placeholder}
             alt="No image"
             width={500}
           />
         )}
       </div>
-      <div className=" hidden xl:flex text-gray-700 text-ellipsis text-sm text-left">
+      <div className="hidden text-ellipsis text-left text-sm text-gray-700 xl:flex">
         {FoodItem.summary && FoodItem.summary?.length > MAX_SUMMERY_LENGTH
           ? FoodItem.summary?.substring(0, 20) + "..."
           : FoodItem.summary}

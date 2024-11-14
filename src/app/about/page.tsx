@@ -34,8 +34,8 @@ export default function about() {
           heroDescription="Our mission is simple: to provide you with a user-friendly platform that allows you to store your favorite recipes, discover new dishes, and unleash your creativity in the kitchen."
           hideButton={true}
         />
-        <div className="flex text-lg justify-center pt-20">Our Team</div>
-        <div className="flex flex-row place-content-center w-full pt-20">
+        <div className="flex justify-center pt-20 text-lg">Our Team</div>
+        <div className="flex w-full flex-row place-content-center pt-20">
           <Testimony
             testimonyImage={TestimonyImage}
             testimonyName="Justin Pham"
@@ -51,7 +51,7 @@ export default function about() {
         Overall, I can say without a doubt that cooking this summer has changed my life for the better. It has taught me a new skill, given me a creative outlet, and improved my health and well-being. I'm excited to continue my culinary journey and see where it takes me next!"
           />
         </div>
-        <div className="mt-16 text-center mx-auto max-w-md">
+        <div className="mx-auto mt-16 max-w-md text-center">
           <span className="text-lg">
             Try theCookBook for free, and explore all the tools and services you
             need to discover your next meal.

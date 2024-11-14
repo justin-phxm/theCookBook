@@ -45,8 +45,8 @@ export default function Ingredients() {
   };
 
   const addIngredientElement = editMode && (
-    <div className="flex flex-col gap-2 bg-slate-300 rounded p-2">
-      <div className="flex flex-col lg:flex-row gap-2">
+    <div className="flex flex-col gap-2 rounded bg-slate-300 p-2">
+      <div className="flex flex-col gap-2 lg:flex-row">
         <div className="sm:col-span-2 sm:col-start-1">
           <input
             placeholder="Name"
@@ -82,7 +82,7 @@ export default function Ingredients() {
       </div>
       <button
         onClick={addIngredientHandler}
-        className=" font-light bg-slate-400 rounded-full w-full hover:opacity-70"
+        className="w-full rounded-full bg-slate-400 font-light hover:opacity-70"
       >
         Add Ingredient
       </button>
@@ -92,8 +92,8 @@ export default function Ingredients() {
     "flex flex-row font-normal" +
     (editMode && " cursor-pointer hover:opacity-70");
   return (
-    <div className="bg-white rounded-md p-2 overflow-auto h-full max-h-full">
-      <div className=" font-bold text-lg text-">Ingredients:</div>
+    <div className="h-full max-h-full overflow-auto rounded-md bg-white p-2">
+      <div className="text- text-lg font-bold">Ingredients:</div>
       <ul className="">
         {currentFoodItem.ingredients?.map((ingredient, index) => (
           <li

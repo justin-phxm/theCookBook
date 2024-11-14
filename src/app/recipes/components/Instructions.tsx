@@ -34,7 +34,7 @@ export default function Instructions() {
     };
   };
   const addInstructionElement = editMode && (
-    <div className="flex flex-col gap-2 bg-slate-300 rounded p-2">
+    <div className="flex flex-col gap-2 rounded bg-slate-300 p-2">
       <div className="sm:col-span-2">
         <input
           placeholder="Instruction"
@@ -46,7 +46,7 @@ export default function Instructions() {
         />
       </div>
       <button
-        className=" font-light bg-slate-400 rounded-full w-full hover:opacity-70"
+        className="w-full rounded-full bg-slate-400 font-light hover:opacity-70"
         onClick={addInstructionHandler}
       >
         Add Instruction
@@ -54,13 +54,13 @@ export default function Instructions() {
     </div>
   );
   return (
-    <div className="bg-white rounded-md h-full p-2 max-w-3xl">
-      <div className=" font-bold text-lg text-">Instructions:</div>
-      <ol className=" list-decimal font-normal max-h-[45rem]  overflow-y-auto list-inside ">
+    <div className="h-full max-w-3xl rounded-md bg-white p-2">
+      <div className="text- text-lg font-bold">Instructions:</div>
+      <ol className="max-h-[45rem] list-inside list-decimal overflow-y-auto font-normal">
         {currentFoodItem.instructions?.map((instruction, index) => (
           <li
-            className={`py-0.5  ${
-              editMode && "hover:opacity-70 cursor-pointer"
+            className={`py-0.5 ${
+              editMode && "cursor-pointer hover:opacity-70"
             }`}
             onClick={handleInstructionRemove(
               index,

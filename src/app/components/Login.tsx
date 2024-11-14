@@ -51,21 +51,21 @@ export default function Login() {
   };
 
   return (
-    <div className="flex-1 text-xs sm:text-sm flex flex-col justify-center items-center gap-2 sm:gap-4">
-      <h1 className="font-extrabold select-none text-2xl sm:text-4xl uppercase">
+    <div className="flex flex-1 flex-col items-center justify-center gap-2 text-xs sm:gap-4 sm:text-sm">
+      <h1 className="select-none text-2xl font-extrabold uppercase sm:text-4xl">
         {isLoggingIn ? "Login" : "register"}
       </h1>
-      <h1 className="font-extrabold select-none text-2xl sm:text-4xl uppercase">
+      <h1 className="select-none text-2xl font-extrabold uppercase sm:text-4xl">
         {currentUser ? `${currentUser.email}` : ""}
       </h1>
       <button
-        className="font-extrabold select-none text-2xl sm:text-4xl uppercase"
+        className="select-none text-2xl font-extrabold uppercase sm:text-4xl"
         onClick={logoutHandler}
       >
         {currentUser ? `LOGOUT` : ""}
       </button>
       {error && (
-        <div className="w-full max-w-[40ch] border-rose-400 border text-center border-solid text-rose-400 py-2">
+        <div className="w-full max-w-[40ch] border border-solid border-rose-400 py-2 text-center text-rose-400">
           {error}
         </div>
       )}
@@ -74,7 +74,7 @@ export default function Login() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Email Address"
-        className="outline-none duration-300 border-b-2 border-solid border-gray-400 focus:border-[#A7E4AF] text-slate-900 p-2 w-full max-w-[40ch]"
+        className="w-full max-w-[40ch] border-b-2 border-solid border-gray-400 p-2 text-slate-900 outline-none duration-300 focus:border-[#A7E4AF]"
       />
 
       <input
@@ -82,22 +82,22 @@ export default function Login() {
         onChange={(e) => setPassword(e.target.value)}
         type="password"
         placeholder="Password"
-        className="outline-none text-slate-900 p-2 w-full max-w-[40ch] duration-300 border-gray-400 border-b-2 border-solid focus:border-[#A7E4AF]"
+        className="w-full max-w-[40ch] border-b-2 border-solid border-gray-400 p-2 text-slate-900 outline-none duration-300 focus:border-[#A7E4AF]"
       />
 
       <button
         onClick={submitHandler}
-        className="w-full max-w-[40ch] border border-[#A7E4AF] border-solid uppercase py-2 duration-300 relative after:absolute after:top-0 after:right-full after:bg-[#A7E4AF] after:z-10 after:w-full after:h-full overflow-hidden hover:after:translate-x-full after:duration-300 hover:text-slate-900"
+        className="relative w-full max-w-[40ch] overflow-hidden border border-solid border-[#A7E4AF] py-2 uppercase duration-300 after:absolute after:right-full after:top-0 after:z-10 after:h-full after:w-full after:bg-[#A7E4AF] after:duration-300 hover:text-slate-900 hover:after:translate-x-full"
       >
         <h2 className="relative z-20">SUBMIT</h2>
       </button>
       <button onClick={googleLoginHandler}>
-        <div className="w-full max-w-[40ch] border border-[#A7E4AF] border-solid uppercase py-2 duration-300 relative after:absolute after:top-0 after:right-full after:bg-[#A7E4AF] after:z-10 after:w-full after:h-full overflow-hidden hover:after:translate-x-full after:duration-300 hover:text-slate-900">
+        <div className="relative w-full max-w-[40ch] overflow-hidden border border-solid border-[#A7E4AF] py-2 uppercase duration-300 after:absolute after:right-full after:top-0 after:z-10 after:h-full after:w-full after:bg-[#A7E4AF] after:duration-300 hover:text-slate-900 hover:after:translate-x-full">
           Sign In With Google 🔥
         </div>
       </button>
       <h2
-        className="duration-300 hover:scale-110 cursor-pointer select-none"
+        className="cursor-pointer select-none duration-300 hover:scale-110"
         onClick={() => setIsLoggingIn(!isLoggingIn)}
       >
         {!isLoggingIn ? "Login" : "Register"}

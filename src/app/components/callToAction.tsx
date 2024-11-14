@@ -8,7 +8,7 @@ export default function callToAction({
   callToActionMessage?: string;
 }) {
   return (
-    <div className="-mt-2 p-2 lg:mt-0 w-full">
+    <div className="-mt-2 w-full p-2 lg:mt-0">
       <div className="rounded-3xl bg-gradient-to-r from-[#A7E4AF] to-[#F3E699] py-10 text-center lg:flex lg:flex-col lg:justify-center lg:py-16">
         <div className="mx-auto max-w-xs">
           <p className="text-base font-semibold text-black">

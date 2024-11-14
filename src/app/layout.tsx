@@ -1,8 +1,8 @@
 import { AuthProvider } from "@/app/context/AuthContext";
-import "./globals.css";
+import "@/styles/globals.css";
 import { Outfit } from "next/font/google";
+import Layout from "@/components/layout";
 const outfit = Outfit({ subsets: ["latin"] });
-
 export const metadata = {
   title: "theCookBook",
   description: "Save all your recipes with theCookBook",
@@ -16,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={outfit.className}>
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <Layout>{children}</Layout>
+        </AuthProvider>
       </body>
     </html>
   );

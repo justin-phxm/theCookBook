@@ -23,16 +23,16 @@ export default function RecipeHolder() {
   };
 
   return (
-    <div className="bg-slate-200 h-full max-h-full w-full p-4 rounded-lg flex flex-col">
+    <div className="flex h-full max-h-full w-full flex-col rounded-lg bg-slate-200 p-4">
       <div className="flex flex-row justify-between">
-        <h1 className=" font-bold select-none text-xl">Recipes</h1>
+        <h1 className="select-none text-xl font-bold">Recipes</h1>
         <AiOutlinePlus
-          className="text-2xl z-10 font-semibold hover:bg-slate-300 hover:rounded-md cursor-pointer"
+          className="z-10 cursor-pointer text-2xl font-semibold hover:rounded-md hover:bg-slate-300"
           onClick={handleNewNote}
         />
       </div>
       {/* Hardcoded 47REM */}
-      <ul className=" flex flex-col overflow-y-auto h-[47rem] ">
+      <ul className="flex h-[47rem] flex-col overflow-y-auto">
         {foods.map((AFoodItem: IFoodItem) => (
           <li key={AFoodItem.id}>
             <RecipeItem FoodItem={AFoodItem} />

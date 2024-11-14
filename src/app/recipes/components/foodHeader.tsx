@@ -83,18 +83,18 @@ export default function FoodHeader() {
   );
   return (
     <section className="flex flex-row justify-between">
-      <div className=" font-bold select-none text-xl">{myHeader}</div>
+      <div className="select-none text-xl font-bold">{myHeader}</div>
       <div className="flex flex-row">
         <button
           onClick={editSaveHandler}
-          className="px-2 z-10 font-medium hover:bg-slate-300 hover:rounded-md cursor-pointer select-none"
+          className="z-10 cursor-pointer select-none px-2 font-medium hover:rounded-md hover:bg-slate-300"
         >
           {editMode ? (loading ? "saving..." : "save") : "Edit"}
         </button>
 
         <button
           onClick={deleteFoodHandler}
-          className="px-2 z-10 font-medium hover:bg-slate-300 hover:rounded-md cursor-pointer select-none"
+          className="z-10 cursor-pointer select-none px-2 font-medium hover:rounded-md hover:bg-slate-300"
         >
           Delete
         </button>

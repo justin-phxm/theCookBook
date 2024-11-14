@@ -11,33 +11,35 @@ import testimony0 from "../../public/testimonyImages/testimonyImage.png";
 import testimony1 from "../../public/testimonyImages/Screen Shot 2022-05-09 at 10.28.png";
 import testimony2 from "../../public/testimonyImages/Screen Shot 2022-05-09 at 10.28 (1).png";
 import TestimonyInterface from "../lib/TestimonyInterface";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "theCookBook",
+  description: "Save all your recipes with theCookBook",
+};
+const testimonies: TestimonyInterface[] = [
+  {
+    name: "Olivia Cole",
+    image: testimony0,
+    testimonyText:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper scelerisque mi, in malesuada felis malesuada vel. ",
+  },
+  {
+    name: "Evan White",
+    image: testimony1,
+    testimonyText:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper scelerisque mi, in malesuada felis malesuada vel. ",
+  },
+  {
+    name: "Jessica Page",
+    image: testimony2,
+    testimonyText:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper scelerisque mi, in malesuada felis malesuada vel. ",
+  },
+];
 export default function page() {
-  const testimonies: TestimonyInterface[] = [
-    {
-      name: "Olivia Cole",
-      image: testimony0,
-      testimonyText:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper scelerisque mi, in malesuada felis malesuada vel. ",
-    },
-    {
-      name: "Evan White",
-      image: testimony1,
-      testimonyText:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper scelerisque mi, in malesuada felis malesuada vel. ",
-    },
-    {
-      name: "Jessica Page",
-      image: testimony2,
-      testimonyText:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper scelerisque mi, in malesuada felis malesuada vel. ",
-    },
-  ];
   return (
-    <Layout>
-      <Head>
-        <title>TheCookBook</title>
-      </Head>
+    <>
       <div className="pb-24">
         <FeatureBlock
           heroImage={HeroImage0}
@@ -56,7 +58,7 @@ export default function page() {
         />
       </div>
       <div className="pb-4">
-        <h1 className=" text-center text-2xl font-bold text-[#2BB644]">
+        <h1 className="text-center text-2xl font-bold text-[#2BB644]">
           TESTIMONIALS
         </h1>
         <h1 className="pb-32 text-center text-[2.5rem] font-bold text-black">
@@ -77,6 +79,6 @@ export default function page() {
         callToActionHeaderSm="ARE YOU READY?"
         callToActionHeader="Be A Part Of The Next Big Thing"
       />
-    </Layout>
+    </>
   );
 }

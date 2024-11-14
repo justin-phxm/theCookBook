@@ -37,7 +37,7 @@ export default function ChatGPTInput() {
     >
       <input type="text" name="prompt" placeholder="Food name" />
       <button
-        className="rounded p-2 bg-green-300"
+        className="rounded bg-green-300 p-2"
         type="submit"
         disabled={isLoading}
       >

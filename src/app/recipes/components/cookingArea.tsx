@@ -40,7 +40,7 @@ export default function CookingArea() {
   };
   const viewImage = currentFoodItem.image && (
     <Image
-      className=" rounded-lg group-hover:opacity-75 object-cover"
+      className="rounded-lg object-cover group-hover:opacity-75"
       src={currentFoodItem.imageURL || placeholder}
       alt="No image"
       fill={true}
@@ -53,14 +53,14 @@ export default function CookingArea() {
   const { AIRecipe } = useFood();
   const recipe = AIRecipe;
   return (
-    <div className="bg-slate-200 h-full max-h-full p-4 rounded-lg flex flex-col">
+    <div className="flex h-full max-h-full flex-col rounded-lg bg-slate-200 p-4">
       {currentFoodItem.id ? (
         <>
           <FoodHeader />
-          <div className="flex flex-row gap-2 h-[48rem] max-h-max">
-            <div className="flex flex-col gap-2 w-1/2">
+          <div className="flex h-[48rem] max-h-max flex-row gap-2">
+            <div className="flex w-1/2 flex-col gap-2">
               <Ingredients />
-              <div className="w-full h-full relative">
+              <div className="relative h-full w-full">
                 {editMode ? (
                   <div className="col-span-full">
                     {selectedImage ? (
@@ -119,7 +119,7 @@ export default function CookingArea() {
         </>
       ) : (
         <>
-          <div className=" text-center font-bold text-2xl">
+          <div className="text-center text-2xl font-bold">
             Select a recipe or use AI to view recipe
           </div>
           <AIRecipeDisplay recipe={recipe} />
