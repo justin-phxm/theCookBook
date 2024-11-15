@@ -73,17 +73,17 @@ const footerSections: FooterSection[] = [
 ];
 export default function footer() {
   return (
-    <footer className="flex w-full flex-col gap-6 rounded-lg bg-inherit p-6 text-gray-500 dark:bg-gray-800 dark:text-gray-400 md:items-center md:justify-between">
+    <footer className="flex w-full flex-col gap-6 rounded-lg bg-gray-800 bg-inherit p-6 text-gray-400 md:items-center md:justify-between">
       <Link href="/" className="flex items-center">
         <BsBookFill className="mr-3 h-8" />
         <span
           data-testid="flowbite-footer-brand-span"
-          className="self-center whitespace-nowrap text-2xl font-semibold text-gray-800 dark:text-white"
+          className="self-center whitespace-nowrap text-2xl font-semibold text-gray-800"
         >
           TheCookBook
         </span>
       </Link>
-      <div className="grid w-full grid-cols-2 gap-8 text-sm dark:text-white sm:grid-cols-3 sm:gap-6">
+      <div className="grid w-full grid-cols-2 gap-8 text-sm sm:grid-cols-3 sm:gap-6">
         {footerSections.map((section, index) => {
           return (
             <div key={index}>
@@ -119,7 +119,7 @@ export default function footer() {
                 key={index}
                 href={link.href}
                 target="_blank"
-                className="text-gray-500 transition-all duration-500 hover:text-gray-700 dark:text-white dark:hover:text-gray-400"
+                className="text-gray-500 transition-all duration-500 hover:text-gray-700"
               >
                 <Icon />
               </Link>

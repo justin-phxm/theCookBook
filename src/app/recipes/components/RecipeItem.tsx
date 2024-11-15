@@ -11,7 +11,7 @@ export default function RecipeItem({ FoodItem }: { FoodItem: IFoodItem }) {
   const foodURLID = router.query.id;
   const MAX_SUMMERY_LENGTH = 20;
   const linkClass =
-    "group flex xl:flex-col h-max p-2 hover:bg-green-500 rounded-md border border-white shadow-md dark:border-gray-700 my-1 dark:bg-gray-800 text-center " +
+    "group flex xl:flex-col h-max p-2 hover:bg-green-500 rounded-md border border-white shadow-md   my-1   text-center " +
     (foodURLID === FoodItem.id ? "bg-green-500" : "bg-white");
 
   return (
@@ -23,7 +23,7 @@ export default function RecipeItem({ FoodItem }: { FoodItem: IFoodItem }) {
       }}
     >
       <div className="flex w-full flex-col items-center justify-between lg:flex-row">
-        <h5 className="text-xl font-medium text-gray-900 group-hover:underline dark:text-white">
+        <h5 className="text-xl font-medium text-gray-900 group-hover:underline">
           {FoodItem.name}
         </h5>
         {FoodItem.imageURL ? (

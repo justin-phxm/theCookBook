@@ -1,5 +1,5 @@
 import Image, { StaticImageData } from "next/image";
-import placeholderImage from "../../../public/placeholder-image.png";
+import placeholderImage from "@/placeholder-image.png";
 
 export default function testimony({
   testimonyImage,
@@ -13,26 +13,17 @@ export default function testimony({
   testimonySubtitle?: string;
 }) {
   return (
-    <>
-      <div className="relative flex max-w-4xl flex-col rounded-lg border border-gray-200 bg-[#A7E4AF] shadow-md dark:border-gray-700 dark:bg-gray-800">
-        <div className="flex h-full justify-center gap-4 p-6">
-          <div className="flex flex-col items-center">
-            <Image
-              className="absolute mb-3 h-24 w-24 -translate-y-full transform rounded-full object-cover shadow-lg ring-2 ring-white"
-              src={testimonyImage || placeholderImage}
-              alt="Bonnie image"
-            />
-            <h5 className="mt-3 text-xl font-medium text-gray-900 dark:text-white">
-              {testimonyName || "theCookBook User"}
-            </h5>
-            <h6 className="text-sm text-slate-400">{testimonySubtitle}</h6>
-            <span className="mt-1 whitespace-pre-line text-center text-sm text-gray-700 dark:text-gray-400">
-              {testimonyText ||
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper scelerisque mi, in malesuada felis malesuada vel."}
-            </span>
-          </div>
-        </div>
-      </div>
-    </>
+    <div className="relative flex w-96 max-w-3xl flex-col items-center gap-2 rounded-lg border border-gray-200 bg-primaryLight p-12 text-sm shadow-md">
+      <Image
+        className="absolute size-24 -translate-y-full transform rounded-full object-cover shadow-lg ring-2 ring-white"
+        src={testimonyImage ?? placeholderImage}
+        alt="user image"
+      />
+      <h5 className="text-xl font-medium text-gray-900">
+        {testimonyName ?? "theCookBook User"}
+      </h5>
+      <h6 className="text-slate-400">{testimonySubtitle}</h6>
+      <span className="text-gray-700">{testimonyText}</span>
+    </div>
   );
 }

@@ -8,13 +8,15 @@ export const metadata: Metadata = {
 };
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <main className="relative flex min-h-screen flex-col overflow-hidden bg-[#F4FFF1]">
-      <div className="m-auto flex w-5/6 flex-1 flex-col">
+    <>
+      <main className="relative flex min-h-screen flex-col overflow-hidden">
         <Circle />
-        <NavBar />
-        <div className="flex h-full flex-1 flex-col">{children}</div>
-        <Footer />
-      </div>
-    </main>
+        <div className="relative m-auto flex w-5/6 max-w-screen-2xl flex-1 flex-col">
+          <NavBar />
+          <div className="flex h-full flex-1 flex-col">{children}</div>
+          <Footer />
+        </div>
+      </main>
+    </>
   );
 }
