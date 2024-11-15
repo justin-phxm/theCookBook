@@ -2,18 +2,21 @@ import { Footer } from "flowbite-react";
 import Link from "next/link";
 import { IconType } from "react-icons";
 import {
+  BsBookFill,
   BsInstagram,
   BsTwitter,
   BsGithub,
   BsLinkedin,
   BsDiscord,
-  BsBookFill,
 } from "react-icons/bs";
-interface FooterProps {
+import SiteLinks from "./SiteLinks";
+import SocialIcons from "./SocialIcons";
+export interface FooterProps {
   href: string;
   socialSite: string;
 }
-type FooterLinks = FooterProps & { icon: IconType };
+export type FooterSection = { sectionName: string; links: FooterProps[] };
+export type FooterLinks = FooterProps & { icon: IconType };
 const footerLinks: FooterLinks[] = [
   {
     href: "https://www.instagram.com/justinphxm/",
@@ -65,7 +68,6 @@ const legal: FooterProps[] = [
     socialSite: "Terms & Conditions",
   },
 ];
-type FooterSection = { sectionName: string; links: FooterProps[] };
 const footerSections: FooterSection[] = [
   { sectionName: "Follow Us", links: footerLinks },
   { sectionName: "Profile", links: siteLinks },
@@ -74,58 +76,22 @@ const footerSections: FooterSection[] = [
 export default function footer() {
   return (
     <footer className="flex w-full flex-col gap-6 rounded-lg bg-gray-800 bg-inherit p-6 text-gray-400 md:items-center md:justify-between">
-      <Link href="/" className="flex items-center">
-        <BsBookFill className="mr-3 h-8" />
-        <span
-          data-testid="flowbite-footer-brand-span"
-          className="self-center whitespace-nowrap text-2xl font-semibold text-gray-800"
-        >
+      <Link href="/" className="flex items-center gap-2">
+        <BsBookFill className="h-8" />
+        <span className="text-2xl font-semibold text-gray-800">
           TheCookBook
         </span>
       </Link>
-      <div className="grid w-full grid-cols-2 gap-8 text-sm sm:grid-cols-3 sm:gap-6">
-        {footerSections.map((section, index) => {
-          return (
-            <div key={index}>
-              <Footer.Title title={section.sectionName} />
-              <ul className="flex flex-col gap-2">
-                {section.links.map((link, index) => {
-                  return (
-                    <li key={index}>
-                      <Link href={link.href} className="hover:underline">
-                        {link.socialSite}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          );
-        })}
-      </div>
+      <SiteLinks footerSections={footerSections} />
       <Footer.Divider />
       <div className="flex w-full gap-2 sm:items-center sm:justify-between">
         <div className="flex gap-2">
-          <div className="sm:text-center">© 2023</div>
+          <div className="sm:text-center">© 2024</div>
           <Link href="/" className="hover:underline">
             TheCookBook™
           </Link>
         </div>
-        <div className="flex gap-6 sm:justify-center">
-          {footerLinks.map((link, index) => {
-            const Icon = link.icon;
-            return (
-              <Link
-                key={index}
-                href={link.href}
-                target="_blank"
-                className="text-gray-500 transition-all duration-500 hover:text-gray-700"
-              >
-                <Icon />
-              </Link>
-            );
-          })}
-        </div>
+        <SocialIcons footerLinks={footerLinks} />
       </div>
     </footer>
   );

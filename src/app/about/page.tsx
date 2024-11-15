@@ -6,7 +6,6 @@ import Testimony from "@/app/components/testimony";
 import TestimonyImage from "@/testimonyImages/IMG-0209.jpg";
 import CallToAction from "@/app/components/callToAction";
 import { Metadata } from "next";
-import Link from "next/link";
 import NavigationButton from "../components/NavigationButton";
 export const metadata: Metadata = {
   title: "About Us",
