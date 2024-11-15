@@ -9,7 +9,7 @@ export default function NavBar() {
   const { currentUser } = useAuth();
   const pathName = usePathname();
   return (
-    <div className="mx-auto flex w-full flex-wrap items-center justify-between p-4">
+    <div className="fixed flex w-11/12 flex-wrap items-center justify-between rounded-xl bg-primaryLight bg-opacity-20 p-4 drop-shadow-lg backdrop-blur-lg">
       <Link href="/" className="flex items-center">
         <span className="self-center whitespace-nowrap text-2xl font-semibold text-green-500">
           TheCookBook

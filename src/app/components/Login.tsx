@@ -74,7 +74,7 @@ export default function Login() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Email Address"
-        className="w-full max-w-[40ch] border-b-2 border-solid border-gray-400 p-2 text-slate-900 outline-none duration-300 focus:border-[#A7E4AF]"
+        className="w-full max-w-[40ch] border-b-2 border-solid border-gray-400 p-2 text-slate-900 outline-none duration-300 focus:border-primaryLight"
       />
 
       <input
@@ -82,17 +82,17 @@ export default function Login() {
         onChange={(e) => setPassword(e.target.value)}
         type="password"
         placeholder="Password"
-        className="w-full max-w-[40ch] border-b-2 border-solid border-gray-400 p-2 text-slate-900 outline-none duration-300 focus:border-[#A7E4AF]"
+        className="w-full max-w-[40ch] border-b-2 border-solid border-gray-400 p-2 text-slate-900 outline-none duration-300 focus:border-primaryLight"
       />
 
       <button
         onClick={submitHandler}
-        className="relative w-full max-w-[40ch] overflow-hidden border border-solid border-[#A7E4AF] py-2 uppercase duration-300 after:absolute after:right-full after:top-0 after:z-10 after:h-full after:w-full after:bg-[#A7E4AF] after:duration-300 hover:text-slate-900 hover:after:translate-x-full"
+        className="relative w-full max-w-[40ch] overflow-hidden border border-solid border-primaryLight py-2 uppercase duration-300 after:absolute after:right-full after:top-0 after:z-10 after:h-full after:w-full after:bg-primaryLight after:duration-300 hover:text-slate-900 hover:after:translate-x-full"
       >
         <h2 className="relative z-20">SUBMIT</h2>
       </button>
       <button onClick={googleLoginHandler}>
-        <div className="relative w-full max-w-[40ch] overflow-hidden border border-solid border-[#A7E4AF] py-2 uppercase duration-300 after:absolute after:right-full after:top-0 after:z-10 after:h-full after:w-full after:bg-[#A7E4AF] after:duration-300 hover:text-slate-900 hover:after:translate-x-full">
+        <div className="relative w-full max-w-[40ch] overflow-hidden border border-solid border-primaryLight py-2 uppercase duration-300 after:absolute after:right-full after:top-0 after:z-10 after:h-full after:w-full after:bg-primaryLight after:duration-300 hover:text-slate-900 hover:after:translate-x-full">
           Sign In With Google 🔥
         </div>
       </button>

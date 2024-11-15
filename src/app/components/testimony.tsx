@@ -13,7 +13,7 @@ export default function testimony({
   testimonySubtitle?: string;
 }) {
   return (
-    <div className="relative flex w-96 max-w-3xl flex-col items-center gap-2 rounded-lg border border-gray-200 bg-primaryLight p-12 text-sm shadow-md">
+    <div className="relative flex max-w-3xl flex-col items-center gap-2 rounded-lg border border-gray-200 bg-primaryLight p-12 text-sm shadow-md">
       <Image
         className="absolute size-24 -translate-y-full transform rounded-full object-cover shadow-lg ring-2 ring-white"
         src={testimonyImage ?? placeholderImage}

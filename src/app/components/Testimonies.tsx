@@ -28,7 +28,7 @@ export default function Testimonies() {
         <h1 className="text-primary">TESTIMONIALS</h1>
         <h1>Read What Others Have To Say</h1>
       </div>
-      <div className="flex w-full flex-row justify-center">
+      <div className="grid w-full grid-flow-col grid-cols-3">
         {testimonies.map((testimony: TestimonyInterface) => (
           <Testimony
             key={testimony.name}

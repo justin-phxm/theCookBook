@@ -1,7 +1,7 @@
 import { AuthProvider } from "@/app/context/AuthContext";
 import "@/styles/globals.css";
 import { Outfit } from "next/font/google";
-import Layout from "@/components/layout";
+import Layout from "@/app/components/layout";
 const outfit = Outfit({ subsets: ["latin"] });
 export const metadata = {
   title: "theCookBook",
