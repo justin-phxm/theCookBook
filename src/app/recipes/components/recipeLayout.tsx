@@ -3,7 +3,7 @@ import CookingArea from "./cookingArea";
 import RecipeDetails from "./recipeDetails";
 import { Metadata } from "next";
 import NavBar from "@/app/components/navBar";
-import Circle from "@/app/components/circularDecoration";
+import Circle from "@/components/Circle";
 
 export const siteTitle = "theCookBook";
 export const metaData: Metadata = {
@@ -27,9 +27,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <main className="relative h-screen overflow-hidden bg-[#F4FFF1]">
       <div className="m-auto flex h-screen w-11/12 flex-col pb-2">
         <Circle />
-        <div>
-          <NavBar />
-        </div>
         <div className="z-10 grid h-full grid-cols-12 gap-2 pb-2">
           <section className="hidden rounded-lg bg-[#BCE3B2] p-2 lg:col-span-2 lg:block">
             <RecipeHolder />
