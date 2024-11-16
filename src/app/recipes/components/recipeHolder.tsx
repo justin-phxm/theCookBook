@@ -31,8 +31,7 @@ export default function RecipeHolder() {
           onClick={handleNewNote}
         />
       </div>
-      {/* Hardcoded 47REM */}
-      <ul className="flex h-[47rem] flex-col overflow-y-auto">
+      <ul className="flex flex-col overflow-y-auto">
         {foods.map((AFoodItem: IFoodItem) => (
           <li key={AFoodItem.id}>
             <RecipeItem FoodItem={AFoodItem} />

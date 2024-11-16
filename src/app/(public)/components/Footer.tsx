@@ -1,4 +1,3 @@
-import { Footer } from "flowbite-react";
 import Link from "next/link";
 import { IconType } from "react-icons";
 import {
@@ -73,7 +72,7 @@ const footerSections: FooterSection[] = [
   { sectionName: "Profile", links: siteLinks },
   { sectionName: "Legal", links: legal },
 ];
-export default function footer() {
+export default function Footer() {
   return (
     <footer className="flex w-full flex-col gap-6 rounded-lg bg-gray-800 bg-inherit p-6 text-gray-400 md:items-center md:justify-between">
       <Link href="/" className="flex items-center gap-2">
@@ -83,7 +82,7 @@ export default function footer() {
         </span>
       </Link>
       <SiteLinks footerSections={footerSections} />
-      <Footer.Divider />
+      <hr />
       <div className="flex w-full gap-2 sm:items-center sm:justify-between">
         <div className="flex gap-2">
           <div className="sm:text-center">© 2024</div>

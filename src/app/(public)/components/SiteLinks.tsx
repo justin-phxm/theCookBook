@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FooterSection } from "./footer";
+import { FooterSection } from "./Footer";
 
 export default function SiteLinks({
   footerSections,
@@ -11,7 +11,9 @@ export default function SiteLinks({
       {footerSections.map((section, index) => {
         return (
           <div key={index}>
-            <div>{section.sectionName}</div>
+            <div className="pb-4 text-lg font-semibold text-gray-700">
+              {section.sectionName}
+            </div>
             <ul className="flex flex-col gap-2">
               {section.links.map((link, index) => {
                 return (

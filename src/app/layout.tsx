@@ -1,7 +1,6 @@
 import { AuthProvider } from "@/app/context/AuthContext";
 import "@/styles/globals.css";
 import { Outfit } from "next/font/google";
-import Layout from "@/app/components/layout";
 const outfit = Outfit({ subsets: ["latin"] });
 export const metadata = {
   title: "theCookBook",
@@ -16,9 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={outfit.className}>
-        <AuthProvider>
-          <Layout>{children}</Layout>
-        </AuthProvider>
+        <main className="flex min-h-screen w-full flex-col items-center overflow-hidden">
+          <AuthProvider>{children}</AuthProvider>
+        </main>
       </body>
     </html>
   );

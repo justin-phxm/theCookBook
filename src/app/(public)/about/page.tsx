@@ -1,10 +1,10 @@
 import aboutImage from "@/5.png";
 import aboutImage2 from "@/8.png";
-import FeatureBlock from "@/app/components/FeatureBlock";
-import FeatureBlock1 from "@/app/components/FeatureBlock1";
+import FeatureBlock from "@/app/(public)/components/FeatureBlock";
+import FeatureBlock1 from "@/app/(public)/components/FeatureBlock1";
 import Testimony from "@/app/components/testimony";
 import TestimonyImage from "@/testimonyImages/IMG-0209.jpg";
-import CallToAction from "@/app/components/callToAction";
+import CallToAction from "@/(public)/components/CallToAction";
 import { Metadata } from "next";
 import NavigationButton from "../components/NavigationButton";
 export const metadata: Metadata = {

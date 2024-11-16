@@ -1,6 +1,6 @@
 import aboutImage from "@/12.png";
+import FeatureBlock from "@/app/(public)/components/FeatureBlock";
 import { Metadata } from "next";
-import FeatureBlock from "../components/FeatureBlock";
 export const metadata: Metadata = {
   title: "Contact Us",
   description: "Get in touch with theCookBook",

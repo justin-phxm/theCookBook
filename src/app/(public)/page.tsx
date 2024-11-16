@@ -1,11 +1,11 @@
-import CallToAction from "./components/callToAction";
-import FeatureBlock from "@/app/components/FeatureBlock";
-import FeatureBlock1 from "@/app/components/FeatureBlock1";
+import FeatureBlock from "@/app/(public)/components/FeatureBlock";
+import FeatureBlock1 from "@/app/(public)/components/FeatureBlock1";
 import HeroImage0 from "@/11.png";
 import HeroImage1 from "@/9.png";
 import HeroImage2 from "@/12.png";
 import { Metadata } from "next";
-import Testimonies from "./components/Testimonies";
+import CallToAction from "./components/CallToAction";
+import Testimonies from "../components/Testimonies";
 
 export const metadata: Metadata = {
   title: "theCookBook",

@@ -20,7 +20,7 @@ export default function FeatureBlock({
         <h6>{heroSubheader}</h6>
         <h1 className="text-5xl font-bold">{heroTitle}</h1>
         <h2>{heroDescription}</h2>
-        {!hideButton ? <CreateRecipe /> : ""}
+        {!hideButton && <CreateRecipe />}
       </div>
       <Image
         className="hidden max-w-screen-sm md:flex md:w-1/2 md:justify-end"

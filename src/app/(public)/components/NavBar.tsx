@@ -20,7 +20,7 @@ export default function NavBar() {
   const pathName = usePathname();
 
   return (
-    <div className="fixed flex w-11/12 flex-wrap items-center justify-between rounded-xl bg-primaryLight bg-opacity-20 p-4 drop-shadow-lg backdrop-blur-lg">
+    <nav className="fixed mt-4 flex w-11/12 flex-wrap items-center justify-between rounded-xl bg-primaryLight bg-opacity-20 p-4 drop-shadow-lg backdrop-blur-lg">
       <Link href="/" className="text-2xl font-semibold text-green-500">
         TheCookBook
       </Link>
@@ -32,7 +32,9 @@ export default function NavBar() {
       >
         <Hamburger />
       </button>
-      <div className={`w-full md:block md:w-auto ${!isCollapsed && "hidden"}`}>
+      <div
+        className={`mt-4 w-full md:mt-0 md:block md:w-auto ${!isCollapsed && "hidden"}`}
+      >
         <ul className="flex flex-col gap-4 rounded-lg bg-gray-50 p-4 font-medium md:flex-row md:bg-inherit md:p-0">
           {navLinks.map((navLink) => (
             <li key={navLink.link}>
@@ -48,7 +50,7 @@ export default function NavBar() {
           ))}
           <li>
             <Link
-              href="/Recipes"
+              href="/recipes"
               className="rounded-full bg-primaryLight p-2 transition-all hover:bg-opacity-80"
             >
               {currentUser ? "Open App" : "Try Demo"}
@@ -56,6 +58,6 @@ export default function NavBar() {
           </li>
         </ul>
       </div>
-    </div>
+    </nav>
   );
 }

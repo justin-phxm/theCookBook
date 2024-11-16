@@ -1,5 +1,5 @@
 import React from "react";
-import { FooterLinks } from "./footer";
+import { FooterLinks } from "./Footer";
 import Link from "next/link";
 
 export default function SocialIcons({
