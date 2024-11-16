@@ -1,7 +1,8 @@
 {
   "extends": [
     "next/core-web-vitals",
-    "next/typescript"
+    "next/typescript",
+    "next"
   ],
   "rules": {
     "no-console": [

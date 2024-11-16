@@ -1,58 +1,39 @@
-"use client";
-import React from "react";
 import Image from "next/image";
 import placeholder from "@/placeholder-image.png";
-import { useRouter } from "next/router";
-import IFoodItem from "@/lib/FoodInterface";
-import { useFood } from "@/app/context/FoodContext";
-export default function RecipeItem({ FoodItem }: { FoodItem: IFoodItem }) {
-  const { setCurrentFoodItem, setEditMode } = useFood();
-  const router = useRouter();
-  const foodURLID = router.query.id;
-  const MAX_SUMMERY_LENGTH = 20;
-  const linkClass =
-    "group flex xl:flex-col h-max p-2 hover:bg-green-500 rounded-md border border-white shadow-md   my-1   text-center " +
-    (foodURLID === FoodItem.id ? "bg-green-500" : "bg-white");
-
+import type { Recipe } from "@/lib/types";
+import { twMerge } from "tailwind-merge";
+import Link from "next/link";
+export default function RecipeItem({ FoodItem }: { FoodItem: Recipe }) {
   return (
-    <div
-      className={linkClass}
-      onClick={() => {
-        setCurrentFoodItem(FoodItem);
-        setEditMode(false);
-      }}
+    <Link
+      className={
+        "group flex flex-col rounded-md border bg-white p-2 shadow-md hover:bg-primary"
+      }
+      href={"/recipes/" + FoodItem.id}
     >
-      <div className="flex w-full flex-col items-center justify-between lg:flex-row">
-        <h5 className="text-xl font-medium text-gray-900 group-hover:underline">
+      <button className="flex w-full items-center justify-between gap-2">
+        <h5 className="truncate text-xl group-hover:underline">
           {FoodItem.name}
         </h5>
-        {FoodItem.imageURL ? (
-          <div className="relative">
-            <Image
-              className="h-10 w-10 rounded-full"
-              src={FoodItem.imageURL}
-              alt="No image"
-              width={500}
-              height={500}
-            />
-            {FoodItem.color && (
-              <span className="absolute -bottom-1 -right-1 h-3.5 w-3.5 rounded-full border-2 border-white bg-red-500 dark:border-gray-800" />
-            )}
-          </div>
-        ) : (
+        <div className="relative aspect-square h-12 rounded-xl border">
           <Image
-            className="w-14 rounded-md"
-            src={placeholder}
+            src={FoodItem.imageURL ?? placeholder}
             alt="No image"
-            width={500}
+            fill
+            className="rounded-xl object-cover"
           />
-        )}
-      </div>
-      <div className="hidden text-ellipsis text-left text-sm text-gray-700 xl:flex">
-        {FoodItem.summary && FoodItem.summary?.length > MAX_SUMMERY_LENGTH
-          ? FoodItem.summary?.substring(0, 20) + "..."
-          : FoodItem.summary}
-      </div>
-    </div>
+          <span
+            style={{
+              backgroundColor: FoodItem.color,
+              borderWidth: FoodItem.color && 1,
+            }}
+            className={twMerge(
+              `absolute -bottom-1 -right-1 size-3.5 rounded-full border-gray-500`,
+            )}
+          />
+        </div>
+      </button>
+      <div className="line-clamp-2 text-xs">{FoodItem.summary}</div>
+    </Link>
   );
 }

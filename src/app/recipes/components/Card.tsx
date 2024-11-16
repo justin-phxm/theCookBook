@@ -10,7 +10,7 @@ export default function Card({
   return (
     <section
       className={twMerge(
-        "rounded-lg border-8 border-primaryLight bg-slate-200 p-2",
+        "flex flex-col gap-2 rounded-lg border-8 border-primaryLight bg-slate-200 p-2",
         className,
       )}
     >

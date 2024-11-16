@@ -1,10 +1,11 @@
-import TestimonyInterface from "@/lib/TestimonyInterface";
+import { Testimony as TestimonyI } from "@/lib/types";
+
 import Testimony from "./testimony";
 
 import testimony0 from "@/testimonyImages/testimonyImage.png";
 import testimony1 from "@/testimonyImages/Screen Shot 2022-05-09 at 10.28.png";
 import testimony2 from "@/testimonyImages/Screen Shot 2022-05-09 at 10.28 (1).png";
-const testimonies: TestimonyInterface[] = [
+const testimonies: TestimonyI[] = [
   {
     name: "Olivia Cole",
     image: testimony0,
@@ -29,7 +30,7 @@ export default function Testimonies() {
         <h1>Read What Others Have To Say</h1>
       </div>
       <div className="grid w-full grid-flow-col grid-cols-3">
-        {testimonies.map((testimony: TestimonyInterface) => (
+        {testimonies.map((testimony: TestimonyI) => (
           <Testimony
             key={testimony.name}
             testimonyImage={testimony.image}

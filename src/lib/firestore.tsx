@@ -6,14 +6,13 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
-import FoodInterface from "./FoodInterface";
+import { Recipe } from "./types";
 import { getStorage, ref, deleteObject } from "firebase/storage";
 
 export const DatabaseProvider = () => {
   const storage = getStorage();
 
-  // const { currentUser } = useAuth();
-  const updateDocument = async (foodItem: FoodInterface) => {
+  const updateDocument = async (foodItem: Recipe) => {
     try {
       const foodRef = doc(db, "food", `${foodItem.id}`);
       setDoc(foodRef, foodItem);
@@ -23,18 +22,15 @@ export const DatabaseProvider = () => {
   };
 
   const readDB = async () => {
-    // if (!currentUser) {
-    //   return;
-    // }
     const querySnapshot = await getDocs(collection(db, "food"));
-    const foodCollection: FoodInterface[] = [];
+    const foodCollection: Recipe[] = [];
     querySnapshot.forEach((doc) => {
-      foodCollection.push(doc.data());
+      foodCollection.push(doc.data() as Recipe);
     });
     return foodCollection;
   };
 
-  const deleteFoodItem = async (foodItem: FoodInterface) => {
+  const deleteFoodItem = async (foodItem: Recipe) => {
     try {
       await deleteDoc(doc(db, "food", `${foodItem.id}`));
       const imageRef = ref(storage, foodItem.image);

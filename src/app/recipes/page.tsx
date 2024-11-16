@@ -1,9 +1,8 @@
 import { Metadata } from "next";
 import { FoodProvider } from "../context/FoodContext";
-import RecipeHolder from "./components/recipeHolder";
 import CookingArea from "./components/cookingArea";
-import RecipeDetails from "./components/recipeDetails";
 import Card from "./components/Card";
+import FoodHeader from "./components/foodHeader";
 
 export const metadata: Metadata = {
   title: "theCookBook",
@@ -23,18 +22,11 @@ export const metadata: Metadata = {
 };
 export default function page() {
   return (
-    <div className="flex h-full justify-between gap-2">
-      <FoodProvider>
-        <Card>
-          <RecipeHolder />
-        </Card>
-        <Card className="flex flex-1">
-          <CookingArea />
-        </Card>
-        <Card>
-          <RecipeDetails />
-        </Card>
-      </FoodProvider>
-    </div>
+    <FoodProvider>
+      <Card className="flex-1">
+        <FoodHeader />
+        <CookingArea />
+      </Card>
+    </FoodProvider>
   );
 }
