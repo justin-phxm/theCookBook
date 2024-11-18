@@ -1,63 +1,48 @@
 "use client";
-import React, { useContext, useEffect } from "react";
-import { Recipe as RecipeType } from "@/lib/types";
-import { DatabaseProvider } from "@/lib/firestore";
-import { getDownloadURL, getStorage, ref } from "firebase/storage";
-import { Recipe } from "@/app/recipes/components/AIRecipeDisplay";
+import React, {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import { DEFAULT_RECIPE, Recipe } from "@/lib/types";
 import { fakeRecipes } from "@/lib/fakeData/fakeFood";
 interface FoodContextType {
-  foods: RecipeType[];
-  loading: boolean;
-  error: string | null;
-  setFood: React.Dispatch<React.SetStateAction<RecipeType[]>>;
-  currentFoodItem: RecipeType;
+  foods: Recipe[];
+  setFood: Dispatch<SetStateAction<Recipe[]>>;
+  currentFoodItem: Recipe;
   editMode: boolean;
-  setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
-  setCurrentFoodItem: React.Dispatch<React.SetStateAction<RecipeType>>;
+  setEditMode: Dispatch<SetStateAction<boolean>>;
+  setCurrentFoodItem: Dispatch<SetStateAction<Recipe>>;
   selectedImage: File | null;
-  setSelectedImage: React.Dispatch<React.SetStateAction<File | null>>;
-  AIRecipe: Recipe;
-  setAIRecipe: React.Dispatch<React.SetStateAction<Recipe>>;
+  setSelectedImage: Dispatch<SetStateAction<File | null>>;
 }
 
-const FoodContext = React.createContext<FoodContextType>({} as FoodContextType);
+const FoodContext = createContext<FoodContextType>({} as FoodContextType);
 
-export const useFood = () => {
-  return useContext(FoodContext);
-};
+export const useFood = () => useContext(FoodContext);
 
-export const FoodProvider = ({ children }: { children: React.ReactNode }) => {
-  const [selectedImage, setSelectedImage] = React.useState<File | null>(null);
-  const [foods, setFood] = React.useState<RecipeType[]>(fakeRecipes);
-  const [loading] = React.useState<boolean>(true);
-  const [error] = React.useState<string | null>(null);
-  const [editMode, setEditMode] = React.useState<boolean>(false);
-  const [currentFoodItem, setCurrentFoodItem] = React.useState<RecipeType>(
-    {} as RecipeType,
-  );
-  const [AIRecipe, setAIRecipe] = React.useState<Recipe>({
-    name: "",
-    description: "",
-    ingredients: [],
-    instructions: [],
-    tips: [],
-  });
-  const storage = getStorage();
-
-  const { readDB } = DatabaseProvider();
-
+export const FoodProvider = ({
+  children,
+  recipeID,
+}: {
+  children: React.ReactNode;
+  recipeID?: string;
+}) => {
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [foods, setFood] = useState<Recipe[]>(fakeRecipes);
+  const [currentFoodItem, setCurrentFoodItem] = useState(DEFAULT_RECIPE);
+  const [editMode, setEditMode] = useState<boolean>(false);
   useEffect(() => {
-    readDB().then((data) => {
-      data.map((food) => {
-        if (food.image) {
-          getDownloadURL(ref(storage, food.image)).then((url) => {
-            food.imageURL = url;
-            setFood(data);
-          });
-        }
-      });
-    });
-  }, [editMode]);
+    let existingRecipe;
+    if (recipeID) {
+      existingRecipe = foods.find((food) => food.id === recipeID);
+    }
+    setEditMode(!!!existingRecipe);
+    setCurrentFoodItem(existingRecipe ?? DEFAULT_RECIPE);
+  }, [foods, recipeID]);
 
   return (
     <FoodContext.Provider
@@ -65,15 +50,11 @@ export const FoodProvider = ({ children }: { children: React.ReactNode }) => {
         selectedImage,
         setSelectedImage,
         foods,
-        loading,
-        error,
         setFood,
         currentFoodItem,
         setCurrentFoodItem,
         editMode,
         setEditMode,
-        AIRecipe,
-        setAIRecipe,
       }}
     >
       {children}

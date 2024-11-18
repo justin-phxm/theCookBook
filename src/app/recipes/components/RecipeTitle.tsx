@@ -19,9 +19,9 @@ export default function RecipeTitle() {
         className={`w-3/4 rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-primaryLight ${!editMode && "bg-inherit"}`}
       />
       <input
-        placeholder={currentFoodItem.servings + " Servings"}
+        placeholder={(currentFoodItem.servings ?? "") + " Servings"}
         type="number"
-        value={currentFoodItem.servings}
+        value={currentFoodItem.servings ?? 1}
         disabled={!editMode}
         onChange={(e) => {
           setCurrentFoodItem((prev) => {

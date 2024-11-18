@@ -11,6 +11,7 @@ export default function InstructionsList() {
           <li
             className={` ${editMode && "cursor-pointer hover:opacity-70"}`}
             onClick={() => {
+              if (!editMode) return;
               const updatedInstructions = [
                 ...(currentFoodItem.instructions ?? []),
               ];

@@ -7,7 +7,7 @@ export default function RecipeItem({ FoodItem }: { FoodItem: Recipe }) {
   return (
     <Link
       className={
-        "group flex flex-col rounded-md border bg-white p-2 shadow-md hover:bg-primary"
+        "group flex flex-col rounded-md p-2 shadow-md hover:bg-primary"
       }
       href={"/recipes/" + FoodItem.id}
     >

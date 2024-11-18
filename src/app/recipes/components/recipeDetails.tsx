@@ -1,16 +1,16 @@
 export default function recipeDetails() {
   return (
     <>
-      <h1 className="select-none text-xl font-bold">Details</h1>
+      <h1 className="select-none py-1.5 text-xl font-bold">Details</h1>
       <section className="flex flex-col gap-4 text-sm text-gray-500">
         <div className="relative flex gap-4 bg-inherit">
           <input
             type="number"
-            className="rounded-md border-0 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primaryLight"
+            className="w-3/5 rounded-md border-0 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primaryLight"
             placeholder="0.00"
             step="0.10"
           />
-          <select className="rounded-md border-0 bg-transparent bg-white ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primaryLight">
+          <select className="w-2/5 rounded-md border-0 bg-transparent bg-white ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primaryLight">
             <option>$ / Serving</option>
             <option>$ / Kg</option>
             <option>Other</option>

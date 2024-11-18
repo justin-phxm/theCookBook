@@ -1,8 +1,7 @@
 import Circle from "@/components/Circle";
 import Card from "./components/Card";
-import RecipeHolder from "./components/recipeHolder";
 import RecipeDetails from "./components/recipeDetails";
-import ChatGPTInput from "./components/ChatGPTInput";
+// import ChatGPTInput from "./components/ChatGPTInput";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -15,17 +14,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <Circle />
         </div>
       </div>
-      <div className="relative flex h-screen w-11/12 justify-between gap-2 py-2">
-        <Card>
-          <RecipeHolder />
-        </Card>
-        {children}
+      <div className="relative flex h-screen w-11/12 flex-col justify-between gap-2 py-2 lg:flex-row">
+        <div className="flex flex-1 gap-2">{children}</div>
         <Card>
           <RecipeDetails />
           <h1 className="select-none border-b-2 border-gray-500 text-xl font-bold">
             Use AI 💻🧠
           </h1>
-          <ChatGPTInput />
+          {/* <ChatGPTInput /> */}
         </Card>
       </div>
     </>

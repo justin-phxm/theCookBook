@@ -11,6 +11,7 @@ export default function IngredientsList() {
             className={`flex flex-row font-normal ${editMode && "cursor-pointer hover:opacity-70"}`}
             key={index}
             onClick={() => {
+              if (!editMode) return;
               const updatedIngredients = [
                 ...(currentFoodItem.ingredients ?? []),
               ];

@@ -1,9 +1,9 @@
 import { Metadata } from "next";
-import { FoodProvider } from "../context/FoodContext";
 import CookingArea from "./components/cookingArea";
-import Card from "./components/Card";
 import FoodHeader from "./components/foodHeader";
-
+import { FoodProvider } from "../context/FoodContext";
+import Card from "./components/Card";
+import RecipeHolder from "./components/recipeHolder";
 export const metadata: Metadata = {
   title: "theCookBook",
   description: "Save all your recipes with theCookBook",
@@ -23,6 +23,9 @@ export const metadata: Metadata = {
 export default function page() {
   return (
     <FoodProvider>
+      <Card>
+        <RecipeHolder />
+      </Card>
       <Card className="flex-1">
         <FoodHeader />
         <CookingArea />

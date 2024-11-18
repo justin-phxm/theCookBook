@@ -9,7 +9,7 @@ export interface Recipe {
   image?: string;
   id: string;
   summary?: string;
-  color?: "red" | "blue" | "green" | "yellow" | "purple" | "pink";
+  color?: "red" | "blue" | "green" | "yellow" | "purple" | "pink" | "";
   ingredients?: string[];
   instructions?: string[];
   tags?: string[];
@@ -17,3 +17,14 @@ export interface Recipe {
   imageURL?: string;
   author?: string;
 }
+export const DEFAULT_RECIPE: Recipe = {
+  id: "",
+  name: "New Recipe",
+  summary: "",
+  ingredients: [],
+  instructions: [],
+  author: "",
+  color: "",
+  tags: [],
+  servings: 1,
+};

@@ -1,3 +1,5 @@
+// @ts-nocheck
+/* eslint-disable no-use-before-define */
 "use client";
 import { useFood } from "@/app/context/FoodContext";
 import { Recipe } from "@/lib/types";
